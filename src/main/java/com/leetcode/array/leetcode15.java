@@ -28,15 +28,40 @@ public class leetcode15 {
         int arr[] = {-1,0,1,2,-1,-4};
         leetcode15 leetcode15 = new leetcode15();
 
-        for (List<Integer> integers : leetcode15.threeSum(arr)) {
+        for (List<Integer> integers : leetcode15.threeSum2(arr)) {
             System.out.println(integers);
         }
     }
 
 
+    /**
+     * 方法二 双指针解法
+     * @param num
+     * @return
+     */
+    public List<List<Integer>> threeSum2(int[] num) {
+        Arrays.sort(num);
+        List<List<Integer>> res = new LinkedList<>();
+        for (int i = 0; i < num.length-2; i++) {
+            if (i == 0 || (i > 0 && num[i] != num[i-1])) {
+                int lo = i+1, hi = num.length-1, sum = 0 - num[i];
+                while (lo < hi) {
+                    if (num[lo] + num[hi] == sum) {
+                        res.add(Arrays.asList(num[i], num[lo], num[hi]));
+                        while (lo < hi && num[lo] == num[lo+1]) lo++;
+                        while (lo < hi && num[hi] == num[hi-1]) hi--;
+                        lo++; hi--;
+                    } else if (num[lo] + num[hi] < sum) lo++;
+                    else hi--;
+                }
+            }
+        }
+        return res;
+    }
+
 
     /**
-     * 这种暴力解法会超出时间限制
+     * 方法一 这种暴力解法会超出时间限制
      * @param nums
      * @return
      */
