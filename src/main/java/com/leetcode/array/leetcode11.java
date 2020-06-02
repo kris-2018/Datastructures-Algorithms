@@ -1,4 +1,4 @@
-package array;
+package com.leetcode.array;
 
 public class leetcode11 {
 

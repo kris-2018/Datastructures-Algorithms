@@ -1,4 +1,4 @@
-package array;
+package com.leetcode.array;
 
 /**
  * 1. 两数之和
