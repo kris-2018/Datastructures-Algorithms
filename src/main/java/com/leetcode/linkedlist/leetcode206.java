@@ -23,7 +23,5 @@ package com.leetcode.linkedlist;
 
 public class leetcode206 {
 
-    public ListNode reverseList(ListNode head) {
 
-    }
 }
