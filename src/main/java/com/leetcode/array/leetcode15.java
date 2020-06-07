@@ -3,7 +3,6 @@ package com.leetcode.array;
 import java.util.*;
 
 /**
- *
  * 给你一个包含 n 个整数的数组 nums，判断 nums中是否存在三个元素 a，b，c ，使得a + b + c = 0 ？请你找出所有满足条件且不重复的三元组。
  * 注意：答案中不可以包含重复的三元组。
  * 示例：
@@ -40,18 +39,18 @@ public class leetcode15 {
      * @return
      */
     public List<List<Integer>> threeSum2(int[] num) {
-        Arrays.sort(num);
+        Arrays.sort(num);//排序[-4,-1,-1,0,1,2]
         List<List<Integer>> res = new LinkedList<>();
         for (int i = 0; i < num.length-2; i++) {
-            if (i == 0 || (i > 0 && num[i] != num[i-1])) {
-                int lo = i+1, hi = num.length-1, sum = 0 - num[i];
-                while (lo < hi) {
-                    if (num[lo] + num[hi] == sum) {
+            if (i == 0 || (i > 0 && num[i] != num[i-1])) { //num[i] = num[i-1]说明该数字会重复,结果会重复,所以要跳过
+                int lo = i+1, hi = num.length-1, sum = 0 - num[i];//lo 和 hi为两条指针,初始分别为数组两端, 往中间移动; 三数之和变成2数之和,
+                while (lo < hi) { //不成立就返回for循环 i++   num[i]为固定的两数之和
+                    if (num[lo] + num[hi] == sum) { //如果相等就添加到数组中
                         res.add(Arrays.asList(num[i], num[lo], num[hi]));
-                        while (lo < hi && num[lo] == num[lo+1]) lo++;
-                        while (lo < hi && num[hi] == num[hi-1]) hi--;
+                        while (lo < hi && num[lo] == num[lo+1]) lo++; //num[lo] == num[lo+1]会导致结果重复, 应该跳过 lo++
+                        while (lo < hi && num[hi] == num[hi-1]) hi--; //num[hi] == num[hi-1]会导致结果重复, 应该跳过 hi--
                         lo++; hi--;
-                    } else if (num[lo] + num[hi] < sum) lo++;
+                    } else if (num[lo] + num[hi] < sum) lo++; //如果两数之和 < 固定的num[0],因为是排好序的, 就将左指针右移, 右指针不动
                     else hi--;
                 }
             }

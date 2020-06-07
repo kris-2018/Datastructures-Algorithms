@@ -44,6 +44,11 @@ public class leetcode70 {
         System.out.println(leetcode70.climbStairs(4));
     }
 
+    /**
+     * 归纳   时间复杂度O(n)
+     * @param n
+     * @return
+     */
     public int climbStairs(int n){
             if (n <= 2 ) return n;
             int f1 = 1, f2 = 2, f3 = 3; //保存最近的3个值，然后不断的往前累加;
