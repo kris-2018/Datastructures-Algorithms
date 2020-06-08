@@ -21,9 +21,6 @@
  */
 package com.leetcode.linkedlist;
 
-import lombok.Builder;
-import lombok.Data;
-
 /**
  * 206. 反转链表 Reverse Linked List
  * 反转一个单链表。
@@ -41,12 +38,10 @@ public class leetcode206 {
         ListNode node2 = new ListNode(2);
         ListNode node3 = new ListNode(3);
         ListNode node4 = new ListNode(4);
-        ListNode node5 = new ListNode(5);
 
         node1.setNext(node2);
         node2.setNext(node3);
         node3.setNext(node4);
-        node4.setNext(node5);
 
         /*原始链表*/
         ListNode node = node1;
@@ -88,25 +83,11 @@ public class leetcode206 {
      * head = next;
      */
     public static ListNode reverseList(ListNode head) {
-        ListNode newHead = null;
+        ListNode newHead = null; //新链表
         while (head != null) {
-            //head = ListNode(data=1, next=ListNode(data=2, next=ListNode(data=3, next=ListNode(data=4, next=ListNode(data=5, next=null)))))
-            //newHead = null
-            //next = head.next = ListNode(data=2, next=ListNode(data=3, next=ListNode(data=4, next=ListNode(data=5, next=null))))
             ListNode next = head.next;
-            //head = ListNode(data=1, next=ListNode(data=2, next=ListNode(data=3, next=ListNode(data=4, next=ListNode(data=5, next=null)))))
-            //newHead = null
-            //next = ListNode(data=2, next=ListNode(data=3, next=ListNode(data=4, next=ListNode(data=5, next=null))))
-            //head.next = ListNode(data=2, next=ListNode(data=3, next=ListNode(data=4, next=ListNode(data=5, next=null))))
             head.next = newHead;
-            //head = ListNode(data=1, next=null)
-            //newHead = null
-            //next = ListNode(data=2, next=ListNode(data=3, next=ListNode(data=4, next=ListNode(data=5, next=null))))
-                //head.next = null
             newHead = head;
-            //head = ListNode(data=1, next=null)
-            //newHead = ListNode(data=1, next=null)
-            //next = ListNode(data=2, next=ListNode(data=3, next=ListNode(data=4, next=ListNode(data=5, next=null))))
             head = next;
         }
         return newHead;
@@ -125,37 +106,4 @@ public class leetcode206 {
         return reverseListInt(next, head);
     }
 
-}
-
-/*在实体类中添加@Data @Builder注解。在需要使用到的地方该类的地方可直接使用get,set方法*/
-@Data
-@Builder
-class ListNode {
-    int data;       //data
-    ListNode next; //next指针
-
-    public ListNode(int data) {
-        this.data = data;
-    }
-
-    public ListNode(int data, ListNode next) {
-        this.data = data;
-        this.next = next;
-    }
-
-/*    public int getData() {
-        return data;
-    }
-
-    public ListNode getNext() {
-        return next;
-    }
-
-    public void setData(int data) {
-        this.data = data;
-    }
-
-    public void setNext(ListNode next) {
-        this.next = next;
-    }*/
 }
