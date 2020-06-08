@@ -21,16 +21,18 @@ public class leetcode141 {
         ListNode node2 = new ListNode(2);
         ListNode node3 = new ListNode(3);
         ListNode node4 = new ListNode(4);
+
         node1.setNext(node2);
         node2.setNext(node3);
         node3.setNext(node4);
+        node4.setNext(node2);
 
         /*原始链表的遍历*/
-        ListNode node = node1;
+/*        ListNode node = node1;
         while (node != null) {
             System.out.print(node.data + " ");
             node = node.getNext();
-        }
+        }*/
 
         System.out.println("\n 链表是否有环");
         System.out.println(hasCycle(node1));
