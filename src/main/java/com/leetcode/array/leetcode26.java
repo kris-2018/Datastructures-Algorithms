@@ -33,4 +33,5 @@ package com.leetcode.array;
  *
  */
 public class leetcode26 {
+
 }
