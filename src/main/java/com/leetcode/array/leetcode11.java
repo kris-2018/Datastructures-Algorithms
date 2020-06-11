@@ -9,6 +9,9 @@ package com.leetcode.array;
  * 示例：
  * 输入：[1,8,6,2,5,4,8,3,7]
  * 输出：49
+ *
+ * https://leetcode-cn.com/problems/container-with-most-water/
+ *
  */
 
 public class leetcode11 {
@@ -21,7 +24,8 @@ public class leetcode11 {
 
 
     /**
-     * 单层for循环, 双指针解法, 时间复杂度O(n); 为什么双指针往中间移动时，不会漏掉某些情况
+     * 单层for循环, 双指针解法, 时间复杂度O(n);
+     * 为什么双指针往中间移动时，不会漏掉某些情况;  缩减搜索空间
      * @param a
      * @return
      */
