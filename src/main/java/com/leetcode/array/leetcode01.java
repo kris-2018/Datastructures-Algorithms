@@ -1,5 +1,7 @@
 package com.leetcode.array;
 
+import java.util.HashMap;
+
 /**
  * 1. 两数之和
  * 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。
@@ -20,16 +22,39 @@ package com.leetcode.array;
 public class leetcode01 {
 
     public static void main(String[] args) {
-        int[] nums = {2,7,11,15};
+        int[] nums = {2, 6};
         leetcode01 leetcode01 = new leetcode01();
-        for (int i: leetcode01.twoSum(nums,9)){
+        for (int i: leetcode01.twoSum1(nums,9)){
             System.out.print(i + "\t");
         }
     }
 
+    /**方法二: 利用哈希表
+     * 数组下标对应的值为 K, 下标为 V , 将每个键值对存入map中, 遍历
+     * 时间复杂度为 O(n)  空间复杂度为 O(n)
+     * @param nums
+     * @param target
+     * @return
+     */
+    public int[] twoSum1(int[] nums, int target) {
+        //int[] result = new int[2];
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (map.containsKey(target - nums[i])) {
+                return new int[] { map.get(target - nums[i]), i };
+                //result[1] = i;
+                //result[0] = map.get(target - nums[i]);
+                //return result;
+            }
+            map.put(nums[i], i); // 下标对应的值为 K, 下标为 V
+        }
+        throw new IllegalArgumentException("No two sum solution");
+    }
+
+
 
     /**
-     * 暴力解法  2层for循环,
+     * 方法一: 暴力解法  2层for循环, 时间复杂度为 O(n^2)  空间复杂度为 O(1)
      * @param nums
      * @param target
      * @return
