@@ -10,6 +10,8 @@ package com.leetcode.array;
  *      必须在原数组上操作，不能拷贝额外的数组。
  *      尽量减少操作次数。
  * Related Topics 数组 双指针
+ *
+ *  https://leetcode-cn.com/problems/move-zeroes/
  */
 public class leetcode283 {
     public static void main(String[] args) {
