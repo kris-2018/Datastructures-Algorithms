@@ -3,6 +3,7 @@ package com.leetcode.array;
 import java.util.*;
 
 /**
+ * 15. 三数之和
  * 给你一个包含 n 个整数的数组 nums，判断 nums中是否存在三个元素 a，b，c ，使得a + b + c = 0 ？请你找出所有满足条件且不重复的三元组。
  * 注意：答案中不可以包含重复的三元组。
  * 示例：
@@ -34,7 +35,7 @@ public class leetcode15 {
 
 
     /**
-     * 方法二 双指针解法
+     * 方法二 排序 + 双指针解法  时间复杂度 O(n^2)
      * @param num
      * @return
      */
@@ -60,7 +61,7 @@ public class leetcode15 {
 
 
     /**
-     * 方法一 这种暴力解法会超出时间限制
+     * 方法一 这种暴力解法会超出时间限制  时间复杂度为 O(n^3)
      * @param nums
      * @return
      */
