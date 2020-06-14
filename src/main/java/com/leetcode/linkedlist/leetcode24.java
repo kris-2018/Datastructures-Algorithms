@@ -37,22 +37,39 @@ public class leetcode24 {
         }
     }
 
+    /**
+     * 方法一
+     * 迭代法, 时间复杂度 O(n), n为链表中节点的数量;  空间复杂度 O(1)
+     *
+     * @param head
+     * @return
+     */
     public static ListNode swapPairs(ListNode head){
-        //dummy node 作为head节点的前驱结点
+        //第一轮循环中 dummy 作为head节点的前驱结点
         ListNode dummy = new ListNode(0);
         dummy.next = head;
         ListNode current = dummy;
         while (current.next != null && current.next.next != null) {
             //nodes to be swapped
-            ListNode first = current.next;
-            ListNode second = current.next.next;
+            ListNode first = current.next; //1->2->3->4
+            ListNode second = current.next.next; //2->3->4
             //swapping
-            first.next = second.next;
-            current.next = second;
+            first.next = second.next; //此步从first {1->2->3->4}  ==>  {1->3->4} ,同时 head和current也就变成了 0->1->3->4
+            current.next = second; //此步current变成 0->2->3->4
+            current.next.next = first;//此步current变成 0->2->1->3->4
             //reinitializing and for the next swap
-            current.next.next = first;
-            current = current.next.next;
+            current = current.next.next; //此步current变成 1->3->4
         }
         return dummy.next;
+    }
+
+    /**
+     *  方法二
+     *  递归
+     * @param head
+     * @return
+     */
+    public ListNode swapPairs1(ListNode head) {
+        return head;
     }
 }
