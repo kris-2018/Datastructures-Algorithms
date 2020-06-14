@@ -22,7 +22,7 @@ package com.leetcode.array;
  */
 public class leetcode66 {
     public static void main(String[] args) {
-        int[] digits = {9,9};
+        int[] digits = {9,8};
         for (int i : plusOne(digits)) {
             System.out.print(i + "\t");
         }
