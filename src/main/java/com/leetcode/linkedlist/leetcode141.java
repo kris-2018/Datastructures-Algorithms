@@ -16,18 +16,16 @@ public class leetcode141 {
 
     public static void main(String[] args) {
 
-        /*插入数据*/
+        /** 插入数据 */
         ListNode node1 = new ListNode(1);
         ListNode node2 = new ListNode(2);
-        ListNode node3 = new ListNode(3);
         ListNode node4 = new ListNode(4);
 
         node1.setNext(node2);
-        node2.setNext(node3);
-        node3.setNext(node4);
-        node4.setNext(node2);
+        node2.setNext(node4);
+        //node4.setNext(node1);
 
-        /*原始链表的遍历*/
+        /** 原始链表的遍历, 环状链表遍历会是一个死循环 1 2 4 1 2 4 1 2 4... */
 /*        ListNode node = node1;
         while (node != null) {
             System.out.print(node.data + " ");
