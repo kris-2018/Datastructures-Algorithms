@@ -29,6 +29,7 @@ package com.leetcode.stack;
  *
  * 输入: "{[]}"
  * 输出: true
+ * https://leetcode-cn.com/problems/valid-parentheses/solution/
  */
 
 public class leetcode20 {
