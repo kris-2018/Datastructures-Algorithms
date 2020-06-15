@@ -11,6 +11,8 @@ import java.util.HashSet;
  * 输入：head = [3,2,0,-4], pos = 1
  * 输出：true
  * 解释：链表中有一个环，其尾部连接到第二个节点。
+ *
+ *  https://leetcode-cn.com/problems/linked-list-cycle/
  */
 public class leetcode141 {
 
@@ -23,7 +25,7 @@ public class leetcode141 {
 
         node1.setNext(node2);
         node2.setNext(node4);
-        //node4.setNext(node1);
+        node4.setNext(node1);
 
         /** 原始链表的遍历, 环状链表遍历会是一个死循环 1 2 4 1 2 4 1 2 4... */
 /*        ListNode node = node1;
