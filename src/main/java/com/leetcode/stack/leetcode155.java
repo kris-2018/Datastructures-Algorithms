@@ -1,5 +1,7 @@
 package com.leetcode.stack;
 
+import java.util.Stack;
+
 /**
  * 155. 最小栈
  * 设计一个支持 push ，pop ，top 操作，并能在常数时间内检索到最小元素的栈。
@@ -31,9 +33,47 @@ package com.leetcode.stack;
  *
  *  https://leetcode-cn.com/problems/min-stack/
  *
+ * Your MinStack object will be instantiated and called as such:
+ * MinStack obj = new MinStack();
+ * obj.push(x);
+ * obj.pop();
+ * int param_3 = obj.top();
+ * int param_4 = obj.getMin();
  */
 public class leetcode155 {
 
-    /** initialize your data structure here. */
+    int min = Integer.MAX_VALUE;
+    Stack<Integer> stack = new Stack<>();
+    public static void main(String[] args) {
+        leetcode155 leetcode155 = new leetcode155();
+        leetcode155.push(2);
+        leetcode155.push(3);
+        leetcode155.push(4);
+        System.out.println(leetcode155.top());
+        leetcode155.pop();
+        System.out.println(leetcode155.top());
+        System.out.println(leetcode155.getMin());
 
+    }
+
+    /** initialize your data structure here. */
+    public leetcode155() {}
+
+    public void push(int x) {
+        if (x <= min) {
+            stack.push(min);
+        }
+        stack.push(x);
+    }
+
+    public void pop() {
+        if (stack.pop() == min) min = stack.pop();
+    }
+    /** peek -- top  查看栈顶元素  */
+    public int top() {
+        return stack.peek();
+    }
+    public int getMin() {
+        return min;
+    }
 }
