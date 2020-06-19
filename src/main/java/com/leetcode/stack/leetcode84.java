@@ -28,8 +28,8 @@ public class leetcode84 {
             if (stack.isEmpty() || h >= heights[stack.peek()]) {
                 stack.push(i);
             } else {
-                int tp = stack.pop();
-                maxArea = Math.max(maxArea, heights[tp] * (stack.isEmpty() ? i : i - 1 - stack.peek()));
+                int tp = stack.pop(); //pop: Removes the object at the top of this stack
+                maxArea = Math.max(maxArea, heights[tp] * (stack.isEmpty() ? i : i - 1 - stack.peek())); //peek: Looks at the object at the top of this stack without removing it from the stack
                 i--;
             }
         }
