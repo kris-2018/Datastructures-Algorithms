@@ -4,7 +4,7 @@ import java.util.Stack;
 
 /**
  * 155. 最小栈
- * 设计一个支持 push ，pop ，top 操作，并能在常数时间内检索到最小元素的栈。
+ * 设计一个支持 push ，pop ，top 操作， 并能在常数时间内检索到最小元素的栈。
  * push(x) —— 将元素 x 推入栈中。
  * pop() —— 删除栈顶的元素。
  * top() —— 获取栈顶元素。
@@ -40,24 +40,24 @@ import java.util.Stack;
  * int param_3 = obj.top();
  * int param_4 = obj.getMin();
  */
-public class leetcode155 {
+public class leetcode155_MinStack_1 {
 
     int min = Integer.MAX_VALUE;
     Stack<Integer> stack = new Stack<>();
     public static void main(String[] args) {
-        leetcode155 leetcode155 = new leetcode155();
-        leetcode155.push(2);
-        leetcode155.push(3);
-        leetcode155.push(4);
-        System.out.println(leetcode155.top());
-        leetcode155.pop();
-        System.out.println(leetcode155.top());
-        System.out.println(leetcode155.getMin());
+        leetcode155_MinStack_1 leetcode155_MinStack_1 = new leetcode155_MinStack_1();
+        leetcode155_MinStack_1.push(2);
+        leetcode155_MinStack_1.push(3);
+        leetcode155_MinStack_1.push(4);
+        System.out.println(leetcode155_MinStack_1.top());
+        leetcode155_MinStack_1.pop();
+        System.out.println(leetcode155_MinStack_1.top());
+        System.out.println(leetcode155_MinStack_1.getMin());
 
     }
 
     /** initialize your data structure here. */
-    public leetcode155() {}
+    public leetcode155_MinStack_1() {}
 
     public void push(int x) {
         if (x <= min) {

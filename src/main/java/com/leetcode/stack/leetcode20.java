@@ -60,4 +60,12 @@ public class leetcode20 {
         }
         return stack.isEmpty();
     }
+
+    /**
+     * 暴力解法
+     *
+     */
+
+
+
 }

@@ -35,4 +35,26 @@ public class leetcode84 {
         }
         return maxArea;
     }
+
+    /**
+     * 暴力解法 枚举左边界   右边界
+     * for i -> 0, n - 2
+     *   for j -> i + 1, n - 1
+     *      (i, j) -->  最小高度 area
+     *       update max - area
+     * 时间复杂度是 O(n^3)
+     *
+     */
+
+
+    /**
+     * 暴力法2
+     * 不用再枚举左边界就可以了，只要枚举它的棒子的高度即可。（枚举棒子高度, 找到它的左右边界即可）
+     * for i -> 0, n - 1
+     *    找到left bound     right bound
+     *    area = height[i] * (right - left)
+     *    update max - area
+     *
+     */
+
 }
