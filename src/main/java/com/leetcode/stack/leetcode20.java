@@ -1,5 +1,6 @@
 package com.leetcode.stack;
 
+import java.util.HashMap;
 import java.util.Stack;
 
 /**
@@ -39,7 +40,7 @@ public class leetcode20 {
             System.out.print(c + "\t");
         }
         System.out.println("\n判断是否是有效括号: ");
-        System.out.println(isValid(str));
+        System.out.println(isValid2(str));
     }
 
     /**
@@ -62,10 +63,24 @@ public class leetcode20 {
     }
 
     /**
-     * 暴力解法
-     *
+     * 使用哈希表 和 栈
+     * 时间复杂度 O(n)  空间复杂度 O(n)
+     * @param s
+     * @return
      */
-
+    public static boolean isValid2(String s) {
+        HashMap<Character, Character> hashMap = new HashMap<>();
+        hashMap.put('[', ']');
+        hashMap.put('{', '}');
+        hashMap.put('(', ')');
+        Stack<Character> stack = new Stack<>();
+        for (int i = 0; i < s.length(); i++) {
+            char cha = s.charAt(i);
+            if (cha == '[' || cha == '{' || cha =='(') stack.push(cha);
+            else if (stack.isEmpty() || (cha != hashMap.get(stack.pop()))) return false;
+        }
+        return stack.isEmpty();
+    }
 
 
 }

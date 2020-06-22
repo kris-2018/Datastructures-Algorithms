@@ -17,7 +17,7 @@ public class leetcode84 {
 
     public static void main(String[] args) {
         int[] res = {2,1,5,6,2,3};
-        System.out.println(largestRectangleArea(res));
+        System.out.println(largestRectangleArea3(res));
     }
 
     public static int largestRectangleArea(int[] heights) {
@@ -45,6 +45,20 @@ public class leetcode84 {
      * 时间复杂度是 O(n^3)
      *
      */
+    public static int largestRectangleArea2(int[] heights) {
+        int area = 0;
+        //枚举左边
+        for (int i = 0; i < heights.length - 1; i++) {
+            //枚举右边  柱状图可以是单个,所以都是从 0, heights.length-1
+            for (int j = i; j < heights.length - 1; j++) {
+                //确定高度, 最小的高度
+                int minHeight = Math.min(heights[i], heights[j]);
+                //计算面积
+                area = Math.max(area, (j - i + 1) * minHeight);
+            }
+        }
+        return area;
+    }
 
 
     /**
@@ -54,7 +68,26 @@ public class leetcode84 {
      *    找到left bound     right bound
      *    area = height[i] * (right - left)
      *    update max - area
+     * {2,1,5,6,2,3}
      *
      */
+    public static int largestRectangleArea3(int[] heights) {
+        int area = 0;
+        for (int i = 0; i < heights.length; i++) {
+            int width = 1, j = i; //宽度至少为1
+            //往左边找
+            while (--j >= 0 && heights[j] >= heights[i]) {
+                width++;
+            }
+            j = i;
+            //往右边找
+            while (++j < heights.length && heights[j] >= heights[i]) {
+                width++;
+            }
+            //记录最大面积
+            area = Math.max(area, width * heights[i]);
+        }
+        return area;
+    }
 
 }
