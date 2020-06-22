@@ -6,6 +6,16 @@ package com.leetcode.queue;
  */
 public class MyCircularDeque {
 
+    public static void main(String[] args) {
+        MyCircularDeque myCircularDeque = new MyCircularDeque(4);
+        System.out.println(myCircularDeque.insertFront(1));
+        System.out.println(myCircularDeque.insertFront(2));
+        System.out.println(myCircularDeque.insertLast(3));
+        for(int a : myCircularDeque.arr) {
+            System.out.print(a + " ");
+        }
+    }
+
     int[] arr;
     int front, rear, cap;
     public MyCircularDeque(int capacity) {
@@ -15,7 +25,24 @@ public class MyCircularDeque {
         cap = capacity + 1;
     }
 
+    /** Adds an item at the front of Deque. Return true if the operation is successful. */
+    public boolean insertFront(int value) {
+        if (isFull()) return false;
+        arr[front] = value;
+        front = (front + 1) % cap;
+        return true;
+    }
+    /** Adds an item at the rear of Deque. Return true if the operation is successful. */
+    public boolean insertLast(int value) {
+        if (isFull()) return false;
+        rear = (rear - 1 + cap) % cap;
+        arr[rear] = value;
+        return true;
+    }
+    /** Deletes an item from the front of Deque. Return true if the operation is successful. */
     public boolean deleteFront() {
+        if (isEmpty()) return false;
+        front = (front - 1 + cap) % cap;
         return true;
     }
     /** Deletes an item from the rear of Deque. Return true if the operation is successful. */
