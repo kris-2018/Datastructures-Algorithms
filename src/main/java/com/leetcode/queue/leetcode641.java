@@ -3,9 +3,9 @@ package com.leetcode.queue;
 import java.util.ArrayDeque;
 
 /**
- * 641. 设计循环双端队列   设计实现双端队列, 你的实现需要支持以下操作：
- *
- * MyCircularDeque(k)：构造函数,双端队列的大小为k。
+ * 641. 设计循环双端队列
+ * 设计实现双端队列, 你的实现需要支持以下操作：
+ * MyCircularDeque(k)：构造函数,双端队列的大小为 k 。
  * insertFront()：将一个元素添加到双端队列头部。 如果操作成功返回 true。
  * insertLast()：将一个元素添加到双端队列尾部。如果操作成功返回 true。
  * deleteFront()：从双端队列头部删除一个元素。 如果操作成功返回 true。
@@ -15,25 +15,23 @@ import java.util.ArrayDeque;
  * isEmpty()：检查双端队列是否为空。
  * isFull()：检查双端队列是否满了。
  *
- * 示例：
- * MyCircularDeque circularDeque = new MycircularDeque(3); // 设置容量大小为3
- * circularDeque.insertLast(1);			        // 返回 true
- * circularDeque.insertLast(2);			        // 返回 true
- * circularDeque.insertFront(3);			        // 返回 true
- * circularDeque.insertFront(4);			        // 已经满了，返回 false
- * circularDeque.getRear();  				// 返回 2
- * circularDeque.isFull();				        // 返回 true
- * circularDeque.deleteLast();			        // 返回 true
- * circularDeque.insertFront(4);			        // 返回 true
- * circularDeque.getFront();				// 返回 4
- *
  *
  *
  * 提示：
  * 所有值的范围为 [1, 1000]
  * 操作次数的范围为 [1, 1000]
  * 请不要使用内置的双端队列库。
+ *
+ * https://leetcode.com/problems/design-circular-deque
+ *
  */
 public class leetcode641 {
+    public static void main(String[] args) {
+        MyCircularDeque circularDeque = new MyCircularDeque(4);
+        circularDeque.insertFront(1);
+        circularDeque.insertLast(2);
+
+    }
+
 
 }

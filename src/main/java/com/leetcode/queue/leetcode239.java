@@ -41,14 +41,12 @@ public class leetcode239 {
 
     }
 
-
-
     public static int[] maxSlidingWindow(int[] nums, int k) {
         if (nums == null || k <= 0) return new int[0];
         int[] result = new int[nums.length - k + 1];
         int ri = 0;
         // store index
-        ArrayDeque<Integer> queue = new ArrayDeque<>(); //ArrayDeque: Constructs an empty array deque with an initial capacity sufficient to hold 16 elements.
+        ArrayDeque<Integer> queue = new ArrayDeque<>(); //ArrayDeque: Constructs an empty array deque with an initial nacity sufficient to hold 16 elements.
         for (int i = 0; i < nums.length; i++) {
             // remove numbers out of range k
             while (!queue.isEmpty() && queue.peek() < i - k + 1) {
@@ -67,5 +65,35 @@ public class leetcode239 {
         return result;
 
     }
+
+    /**
+     * https://leetcode.com/problems/sliding-window-maximum/discuss/458121/Java-All-Solutions-(B-F-PQ-Deque-DP)-with-Explanation-and-Complexity-Analysis
+     *
+     * 时间复杂度为 O(nk)
+     * 空间复杂度为 O(1)
+     *
+     * @param nums
+     * @param k
+     * @return
+     */
+    public static int[] maxSlidingWindow2(int[] nums, int k) {
+        if (nums.length == 0 || k == 0) return new int[0];
+        int numOfWindow = nums.length - k + 1;
+        int[] result = new int[numOfWindow + 1];
+        for (int start = 0; start < numOfWindow; start++) {
+            int end = start + k - 1;
+            int maxVal = nums[start];
+            for (int i = start + 1; i <= end; i++) {
+                if (nums[i] > maxVal) {
+                    maxVal = nums[i];
+                }
+            }
+            result[start] = maxVal;
+        }
+        return result;
+
+    }
+
+
 
 }
