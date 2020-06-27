@@ -1,5 +1,11 @@
 package com.leetcode.datastructure.binarytree;
 
+import sun.awt.image.ImageWatched;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
 /**
  * 429. N叉树的层序遍历
  * 给定一个 N 叉树，返回其节点值的层序遍历。 (即从左到右，逐层遍历)。
@@ -23,4 +29,28 @@ package com.leetcode.datastructure.binarytree;
  *
  */
 public class leetcode429 {
+
+    /**
+     * 利用队列实现广度优先搜索
+     * @param root
+     * @return
+     */
+    public List<List<Integer>> levelOrder(N_aryTree root) {
+        List<List<Integer>> ret = new LinkedList<>();
+        if (root == null) return ret;
+        Queue<N_aryTree> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            List<Integer> curLevel = new LinkedList<>();
+            for (int i = 0; i < curLevel.size(); i++) {
+                N_aryTree curr = queue.poll();
+                curLevel.add(curr.data);
+                for (N_aryTree c : curr.children)
+                    queue.offer(c);
+            }
+            ret.add(curLevel);
+        }
+        return ret;
+    }
 }
+
