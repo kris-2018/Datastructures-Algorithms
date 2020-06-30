@@ -45,7 +45,7 @@ public class leetcode46 {
             list.add(new ArrayList<>(tempList));
         } else {
             for (int i = 0; i < nums.length; i++) {
-                if (tempList.contains(nums[i])) continue;
+                if (tempList.contains(nums[i])) continue; //tempList中包含就返回继续循环迭代
                 tempList.add(nums[i]); // 遍历整个数组nums, 添加到tempList(之前要先判断是否包含nums[i] ), 防止重复
                 backtrack(list, tempList, nums); //每次递归i 从0开始;
                 tempList.remove(tempList.size() - 1);
