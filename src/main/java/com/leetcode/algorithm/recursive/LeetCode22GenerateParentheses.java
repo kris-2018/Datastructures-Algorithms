@@ -19,7 +19,7 @@ import java.util.List;
  * https://leetcode-cn.com/problems/generate-parentheses/
  *
  */
-public class leetcode22 {
+public class LeetCode22GenerateParentheses {
 
     public static void main(String[] args) {
         for (Object o : generateParenthesis(2).toArray()) {

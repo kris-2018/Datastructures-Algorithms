@@ -20,7 +20,7 @@ package com.leetcode.datastructure.array;
  *  https://leetcode.com/problems/plus-one/
  *
  */
-public class leetcode66 {
+public class LeetCode66PlusOne {
     public static void main(String[] args) {
         int[] digits = {9,8};
         for (int i : plusOne(digits)) {

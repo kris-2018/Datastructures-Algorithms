@@ -16,11 +16,11 @@ import java.util.HashMap;
  * 链接：https://leetcode-cn.com/problems/two-sum
  *
  */
-public class leetcode01 {
+public class LeetCode01TwoSum {
 
     public static void main(String[] args) {
         int[] nums = {2, 6};
-        leetcode01 leetcode01 = new leetcode01();
+        LeetCode01TwoSum leetcode01 = new LeetCode01TwoSum();
         for (int i: leetcode01.twoSum1(nums,9)){
             System.out.print(i + "\t");
         }

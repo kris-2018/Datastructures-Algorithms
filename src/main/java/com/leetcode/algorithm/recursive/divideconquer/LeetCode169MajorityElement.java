@@ -19,7 +19,7 @@ import java.util.Arrays;
  * https://leetcode-cn.com/problems/majority-element/description/
  *
  */
-public class leetcode169 {
+public class LeetCode169MajorityElement {
     public static void main(String[] args) {
         int[] num = {3,2,3,1,4,4};
         System.out.println(majorityElement(num));

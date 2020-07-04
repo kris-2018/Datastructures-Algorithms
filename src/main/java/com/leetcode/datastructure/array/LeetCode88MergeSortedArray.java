@@ -19,7 +19,7 @@ import java.util.Arrays;
  *  https://leetcode-cn.com/problems/merge-sorted-array/
  *
  */
-public class leetcode88 {
+public class LeetCode88MergeSortedArray {
 
     public static void main(String[] args) {
         int[] nums1 = {1,2,3,0,0};

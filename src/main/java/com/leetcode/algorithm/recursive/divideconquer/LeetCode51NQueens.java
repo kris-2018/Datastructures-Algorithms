@@ -36,7 +36,7 @@ import java.util.List;
  * 皇后，是国际象棋中的棋子，意味着国王的妻子。皇后只做一件事，那就是“吃子”。当她遇见可以吃的棋子时，就迅速冲上去吃掉棋子。当然，她横、竖、斜都可走一到七步，可进可退。
  * https://leetcode-cn.com/problems/n-queens/
  */
-public class leetcode51 {
+public class LeetCode51NQueens {
 
     public static void main(String[] args) {
         for (Object o : solveNQueens(4).toArray()) {

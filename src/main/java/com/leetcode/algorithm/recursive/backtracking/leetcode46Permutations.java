@@ -25,7 +25,7 @@ import java.util.List;
  *  回溯法: 一种通过探索所有可能的候选解来找出所有的解的算法。如果候选解被确认不是一个解的话（或者至少不是最后一个解），回溯算法会通过在上一步进行一些变化抛弃该解，即回溯并且再次尝试。
  *
  */
-public class leetcode46 {
+public class leetcode46Permutations {
 
     public static void main(String[] args) {
         int[] nums = {1,2,3};

@@ -20,7 +20,7 @@ import java.util.List;
  *
  * https://leetcode.com/problems/permutations-ii/
  */
-public class leetcode47 {
+public class LeetCode47PermutationsII {
     public static void main(String[] args) {
         int[] nums = {1,2,3};
         for (Object o : permuteUnique(nums).toArray()) {

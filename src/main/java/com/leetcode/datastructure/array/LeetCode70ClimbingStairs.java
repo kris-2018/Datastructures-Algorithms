@@ -38,10 +38,10 @@ package com.leetcode.datastructure.array;
  *      }
  *
  */
-public class leetcode70 {
+public class LeetCode70ClimbingStairs {
 
     public static void main(String[] args) {
-        leetcode70 leetcode70 = new leetcode70();
+        LeetCode70ClimbingStairs leetcode70 = new LeetCode70ClimbingStairs();
         System.out.println(leetcode70.climbStairs(4));
     }
 

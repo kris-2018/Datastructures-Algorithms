@@ -25,6 +25,6 @@ package com.leetcode.algorithm.recursive;
  * 终止条件 f(1) = 1, f(2) = 2
  * https://leetcode-cn.com/problems/climbing-stairs/
  */
-public class leetcode70 {
+public class LeetCode70ClimbingStairs {
 
 }

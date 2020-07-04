@@ -23,10 +23,10 @@ import java.util.*;
  *
  */
 
-public class leetcode15 {
+public class LeetCode15Sum3 {
     public static void main(String[] args) {
         int arr[] = {-1,0,1,2,-1,-4};
-        leetcode15 leetcode15 = new leetcode15();
+        LeetCode15Sum3 leetcode15 = new LeetCode15Sum3();
 
         for (List<Integer> integers : leetcode15.threeSum2(arr)) {
             System.out.println(integers);

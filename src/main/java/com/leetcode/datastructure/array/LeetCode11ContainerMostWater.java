@@ -14,10 +14,10 @@ package com.leetcode.datastructure.array;
  *
  */
 
-public class leetcode11 {
+public class LeetCode11ContainerMostWater {
 
     public static void main(String[] args) {
-        leetcode11 leetcode11 = new leetcode11();
+        LeetCode11ContainerMostWater leetcode11 = new LeetCode11ContainerMostWater();
         int[] nums = {0,2,5,7,8,9};
         System.out.println(leetcode11.maxArea2(nums));
     }

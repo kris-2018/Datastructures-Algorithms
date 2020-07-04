@@ -13,9 +13,9 @@ package com.leetcode.datastructure.array;
  *
  *  https://leetcode-cn.com/problems/move-zeroes/
  */
-public class leetcode283 {
+public class LeetCode283MoveZeroes {
     public static void main(String[] args) {
-        leetcode283 leetcode283 = new leetcode283();
+        LeetCode283MoveZeroes leetcode283 = new LeetCode283MoveZeroes();
         int[] numbers = new int[5];
         int[] numbs = {0,1,0,3,9,4};
         leetcode283.moveZeroes1(numbs);

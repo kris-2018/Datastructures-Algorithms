@@ -23,7 +23,7 @@ package com.leetcode.algorithm.recursive.divideconquer;
  * <p>
  * https://leetcode-cn.com/problems/powx-n/
  */
-public class leetcode50 {
+public class LeetCode50Powxn {
     public static void main(String[] args) {
 
         //System.out.println(myPow(2, -5));

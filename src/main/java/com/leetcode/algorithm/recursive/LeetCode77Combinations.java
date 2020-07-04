@@ -22,7 +22,7 @@ import java.util.List;
  *
  * https://leetcode-cn.com/problems/combinations/
  */
-public class leetcode77 {
+public class LeetCode77Combinations {
 
     public static List<List<Integer>> combine(int n, int k) {
         List<List<Integer>> combs = new ArrayList<>();

@@ -30,11 +30,11 @@ package com.leetcode.datastructure.array;
  *  https://leetcode.com/problems/remove-duplicates-from-sorted-array/
  *  https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/
  */
-public class leetcode26 {
+public class LeetCode26RemoveDuplicates {
 
     public static void main(String[] args) {
         int[] nums = {4, 5, 5, 5, 5, 5};
-        leetcode26 leetcode26 = new leetcode26();
+        LeetCode26RemoveDuplicates leetcode26 = new LeetCode26RemoveDuplicates();
         System.out.println(leetcode26.removeDuplicates2(nums));
 
     }

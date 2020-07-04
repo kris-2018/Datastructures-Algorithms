@@ -25,10 +25,10 @@ package com.leetcode.datastructure.array;
  *
  *  https://leetcode.com/problems/rotate-array
  */
-public class leetcode189 {
+public class LeetCode189RotateArray {
 
     public static void main(String[] args) {
-        leetcode189 leetcode189 = new leetcode189();
+        LeetCode189RotateArray leetcode189 = new LeetCode189RotateArray();
         int[] res = {1,2,3,4};
         leetcode189.rotate(res, 2);
         for (int i : res) {
