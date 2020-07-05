@@ -1,9 +1,7 @@
 package com.leetcode.datastructure.binarytree;
 
-import com.leetcode.datastructure.binarytree.TreeNode;
-
 /**
- * 98. 验证二叉搜索树
+ * 98. 验证二叉搜索树 validate-binary-search-tree
  * 给定一个二叉树，判断其是否是一个有效的二叉搜索树, 假设一个二叉搜索树具有如下特征：
  *
  * 节点的左子树只包含小于当前节点的数。
@@ -33,17 +31,17 @@ import com.leetcode.datastructure.binarytree.TreeNode;
  *
  */
 
-public class leetcode98 {
+public class LeetCode98ValidateBST {
     public static void main(String[] args) {
-        /*TreeNode treeNode1 = new TreeNode(2);
+        TreeNode treeNode1 = new TreeNode(2);
         TreeNode treeNode2 = new TreeNode(1);
         TreeNode treeNode3 = new TreeNode(3);
 
         treeNode1.setLeft(treeNode2);
-        treeNode1.setRight(treeNode3);*/
+        treeNode1.setRight(treeNode3);
 
 
-        TreeNode treeNode1 = new TreeNode(27);
+       /* TreeNode treeNode1 = new TreeNode(27);
         TreeNode treeNode2 = new TreeNode(14);
         TreeNode treeNode3 = new TreeNode(10);
         TreeNode treeNode4 = new TreeNode(19);
@@ -56,28 +54,35 @@ public class leetcode98 {
         treeNode2.setLeft(treeNode3);
         treeNode2.setRight(treeNode4);
         treeNode5.setLeft(treeNode6);
-        treeNode5.setRight(treeNode7);
+        treeNode5.setRight(treeNode7);*/
         System.out.println(isValidBST(treeNode1));
     }
 
     /**
-     * 如果该二叉树的左子树不为空，则左子树上所有节点的值均小于它的根节点的值；
-     *   若它的右子树不空，则右子树上所有节点的值均大于它的根节点的值；它的左右子树也为二叉搜索树。
+     * 方法一: 递归调用
+     * 二叉搜索树的特征:
+     * 如果该二叉树的左子树不为空，则左子树上所有节点的值均小于它的根节点的值;
+     *       若它的右子树不为空，则右子树上所有节点的值均大于它的根节点的值; 它的左右子树也为二叉搜索树。
+     *   即
+     * 当前节点的值是其左子树的值的上界（最大值）
+     * 当前节点的值是其右子树的值的下界（最小值）
      *
      * isValidBST 函数表示考虑以 root 为根的子树，判断子树中所有节点的值是否都在 (minData, maxData) 的范围内
-     *   在递归调用左子树时，我们需要把上界改为 root.data，即调用 isValidBST(root.left, minData, root.data)，因为左子树里所有节点的值均小于它的根节点的值。
-     * 同理递归调用右子树时，我们需要把下界改为 root.data，即调用 isValidBST(root.right, root.data, maxData)。
-     *
+     *   在递归调用左子树时，我们需要把上界改为 root.data(最大值)，即调用 isValidBST(root.left, minData, root.data)，因为左子树里所有节点的值均小于它的根节点的值。
+     * 同理递归调用右子树时，我们需要把下界改为 root.data(最小值)，即调用 isValidBST(root.right, root.data, maxData)。
+     * 这里的边界值应该是Long, |Long| > |Integer|, 由于TreeNode之前定义的为int类型,此处不做修改。
      * @param root
      * @return
      */
     public static boolean isValidBST(TreeNode root) {
-        // minVal = -2147483648   maxVal = 2147483647
+        // minVal = -2147483648   maxVal = 2147483647  (minDadta, maxData),传入参数的值最小值和 最大值
         return isValidBST(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
+
     public static boolean isValidBST(TreeNode root, int minData, int maxData) {
         if (root == null) return true;
-        if (root.data >= maxData || root.data <= minData) return false; //
+        /* current logic 判断当前的节点的值是否在边界值内 (minDadta, maxData), 不在即false */
+        if (root.data >= maxData || root.data <= minData) return false;
         // 左子树所有值 < 根结点  && 右子树所有值 > 根结点
         return isValidBST(root.left, minData, root.data) && isValidBST(root.right, root.data, maxData);
     }

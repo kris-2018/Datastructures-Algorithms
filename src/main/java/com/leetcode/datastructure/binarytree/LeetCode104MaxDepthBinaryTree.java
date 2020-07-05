@@ -23,28 +23,36 @@ import java.util.Stack;
  * https://leetcode.com/problems/maximum-depth-of-binary-tree/
  *
  */
-public class leetcode104 {
+public class LeetCode104MaxDepthBinaryTree {
 
     public static void main(String[] args) {
         TreeNode treeNode1 = new TreeNode(2);
         TreeNode treeNode2 = new TreeNode(1);
         TreeNode treeNode3 = new TreeNode(3);
+        TreeNode treeNode4 = new TreeNode(5);
+
 
         treeNode1.setLeft(treeNode2);
         treeNode1.setRight(treeNode3);
+        treeNode3.setRight(treeNode4);
 
-        System.out.println(maxDepth4(treeNode1));
+        System.out.println(maxDepth(treeNode1));
 
     }
 
     /**
      * 递归
+     * 时间复杂度为 O(n)
      * @param root
      * @return
      */
     private static int maxDepth(TreeNode root) {
         if (root == null) return 0;
-        return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1; //递归一次 + 1 ...
+         int lf = maxDepth(root.left);
+         int rt = maxDepth(root.right);
+         int max = Math.max(lf,rt);
+         //为什么 + 1, 递归 进到叶子节点最终root.next = null -> return 0, 出一层 就加 1.
+        return  max + 1;
     }
 
 

@@ -21,7 +21,7 @@ import java.util.LinkedList;
  *
  * https://leetcode-cn.com/problems/serialize-and-deserialize-binary-tree/
  */
-public class leetcode297 {
+public class LeetCode297SerializeAndDeserializeBinaryTree {
 
     public static void main(String[] args) {
         TreeNode treeNode1 = new TreeNode(2);
@@ -31,8 +31,8 @@ public class leetcode297 {
         treeNode1.setLeft(treeNode2);
         treeNode1.setRight(treeNode3);
 
-        //System.out.println(serialize(treeNode1));
-        System.out.println(deserialize(serialize(treeNode1)));
+        System.out.println("序列化: " + serialize(treeNode1));
+        System.out.println("反序列化: " + deserialize(serialize(treeNode1)));
     }
 
 
@@ -42,11 +42,11 @@ public class leetcode297 {
         buildString(root, sb);
         return sb.toString();
     }
-
     public static void buildString(TreeNode node, StringBuilder sb) {
         if (node == null) {
             sb.append("null").append(",");
         } else {
+            //将当前节点的data添加到sb中, 然后左递归, 右递归。
             sb.append(node.data).append(",");
             buildString(node.left, sb);
             buildString(node.right,sb);
@@ -55,18 +55,18 @@ public class leetcode297 {
 
     // Decodes your encoded data to tree. 反序列化
     public static TreeNode deserialize(String data) {
-        Deque<String> nodes = new LinkedList<>();
-        nodes.addAll(Arrays.asList(data.split(",")));
-        return buildTree(nodes); //递归调用
+        Deque<String> deque = new LinkedList<>();
+        deque.addAll(Arrays.asList(data.split(",")));
+        return buildTree(deque); // 递归调用
     }
-
-    public static TreeNode buildTree(Deque<String> nodes) {
-        String data = nodes.remove();
+    // 2,1,null,null,3,null,null
+    public static TreeNode buildTree(Deque<String> deque) {
+        String data = deque.remove(); // removes the head of the queue
         if (data.equals("null")) return null;
         else {
             TreeNode node = new TreeNode(Integer.valueOf(data));
-            node.left = buildTree(nodes);
-            node.right = buildTree(nodes);
+            node.left = buildTree(deque);
+            node.right = buildTree(deque);
             return node;
         }
     }

@@ -31,14 +31,13 @@ public class LeetCode78Subsets {
 
     public static void main(String[] args) {
         int[] nums = {1,2,3};
-        for (Object o : subsets0(nums).toArray()) {
+        for (Object o : subsets(nums).toArray()) {
             System.out.println(o);
         }
     }
 
     static List<List<Integer>> output = new ArrayList();
     static int n, k;
-
     public static void backtrack(int first, ArrayList<Integer> curr, int[] nums) {
         // if the combination is done
         if (curr.size() == k)
@@ -53,7 +52,6 @@ public class LeetCode78Subsets {
             curr.remove(curr.size() - 1);
         }
     }
-
     public static List<List<Integer>> subsets0(int[] nums) {
         n = nums.length;
         for (k = 0; k < n + 1; ++k) {
