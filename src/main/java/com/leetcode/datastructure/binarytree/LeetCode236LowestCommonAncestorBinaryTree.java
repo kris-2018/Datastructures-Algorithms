@@ -25,17 +25,35 @@ package com.leetcode.datastructure.binarytree;
  * https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/
  *
  */
-public class leetcode236 {
+public class LeetCode236LowestCommonAncestorBinaryTree {
 
     public static void main(String[] args) {
-        TreeNode treeNode1 = new TreeNode(2);
-        TreeNode treeNode2 = new TreeNode(1);
-        TreeNode treeNode3 = new TreeNode(3);
+        TreeNode treeNode1 = new TreeNode(3);
+        TreeNode treeNode2 = new TreeNode(5);
+        TreeNode treeNode3 = new TreeNode(1);
+        TreeNode treeNode4 = new TreeNode(6);
+        TreeNode treeNode5 = new TreeNode(2);
+        TreeNode treeNode6 = new TreeNode(0);
+        TreeNode treeNode7 = new TreeNode(8);
+        TreeNode treeNode8 = new TreeNode(7);
+        TreeNode treeNode9 = new TreeNode(4);
+
 
         treeNode1.setLeft(treeNode2);
         treeNode1.setRight(treeNode3);
+        treeNode2.setLeft(treeNode4);
+        treeNode2.setRight(treeNode5);
+        treeNode5.setLeft(treeNode8);
+        treeNode5.setRight(treeNode9);
+        treeNode3.setLeft(treeNode6);
+        treeNode3.setRight(treeNode7);
 
-        System.out.println(lowestCommonAncestor(treeNode1, treeNode2, treeNode3));
+        /** 3 -> 5 -> 6 -> 2 -> 7 -> 4 -> 1 -> 0 -> 8 */
+        System.out.println("原树: " + treeNode1);
+
+        /**  */
+        System.out.println("二叉树的最近公共祖先为: " + lowestCommonAncestor(treeNode1, treeNode2, treeNode3));
+
     }
 
     public static TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
