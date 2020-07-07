@@ -54,10 +54,23 @@ public class LeetCode236LowestCommonAncestorBinaryTree {
         /**  */
         System.out.println("二叉树的最近公共祖先为: " + lowestCommonAncestor(treeNode1, treeNode4, treeNode9));
 
+
     }
 
+    /**
+     * 递归
+     * x 节点的子树中是否包含 p 节点或 q 节点，如果包含为 true，否则为 false
+     * If p is a node in the tree and q is null, then the LCA of the given nodes, i.e.,
+     * the LCA of just p, truly is p itself. Not null.
+     * @param root
+     * @param p
+     * @param q
+     * @return
+     */
     public static TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        //1. terminator 递归进 --满足1的条件--> 出
         if (root == null || root == p || root == q) return root;
+        //2. current logic
         TreeNode left = lowestCommonAncestor(root.left, p, q);
         TreeNode right = lowestCommonAncestor(root.right, p, q);
         if (left == null)
