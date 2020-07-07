@@ -52,7 +52,7 @@ public class LeetCode236LowestCommonAncestorBinaryTree {
         System.out.println("原树: " + treeNode1);
 
         /**  */
-        System.out.println("二叉树的最近公共祖先为: " + lowestCommonAncestor(treeNode1, treeNode2, treeNode3));
+        System.out.println("二叉树的最近公共祖先为: " + lowestCommonAncestor(treeNode1, treeNode4, treeNode9));
 
     }
 
@@ -60,8 +60,15 @@ public class LeetCode236LowestCommonAncestorBinaryTree {
         if (root == null || root == p || root == q) return root;
         TreeNode left = lowestCommonAncestor(root.left, p, q);
         TreeNode right = lowestCommonAncestor(root.right, p, q);
-        if(left != null && right != null)   return root;
-        return left != null ? left : right;
+        if (left == null)
+            return right;
+        else if (right == null)
+            return left;
+        else
+            return root;
+
+        /*if(left != null && right != null)   return root;
+        return left != null ? left : right; */
         //return left == null ? right : right == null ? left : root;
     }
 }
