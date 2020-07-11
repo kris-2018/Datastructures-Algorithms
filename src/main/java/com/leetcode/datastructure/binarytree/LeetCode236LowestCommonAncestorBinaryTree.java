@@ -7,6 +7,13 @@ package com.leetcode.datastructure.binarytree;
  * 百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。”
  *
  * 例如，给定如下二叉树:  root = [3,5,1,6,2,0,8,null,null,7,4]
+ *        3
+ *      /  \
+ *     5    1
+ *   /  \   / \
+ *  6   2  0   8
+ *     / \
+ *    7   4
  *
  * 示例 1:
  * 输入: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1
@@ -52,23 +59,25 @@ public class LeetCode236LowestCommonAncestorBinaryTree {
         System.out.println("原树: " + treeNode1);
 
         /**  */
-        System.out.println("二叉树的最近公共祖先为: " + lowestCommonAncestor(treeNode1, treeNode4, treeNode9));
+        System.out.println("二叉树6和4的最近公共祖先为: " + lowestCommonAncestor(treeNode1, treeNode8, treeNode9));
 
 
     }
 
     /**
      * 递归
+     * 祖先的定义： 若节点 p 在节点 root 的左（右）子树中，或 p=root ，则称 root 是 p的祖先。
      * 最近公共祖先的定义:  设节点 root为节点 p, q,的某公共祖先，若其左子节点 root.left 和右子节点 root.right 都不是 p,q的公共祖先，则称 root是 “最近的公共祖先” 。
      * 若 root是 p, q的 最近公共祖先 ，则只可能为以下情况之一:
-     * p和 q 在 root的子树中，且分列 root的 异侧（即分别在左、右子树中）；
-     * p = root，且 q在 root 的左或右子树中；
-     * q = root ，且 p 在 root的左或右子树中；
+     *      p和 q 在 root的子树中，且分列 root的 异侧（即分别在左、右子树中）；
+     *      p = root，且 q在 root 的左或右子树中；
+     *      q = root ，且 p 在 root的左或右子树中；
      *
      * If p is a node in the tree and q is null, then the LCA of the given nodes, i.e.,
      * the LCA of just p, truly is p itself. Not null.
      * 时间复杂度 O(N)
      * 空间复杂度 O(N)
+     * 8ms
      * @param root
      * @param p
      * @param q
@@ -81,7 +90,7 @@ public class LeetCode236LowestCommonAncestorBinaryTree {
         TreeNode left = lowestCommonAncestor(root.left, p, q);
         TreeNode right = lowestCommonAncestor(root.right, p, q);
 
-        if (left == null && right == null) return null; //当left和right同时为空: 说明root的左/右子树中都不包含 p,q, 返回 null;
+        if (left == null && right == null) return null; //当left和right同时为空: 说明root的左/右子树中都不包含 p,q, 返回 null(以便在递归回调的时候判断直接判断为null);
         if (left == null) return right;//当left为空, right不为空: p,q都不在root的左子树中,直接返回right
         if (right == null) return left;//left不为空,right为空
         return root;// left 和 right 同时不为空 ：说明 p, q分列在 root的 异侧 （分别在 左 / 右子树），因此 root 为最近公共祖先，返回 root
