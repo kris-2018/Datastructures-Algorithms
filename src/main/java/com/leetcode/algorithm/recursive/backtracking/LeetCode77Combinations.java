@@ -82,7 +82,6 @@ public class LeetCode77Combinations {
             backtranck(lists, tempList, i + 1, n, k - 1);
             tempList.remove(tempList.size() - 1);
         }
-
     }
 
 }
