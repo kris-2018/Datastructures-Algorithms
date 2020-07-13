@@ -1,6 +1,7 @@
 package com.leetcode.datastructure.binarytree;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 105. 从前序与中序遍历序列构造二叉树
@@ -20,7 +21,7 @@ import java.util.HashMap;
  *      /  \
  *     15   7
  *
- * https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/
+ * https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/
  *
  *
  */
@@ -51,16 +52,16 @@ public class LeetCode105ConstructBinaryTreePreorderAndInorderTraversal {
      * @return
      */
     public static TreeNode buildTree(int[] preorder, int[] inorder) {
-        //return helper(0, 0, inorder.length - 1, preorder, inorder);
-        //return buildTreeHelper(preorder, 0, preorder.length, inorder, 0, inorder.length);
+        return helper(0, 0, inorder.length - 1, preorder, inorder);
+        //return buildTreeHelper(preorder, 0, preorder.length - 1, inorder, 0, inorder.length - 1);
 
         //使用map
-        final HashMap<Integer, Integer> map = new HashMap<>();
+        /*Map<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < inorder.length; i++) {
             map.put(inorder[i], i);
         }
-        return buildTreeHelper2(preorder,0, preorder.length, inorder,0, inorder.length, map);
-
+        return buildTreeHelper2(preorder,0, preorder.length - 1, inorder,0, inorder.length - 1, map);
+*/
     }
 
     /**
@@ -69,57 +70,67 @@ public class LeetCode105ConstructBinaryTreePreorderAndInorderTraversal {
      * 我们可以用一个HashMap把中序遍历数组的每个元素的值和下标存起来，这样寻找根节点的位置就可以直接得到了
      *
      * @param preorder
-     * @param p_start
-     * @param p_end
+     * @param preStart
+     * @param preEnd
      * @param inorder
-     * @param i_start
-     * @param i_end
+     * @param inStart
+     * @param inEnd
      * @return
      */
-    private static TreeNode buildTreeHelper(int[] preorder, int p_start, int p_end, int[] inorder, int i_start, int i_end) {
+    private static TreeNode buildTreeHelper(int[] preorder, int preStart, int preEnd, int[] inorder, int inStart, int inEnd) {
         //1. terminator  preorder为空, 返回null
-        if (p_start == p_end) return null;
+        if (preStart > preEnd || inStart > inEnd) return null;
         //2. current logic
         //从前序中找到 根结点
-        TreeNode root = new TreeNode(preorder[p_start]);
-        //中序遍历中找到根结点, index为根结点
-        int index = 0;
-        for (int i = i_start; i < i_end; i++) {
+        TreeNode root = new TreeNode(preorder[preStart]);
+        //中序遍历中找到根结点, inRootIndex为根结点
+        int inRootIndex = 0;
+        for (int i = inStart; i <= inEnd; i++) {
             if (root.data == inorder[i]) {
-                index = i;
+                inRootIndex = i;
                 break;
             }
         }
         //中序中, 根结点的下标
-        int leftNum = index - i_start;
+        int numsOnLeft = inRootIndex - inStart;
         //3. drill down
         //递归的构造左子树
-        root.left = buildTreeHelper(preorder, p_start + 1, p_start + leftNum + 1, inorder, i_start, index); //p_start + leftNum + 1 为左子树的小标,开区间所以 + 1
+        root.left = buildTreeHelper(preorder, preStart + 1, preStart + numsOnLeft, inorder, inStart, inRootIndex - 1); //preStart + numsOnLeft + 1 为左子树的小标,开区间所以 + 1
         //递归构造右子树
-        root.right = buildTreeHelper(preorder, p_start + leftNum + 1, p_end, inorder, index + 1, i_end);
+        root.right = buildTreeHelper(preorder, preStart + numsOnLeft + 1, preEnd, inorder, inRootIndex + 1, inEnd);
         return root;
     }
 
     /**
      * 递归 + 哈希
+     * time complexity is O(n)
+     * space complexity is O(n)
      * @param preorder
-     * @param p_start
-     * @param p_end
+     * @param preStart
+     * @param preEnd
      * @param inorder
-     * @param i_start
-     * @param i_end
+     * @param inStart
+     * @param inEnd
      * @param map
      * @return
      */
-    private static TreeNode buildTreeHelper2(int[] preorder, int p_start, int p_end, int[] inorder, int i_start, int i_end, HashMap<Integer, Integer> map) {
-        if (p_start == p_end) return null;
-        TreeNode root = new TreeNode(preorder[p_start]);
-        int i_index = map.get(root.data);
+    private static TreeNode buildTreeHelper2(int[] preorder, int preStart, int preEnd, int[] inorder, int inStart, int inEnd, Map<Integer, Integer> map) {
+        //1. break the recursion
+        if (preStart > preEnd || inStart > inEnd) return null;
+        //2. current logic
+            //2.1 find the tree root, which is the first value of
+        TreeNode root = new TreeNode(preorder[preStart]);
+            //2.2 find root in the inorder, then left of root will be left tree, right of root will be right tree.
+        int inRootIndex = map.get(root.data);
 
-        //drill down
-        int leftNum = i_index - i_start;
-        root.left = buildTreeHelper2(preorder, p_start + leftNum + 1, p_end, inorder, i_index + 1, i_end, map);
-        root.right = buildTreeHelper2(preorder, p_start + leftNum + 1, p_end, inorder, i_index + 1, i_end, map);
+        //3. drill down
+            //numsOnLeft is the number of nodes in root's left subtree.
+        int numsOnLeft = inRootIndex - inStart;
+
+            // root left will go over of preorder and inorder.
+        root.left = buildTreeHelper2(preorder, preStart + 1, preStart + numsOnLeft, inorder, inStart, inRootIndex - 1, map);
+            // root right will go over of preorder and inorder.
+        root.right = buildTreeHelper2(preorder, preStart + numsOnLeft + 1, preEnd, inorder, inRootIndex + 1, inEnd, map);
         return root;
 
     }
@@ -131,17 +142,20 @@ public class LeetCode105ConstructBinaryTreePreorderAndInorderTraversal {
         }
         //先添加根结点
         TreeNode root = new TreeNode(preorder[preStart]);
-        int inIndex = 0;
         //先找到 中序中的根结点
+        int inRootIndex = 0;
         for (int i = inStart; i <= inEnd; i++) {
             if (inorder[i] == root.data) {
-                inIndex = i;
+                inRootIndex = i;
+                //break;
             }
         }
-        //inIndex - 1 为左右子树的分界点  递归遍历左子树 两个指针 preStart, index - 1(左子树的边界),
-        root.left = helper(preStart + 1, inStart, inIndex - 1, preorder, inorder);
-        //递归遍历右子树,
-        root.right = helper(preStart + inIndex - inStart + 1, inIndex + 1, inEnd, preorder, inorder);
+        //inRootIndex - 1 为左右子树的分界点  递归遍历左子树 两个指针 preStart, inRootIndex - 1(左子树的边界),
+        root.left = helper(preStart + 1, inStart, inRootIndex - 1, preorder, inorder);
+        //递归遍历右子树,  inRootIndex - inStart  is size of the roots left subtree,
+            // To get the start of right subtree you should get to the start of the first value of right subtree
+            // 根 + 左 + 右 (即preStart) + (inRootIndex - inStart)左子树大小 + 1(root)
+        root.right = helper(preStart + inRootIndex - inStart + 1, inRootIndex + 1, inEnd, preorder, inorder);
         return root;
     }
 
