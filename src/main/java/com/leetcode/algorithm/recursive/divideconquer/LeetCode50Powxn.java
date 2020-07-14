@@ -3,53 +3,43 @@ package com.leetcode.algorithm.recursive.divideconquer;
 /**
  * 50. Pow(x, n)
  * 实现 pow(x, n) ，即计算 x 的 n 次幂函数。
- * <p>
+ *
  * 示例 1:
  * 输入: 2.00000, 10
  * 输出: 1024.00000
- * <p>
+ *
  * 示例 2:
  * 输入: 2.10000, 3
  * 输出: 9.26100
- * <p>
+ *
  * 示例 3:
  * 输入: 2.00000, -2
  * 输出: 0.25000
  * 解释: 2-2 = 1/22 = 1/4 = 0.25
- * <p>
+ *
  * 说明:
  * -100.0 < x < 100.0
  * n 是 32 位有符号整数，其数值范围是 [−231, 231 − 1] 。
- * <p>
+ *
+ * Java 代码中 int32 变量 n∈[-2147483648, 2147483647], 因此当 n = -2147483648时执行 n = −n会因越界而赋值出错。
+ *
  * https://leetcode-cn.com/problems/powx-n/
+ *
  */
 public class LeetCode50Powxn {
     public static void main(String[] args) {
-
+        System.out.println(Integer.MIN_VALUE);
+        System.out.println(Integer.MAX_VALUE);
         //System.out.println(myPow(2, -5));
-        System.out.println(pow(2, 5 ));
+        System.out.println(pow(2, 10));
         //System.out.println(pow3(2, 5 ));
     }
 
-    public static double quickMul(double x, long n) {
-        if (n == 0) {
-            return 1.0;
-        }
-        double y = quickMul(x, n / 2);
-        return n % 2 == 0 ? y * y : y * y * x;
-    }
-
-    public static double myPow(double x, int n) {
-        //long N = n;
-        return n >= 0 ? quickMul(x, n) : 1.0 / quickMul(x, -n);
-    }
-
-
     /**
-     * pow(2, 1024) --> Infinity
      * 快速幂 + 递归
+     *  pow(2, 1024) --> Infinity
      * 快速幂算法 本质就是分治算法,
-     *当我们要计算 x^n 时，我们可以先递归地计算出 y = x^[n/2], [n/2]表示对 n/2 进行下取整
+     * 当我们要计算 x^n 时，我们可以先递归地计算出 y = x^[n/2], [n/2]表示对 n/2 进行下取整
      * 根据递归计算的结果，如果 n 为偶数，那么 x^n = y^2
      *                  如果 n 为奇数，那么 x^n = y^2 * x
      * 递归的边界为 n = 0，任意数的 0次方均为 1
@@ -70,8 +60,9 @@ public class LeetCode50Powxn {
     public static double pow(double x, int n) {
         if (n == 0) return 1; //递归结束条件
         if (n < 0) {
-            n = -n;
+            //n = -n;  n∈[-2147483648, 2147483647], 因此当 n = -2147483648时执行 n = −n会因越界而赋值出错。
             x = 1 / x;
+            return (n % 2 == 0) ? pow(x * x, -(n/2)) : x * pow(x * x, -(n / 2));
         }
         return (n % 2 == 0) ? pow(x * x, n / 2) : x * pow(x * x, n / 2); //   n / 2取商整数,
     }

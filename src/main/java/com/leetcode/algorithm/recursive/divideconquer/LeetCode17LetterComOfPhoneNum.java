@@ -25,9 +25,11 @@ import java.util.List;
 public class LeetCode17LetterComOfPhoneNum {
 
     public static void main(String[] args) {
-        for (Object o : letterCombinations("23").toArray()) {
+        for (Object o : letterCombinations("").toArray()) {
             System.out.println(o);
         }
+        char charAt = "23".charAt(0);
+        System.out.println("23".charAt(0) - '0');
     }
 
     /**
@@ -76,19 +78,23 @@ public class LeetCode17LetterComOfPhoneNum {
 
     private static final String[] KEYS = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
     public static List<String> letterCombinations(String digits) {
-        List<String> ret = new LinkedList<String>();
-        combination("", digits, 0, ret);
-        return ret;
+        List<String> res = new LinkedList<String>();
+        //输入为null 或 长度为 0 ,返回 [] 而不是 [""]
+        if (digits == null || digits.length() == 0) return res;
+        combination("", digits, 0, res);
+        return res;
     }
 
-    private static void combination(String prefix, String digits, int offset, List<String> ret) {
-        if (offset >= digits.length()) {
-            ret.add(prefix);
+    private static void combination(String prefix, String digits, int start, List<String> res) {
+        //1. terminator
+        if (start >= digits.length()) {
+            res.add(prefix);
             return;
         }
-        String letters = KEYS[(digits.charAt(offset) - '0')];
+        int s =  (digits.charAt(start) - '0');
+        String letters = KEYS[s];
         for (int i = 0; i < letters.length(); i++) {
-            combination(prefix + letters.charAt(i), digits, offset + 1, ret);
+            combination(prefix + letters.charAt(i), digits, start + 1, res);
         }
     }
 

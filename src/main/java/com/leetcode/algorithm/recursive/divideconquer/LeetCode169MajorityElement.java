@@ -21,17 +21,16 @@ import java.util.Arrays;
  */
 public class LeetCode169MajorityElement {
     public static void main(String[] args) {
-        int[] num = {3,2,3,1,4,4};
+        int[] num = {1,2,3,3,4,4};
         System.out.println(majorityElement(num));
-        System.out.println(majorityElement2(num));
+        //System.out.println(majorityElement2(num));
     }
 
 
 
     public static int majorityElement(int[] nums) {
         Arrays.sort(nums);
-        int len = nums.length;
-        return nums[len / 2];
+        return nums[nums.length / 2];
     }
     /**
      *

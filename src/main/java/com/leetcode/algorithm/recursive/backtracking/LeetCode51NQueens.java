@@ -1,4 +1,4 @@
-package com.leetcode.algorithm.recursive.divideconquer;
+package com.leetcode.algorithm.recursive.backtracking;
 
 
 import java.util.ArrayList;
@@ -8,13 +8,15 @@ import java.util.List;
 /**
  * 51. N皇后 N-Queens
  * n 皇后问题研究的是如何将 n 个皇后放置在 n×n 的棋盘上，并且使皇后彼此之间不能相互攻击。
- * <p>
- * <p>
- * <p>
+ *
+ * PS：皇后可以攻击同一行、同一列、左上左下右上右下四个方向的任意单位。
+ * 这个问题本质上跟全排列问题差不多，决策树的每一层表示棋盘上的每一行；每个节点可以做出的选择是，在该行的任意一列放置一个皇后。
+ *
+ *
  * 上图为 8 皇后问题的一种解法。
  * 给定一个整数 n，返回所有不同的 n 皇后问题的解决方案。
  * 每一种解法包含一个明确的 n 皇后问题的棋子放置方案，该方案中 'Q' 和 '.' 分别代表了皇后和空位。
- * <p>
+ *
  * 示例:
  * 输入: 4
  * 输出: [
@@ -22,16 +24,16 @@ import java.util.List;
  * "...Q",
  * "Q...",
  * "..Q."],
- * <p>
+ *
+ *
  * ["..Q.",  // 解法 2
  * "Q...",
  * "...Q",
  * ".Q.."]
  * ]
- * <p>
+ *
  * 解释: 4 皇后问题存在两个不同的解法。
- * <p>
- * <p>
+ *
  * 提示：
  * 皇后，是国际象棋中的棋子，意味着国王的妻子。皇后只做一件事，那就是“吃子”。当她遇见可以吃的棋子时，就迅速冲上去吃掉棋子。当然，她横、竖、斜都可走一到七步，可进可退。
  * https://leetcode-cn.com/problems/n-queens/
@@ -39,10 +41,16 @@ import java.util.List;
 public class LeetCode51NQueens {
 
     public static void main(String[] args) {
-        for (Object o : solveNQueens(4).toArray()) {
-            System.out.println(o);
-        }
+        solveNQueens(4).toArray();
     }
+
+
+    int[] result = new int[8];
+    public void cal8queens(int row) {
+
+    }
+
+
 
     public static List<String[]> solveNQueens(int n) {
         List<String[]> res = new ArrayList<>();
@@ -71,6 +79,8 @@ public class LeetCode51NQueens {
             }
         }
     }
+
+
 
 
 

@@ -31,10 +31,12 @@ public class LeetCode47PermutationsII {
 
 
     public static List<List<Integer>> permuteUnique(int[] nums) {
+        //准备工作, result存放结果, list临时存放,  used标记nums中元素是否被使用
         List<List<Integer>> res = new ArrayList<>();
-        if (nums == null || nums.length == 0) return res;
-        boolean[] used = new boolean[nums.length]; //indicate whether the value is added to list
         List<Integer> list = new ArrayList<>();
+        boolean[] used = new boolean[nums.length]; //indicate whether the value is added to list
+        //为num为null或0的情况
+        if (nums == null || nums.length == 0) return res;
         //排序是剪枝的前提
         Arrays.sort(nums); // make sure we can skip the same value.
         dfs(nums, used, list, res);
@@ -50,10 +52,14 @@ public class LeetCode47PermutationsII {
         //2. 遍历迭代选择列表
         for (int i = 0; i < nums.length; i++) {
             //2.1 做选择
-            if (used[i]) continue;
+            if (used[i]) {
+                continue;//结束本层的本次循环
+            }
             //剪枝条件: i > 0 是为了保证 nums[i - 1] 有意义
                    // !used[i - 1] 是因为 nums[i - 1] 在深度优先遍历的过程中刚刚被撤销选择
-            if (i >0 && nums[i - 1] == nums[i] && !used[i - 1]) continue;
+            if (i >0 && nums[i - 1] == nums[i] && !used[i - 1]) {
+                continue;
+            }
             used[i] = true; //标记used[i]已被使用.
             list.add(nums[i]);
             dfs(nums, used, list, res);
