@@ -1,4 +1,4 @@
-package com.leetcode.algorithm.recursive.backtracking;
+package com.leetcode.algorithm.backtracking;
 
 import java.util.ArrayList;
 import java.util.Arrays;

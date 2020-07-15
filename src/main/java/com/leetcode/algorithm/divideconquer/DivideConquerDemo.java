@@ -1,4 +1,4 @@
-package com.leetcode.algorithm.recursive;
+package com.leetcode.algorithm.divideconquer;
 
 /**
  * 分治法的基本步骤

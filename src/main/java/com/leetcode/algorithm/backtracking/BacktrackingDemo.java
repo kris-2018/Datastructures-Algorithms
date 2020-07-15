@@ -1,4 +1,4 @@
-package com.leetcode.algorithm.recursive;
+package com.leetcode.algorithm.backtracking;
 
 
 /**

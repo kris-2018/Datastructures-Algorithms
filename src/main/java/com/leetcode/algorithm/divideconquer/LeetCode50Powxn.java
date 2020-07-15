@@ -1,4 +1,4 @@
-package com.leetcode.algorithm.recursive.divideconquer;
+package com.leetcode.algorithm.divideconquer;
 
 /**
  * 50. Pow(x, n)
