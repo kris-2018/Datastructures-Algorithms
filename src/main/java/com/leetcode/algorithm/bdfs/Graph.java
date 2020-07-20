@@ -11,7 +11,7 @@ import java.util.Queue;
  */
 public class Graph {
 
-    private int v; // 顶点的个数
+    private int v; // 顶点(vertex)的个数
     private LinkedList<Integer> adj[]; // 邻接表
 
     public Graph(int v) {
@@ -65,6 +65,15 @@ public class Graph {
     public static void main(String[] args) {
         final Graph graph = new Graph(10);
         graph.bfs(0, 7);
+        int[][] adj = {{0,1,1,0}, {1,0,1,1}, {1,1,0,1}, {0,1,1,0}};
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                //System.out.println();
+                System.out.print(adj[i][j] + "\t");
+            }
+        }
+        System.out.println();
+        System.out.println();
 
 
     }
