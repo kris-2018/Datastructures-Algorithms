@@ -16,12 +16,14 @@ public class Bit {
 
     public static void main(String[] args) {
 
-        int num = 53;
-        int m = 52;
+        int num = -53;
+        int m = 1;
         // <<
         System.out.println(String.format("数字%d的二进制向左移 %d 位是 %d", num,m,leftShift(num,m))); //测试左移
         // >>>
-        System.out.println(String.format("数字%d的二进制向右移 %d 位是 %d", num,m,rightShift(num,m))); //测试右移
+        System.out.println(String.format("数字%d的二进制逻辑右移 %d 位是 %d", num,m,logicRightShift(num,m))); //测试逻辑右移
+        // >>
+        System.out.println(String.format("数字%d的二进制算术右移 %d 位是 %d", num,m,arithmeticRightShift(num,m))); //测试算术逻辑右移
 
 
     }
@@ -39,12 +41,19 @@ public class Bit {
 
     /**
      * 向右移位
+     * 算术右移 >> 考虑符号位，右移1位，若符号位为1，则左边补1；若符号位为0，则左边补0。
+     * 逻辑右移 >>> 不考虑符号位，左边统一补 0
      * @param num
      * @param m
      * @return
      */
-    public static int rightShift(int num, int m) {
+    public static int logicRightShift(int num, int m) {
         return num >>> m;
+    }
+
+    /** 算术右移 >>  */
+    public static int arithmeticRightShift(int num, int m) {
+        return num >> m;
     }
 
 

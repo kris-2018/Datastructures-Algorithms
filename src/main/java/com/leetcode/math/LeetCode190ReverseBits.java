@@ -25,22 +25,39 @@ package com.leetcode.math;
  *
  * 进阶:
  * 如果多次调用这个函数，你将如何优化你的算法？
- *
+ * https://leetcode.com/problems/reverse-bits/
  */
 public class LeetCode190ReverseBits {
 
     public static void main(String[] args) {
-        //reverseBits();
+        System.out.println(reverseBits2(53));
     }
 
     public static int reverseBits(int n) {
         int result = 0;
         for (int i = 0; i < 32; i++) {
-            result += n & 1;
-            n >>>= 1;
-            if (i < 31)
-                result <<= 1;
+            result += n & 1; // (n & 1) 偶数为0, 奇数为1
+            n >>>= 1; // 右移1位, n = n / 2,  CATCH: must do unsigned shift
+            if (i < 31)  // CATCH: for last digit, don't shift!
+                result <<= 1;//左移1位
         }
         return result;
     }
+
+    /**
+     * 1 ms
+     *
+     * @param n
+     * @return
+     */
+    public static int reverseBits2(int n) {
+        int res = 0;
+        for (int i = 0; i < 32; i++) {
+            res <<= 1; //左移1位 将res翻倍
+            res += n & 1; // n & 1 奇偶数判断判断是否 + 1
+            n >>= 1; // 右移1位, n = n / 2
+        }
+        return res;
+    }
+
 }
