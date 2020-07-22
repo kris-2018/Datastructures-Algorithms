@@ -1,4 +1,4 @@
-package com.leetcode.math;
+package com.leetcode.algorithm.bitoperation;
 
 /**
  *338. 比特位计数 counting-bits

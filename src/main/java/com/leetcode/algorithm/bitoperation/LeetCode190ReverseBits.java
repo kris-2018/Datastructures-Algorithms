@@ -1,4 +1,4 @@
-package com.leetcode.math;
+package com.leetcode.algorithm.bitoperation;
 
 /**
  * 190. 颠倒二进制位

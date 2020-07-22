@@ -1,4 +1,4 @@
-package com.leetcode.math;
+package com.leetcode.algorithm.bitoperation;
 
 /**
  * 231. 2的幂 Power of Two

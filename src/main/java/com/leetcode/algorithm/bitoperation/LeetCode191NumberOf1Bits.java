@@ -1,4 +1,4 @@
-package com.leetcode.math;
+package com.leetcode.algorithm.bitoperation;
 
 /**
  * 191. 位 1 的个数

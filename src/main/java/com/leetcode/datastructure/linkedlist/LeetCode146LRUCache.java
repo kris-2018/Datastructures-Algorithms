@@ -16,7 +16,7 @@ import java.util.Map;
  *
  *
  * 示例:
- * LRUCache cache = new LRUCache( 2 /* 缓存容量
+ * LRUCache cache = new LRUCache( 2 )
  * cache.put(1,1);
  * cache.put(2,2);
  * cache.get(1);       // 返回  1
@@ -38,7 +38,7 @@ public class LeetCode146LRUCache extends LinkedHashMap<Integer, Integer> {
         this.capacity = capacity;
     }
     public int get(int key) {
-        return super.getOrDefault(key, -1);
+        return super.getOrDefault(key, -1); //调用父类被重写的方法
     }
     public void put(int key, int value) {
         super.put(key, value);
@@ -49,12 +49,17 @@ public class LeetCode146LRUCache extends LinkedHashMap<Integer, Integer> {
         return size() > capacity;
     }
     public static void main(String[] args) {
-        final LeetCode146LRUCache lruCache = new LeetCode146LRUCache(3);
-        lruCache.put(1, 101);
-        lruCache.put(2, 102);
-        lruCache.put(3, 103);
-        lruCache.put(4, 104);
+        LeetCode146LRUCache lruCache = new LeetCode146LRUCache(2);
+        lruCache.put(1, 1);
+        lruCache.put(2, 2);
+        System.out.println(lruCache.get(1));
+        lruCache.put(3, 3);
         System.out.println(lruCache.get(2));
+        lruCache.put(4, 4);
+        System.out.println(lruCache.get(1));
+
+        System.out.println(lruCache.get(3));
+        System.out.println(lruCache.get(4));
 
     }
 }
