@@ -18,4 +18,5 @@ package com.leetcode.datastructure.linkedlist;
  */
 public class LRUBaseLinkedList {
 
+
 }

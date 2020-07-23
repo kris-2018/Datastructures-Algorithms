@@ -1,11 +1,20 @@
 package com.leetcode.math;
-
 import java.math.BigInteger;
 
+/**
+ *
+ * 进制之间的转换
+ *  十进制转换为其他进制 如 二进制  除法
+ *  二进制转换成十进制 如（ 110101  < = >  1*2^5 + 1*2^4 + 0*2^3 + 1*2^2 + 0*2^1 + 1*2^0 = 32 + 16 + 0 + 4 + 0 + 1 = 53）
+ *
+ */
 public class Hex {
 
     public static void main(String[] args) {
-        System.out.println(decimalToBinary(10));
+
+        System.out.println("十进制转换为二进制: " + decimalToBinary(50));
+        System.out.println("十进制转换为二进制: " + decimalToBinary(48));
+
     }
 
 
