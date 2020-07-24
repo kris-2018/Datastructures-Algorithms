@@ -30,8 +30,25 @@ import java.util.ArrayDeque;
  * -10^4 <= nums[i] <= 10^4
  * 1 <= k <= nums.length
  *
+ * https://leetcode.com/problems/sliding-window-maximum/
+ *
+ *
+ * 滑动窗口最大值 Array Sliding Window
+ * 示例:
+ * 　　　　输入: nums = [1,3,-1,-3,5,3,6]
+ * 　　　　　　  k = 3(固定大小的窗口)
+ * 　　　　　　　输出: [3,3,5,5,6]
+ * ①优先队列--大顶堆
+ * 　　a. 维护Heap,删除滑走的,添加进来的 logK
+ * 　　b. Max --> Top O(1)
+ * 　　　　整体时间复杂度: NLogK
+ * ②使用Queue ==> deque
+ * 　　a. 入队列
+ * 　　b. 维护
+ * 　　　　时间复杂度 O(N.1)
+ *
  */
-public class leetcode239 {
+public class LeetCode239SlidingWindowMax {
     public static void main(String[] args) {
         int[] nums = {1,3,-1,-3,5,3,6,7};
         int k = 3;

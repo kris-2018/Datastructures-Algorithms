@@ -21,7 +21,7 @@ package com.leetcode.datastructure.linkedlist;
 
 
 
-public class leetcode25 {
+public class LeetCode25ReverseNodesInKGroup {
 
     public static void main(String[] args) {
         /*插入数据*/

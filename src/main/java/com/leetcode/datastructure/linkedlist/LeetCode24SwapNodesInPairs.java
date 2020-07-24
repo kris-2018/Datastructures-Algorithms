@@ -9,7 +9,7 @@ package com.leetcode.datastructure.linkedlist;
  * https://leetcode.com/problems/swap-nodes-in-pairs
  *
  */
-public class leetcode24 {
+public class LeetCode24SwapNodesInPairs {
 
     public static void main(String[] args) {
         /*插入数据*/

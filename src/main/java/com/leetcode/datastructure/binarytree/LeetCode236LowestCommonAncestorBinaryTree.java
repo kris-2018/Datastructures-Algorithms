@@ -29,7 +29,18 @@ package com.leetcode.datastructure.binarytree;
  * 所有节点的值都是唯一的。
  * p、q 为不同节点且均存在于给定的二叉树中。
  *
- * https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/
+ * https://leetcode-cn.com/problems/示例一: 输入: [3, 1, 5, null,null,2],
+ *         输出: true
+ * 示例二: 输入: [5,1,4,null,null,3,6]
+ *         输出: false
+ *
+ * ①. In-order(中序遍历即左根右结点, 判断当前结点大于前几结点即可) => array 升序
+ * ②. Recursion(递归): Validate(..., min, max) ,传一个min和max出去为了递归查询时;
+ *         max <-- validate(node.left)  -- 递归左孩子得到最大值
+ *         min <-- validate(node.right)  --遍历右孩子得到最小值
+ * 对于左子树找它的最大值, 右子树找它的最小值, 然后判断左边的最大值要 < 根结点, 同时右边最小值要 > 根结点值;
+ * 继续递归下去, 直到所有的都满足;
+ * 这两种方法的时间复杂度都是O(n), n为结点总数;/
  *
  */
 public class LeetCode236LowestCommonAncestorBinaryTree {

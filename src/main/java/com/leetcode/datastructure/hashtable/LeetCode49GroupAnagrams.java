@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
  *  a 97,b 98  --...-- z 122
  *  A 65,B 66  --...-- Z 90
  */
-public class leetcode49 {
+public class LeetCode49GroupAnagrams {
     public static void main(String[] args) {
         String[] str = {"eat", "tea", "tan", "ate", "nat", "bat"};
         for (Object o : groupAnagrams3(str).toArray()) {

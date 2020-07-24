@@ -18,6 +18,44 @@ import java.util.Arrays;
  * 输出: 2
  * https://leetcode-cn.com/problems/majority-element/description/
  *
+ *
+ *
+ *
+ *  Majority 最后一定会有
+ * [1,3,3,2,3]
+ * [1,1,1,0,2]
+ * count(x) > n/2
+ *
+ * 题目:求众数
+ * 示例一:
+ * 输入: [1,3,3,2,3]
+ * 输出: 3
+ * 示例二:
+ * 输入: [1,1,1,0,2]
+ * 输出: 1
+ *
+ * ①暴力做法: 两个循环
+ * 枚举x, loop: x
+ *          loop count(x) --针对每个x去数组里边去计数, 把count最大的x返回
+ * 时间复杂度是O(N^2)
+ *
+ * ②Map {x: count_x}
+ *     Loop ==> Map count
+ * 时间复杂度是O(N), 空间复杂度也是O(N)
+ *
+ * ③sort[1,2,3,3,3]
+ * 只要重复的元素 > n/2
+ * 时间复杂度是O(NlogN)
+ *
+ * ④分治 Divide & Conquer
+ * 一分为二, 左右两边各找一个majority, 如果相等即可
+ * 否则就看左边和右边哪边的count大, 如果左边大就返回左边，否则返回右边
+ * left == right ==> left
+ * else return count(l) > count(r)
+ * 时间复杂度是O(Nlog(N))
+ * 针对[1,2,3]这种数组可能无法解决, 可能返回1,2,3
+ *
+ *
  */
 public class LeetCode169MajorityElement {
     public static void main(String[] args) {

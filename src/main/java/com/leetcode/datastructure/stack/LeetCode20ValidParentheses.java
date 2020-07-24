@@ -30,10 +30,24 @@ import java.util.Stack;
  * 输入: "{[]}"
  * 输出: true
  *
+ * String大、中、小括号 ==> 合法？
+ * ① "()"
+ * ② "()[]"
+ * ③ "([)]" --不合法
+ * ④ "((([])))"
+ * ⑤ "]][[" --不合法
+ *
+ *
+ *  a. 左 ==> push
+ *  b. 右 ==> peek
+ *    pop
+ *  c. stack empty
+ * 时间复杂度是: O(1) * n = O(n)
+ *
  * https://leetcode-cn.com/problems/valid-parentheses/solution/
  */
 
-public class leetcode20 {
+public class LeetCode20ValidParentheses {
     public static void main(String[] args) {
         String str = "()[]{}";
         for (char c: str.toCharArray()){
