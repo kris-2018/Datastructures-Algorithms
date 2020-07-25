@@ -1,5 +1,8 @@
 package com.leetcode.datastructure.queue;
 
+import java.sql.Statement;
+import java.util.Stack;
+
 /**
  * 232. 用栈实现队列
  * 使用栈实现队列的下列操作：
@@ -31,4 +34,37 @@ package com.leetcode.datastructure.queue;
  *
  */
 public class LeetCode232ImplementQueueUsingStacks {
+
+    public static void main(String[] args) {
+        LeetCode232ImplementQueueUsingStacks queue = new LeetCode232ImplementQueueUsingStacks();
+        queue.push(1);
+        queue.push(2);
+        queue.push(3);
+        queue.peek();
+    }
+    Stack<Integer> input = new Stack<>();
+    Stack<Integer> output = new Stack<>();
+    public void push(int x) {
+        input.push(x);
+    }
+    public void pop() {
+        peek();
+        output.pop();
+    }
+    /**
+     * 时间复杂度 O(1)
+     * The loop in peek does the moving from input to output stack. Each element only ever gets moved like that once,
+     * though, and only after we already spent time pushing it, so the overall amortized cost for each operation is O(1).
+     * @return
+     */
+    private int peek() {
+        if (output.empty())
+            while (!input.empty()) {
+                output.push(input.pop());
+            }
+        return output.peek();
+    }
+    public boolean empty() {
+        return input.empty() && output.empty();
+    }
 }

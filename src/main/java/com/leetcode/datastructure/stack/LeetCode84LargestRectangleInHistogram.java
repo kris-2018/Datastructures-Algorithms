@@ -13,7 +13,7 @@ import java.util.Stack;
  * https://leetcode-cn.com/problems/largest-rectangle-in-histogram/
  *
  */
-public class leetcode84 {
+public class LeetCode84LargestRectangleInHistogram {
 
     public static void main(String[] args) {
         int[] res = {2,1,5,6,2,3};

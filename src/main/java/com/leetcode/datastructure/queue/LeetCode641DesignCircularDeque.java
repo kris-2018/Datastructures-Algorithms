@@ -23,7 +23,7 @@ package com.leetcode.datastructure.queue;
  * https://leetcode.com/problems/design-circular-deque
  *
  */
-public class leetcode641 {
+public class LeetCode641DesignCircularDeque {
     public static void main(String[] args) {
         MyCircularDeque circularDeque = new MyCircularDeque(4);
         circularDeque.insertFront(1);

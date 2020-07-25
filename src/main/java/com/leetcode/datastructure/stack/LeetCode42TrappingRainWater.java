@@ -14,7 +14,7 @@ import java.util.Stack;
  *
  * https://leetcode-cn.com/problems/trapping-rain-water/
  */
-public class leetcode42 {
+public class LeetCode42TrappingRainWater {
 
     public static void main(String[] args) {
         int[] res = {0,1,0,2,1,0,1,3,2,1,2,1};
