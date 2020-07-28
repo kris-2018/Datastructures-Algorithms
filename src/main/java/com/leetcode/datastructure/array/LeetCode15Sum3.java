@@ -28,11 +28,44 @@ public class LeetCode15Sum3 {
         int arr[] = {-1,0,1,2,-1,-4};
         LeetCode15Sum3 leetcode15 = new LeetCode15Sum3();
 
-        for (List<Integer> integers : leetcode15.threeSum2(arr)) {
+        for (List<Integer> integers : leetcode15.threeSum(arr)) {
             System.out.println(integers);
         }
     }
 
+    /**
+     * 方法三 哈希表, set去重
+     * Time complexity: O(n^2)
+     *      Explanation: Sorting takes O(nlogn) & 'for' loop and 'while' loop takes O(n^2) together.
+     *      But since O(n^2) > O(nlogn). Therefore, O(n^2).
+     * Space complexity: O(n)
+     *      Explanation: As the total elements are n and the space complexity will be some factor of n.
+     *      Therefore, after removing constant, we are left with O(n).
+     *
+     * @param num
+     * @return
+     */
+    public static List<List<Integer>> threeSum(int[] num) {
+        //利用set去重的特性
+        Set<List<Integer>> res = new HashSet<>();
+        if (num.length == 0) return new ArrayList<>(res);
+        Arrays.sort(num);
+        //i, j (i+1), k (num.length-1),  i = len - 3, j will be len -2 and k will be len - 1.
+        for (int i = 0; i < num.length - 2; i++) {
+            int j = i + 1, k = num.length - 1;
+            while (j < k) {
+                int sum = num[i] + num[j] + num[k];
+                if (sum == 0)
+                    res.add(Arrays.asList(num[i], num[j++], num[k--]));//添加到res后, j++, k--
+                else if (sum > 0)
+                    k--;
+                else
+                    j++;
+            }
+        }
+        return new ArrayList<>(res);
+
+    }
 
     /**
      * 方法二 排序 + 双指针解法  时间复杂度 O(n^2)
@@ -65,7 +98,7 @@ public class LeetCode15Sum3 {
      * @param nums
      * @return
      */
-    public List<List<Integer>> threeSum(int[] nums) {
+    public List<List<Integer>> threeSum1(int[] nums) {
         //int[] res;
         Arrays.sort(nums); //一定要先排好序，不然结果是错误的
         Set<List<Integer>> result = new LinkedHashSet<>();
