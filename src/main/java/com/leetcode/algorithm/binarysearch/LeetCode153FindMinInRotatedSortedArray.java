@@ -18,4 +18,29 @@ package com.leetcode.algorithm.binarysearch;
  *  https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/
  */
 public class LeetCode153FindMinInRotatedSortedArray {
+
+    public static void main(String[] args) {
+        int[] nums = {4,5,6,7,0,1,2};
+        System.out.println(findMin(nums));
+    }
+
+    /**
+     * 二分查找
+     * 时间复杂度 log(n)
+     * @param nums
+     * @return
+     */
+    public static int findMin(int[] nums) {
+        int low = 0;
+        int high = nums.length - 1;
+        while (low < high) {
+            int mid = low + ((high - low) / 2);
+            //中间值 > 右边界值 , 往右查找
+            if (nums[mid] > nums[high])
+                low = mid + 1;
+            else
+                high = mid;
+        }
+        return nums[low];
+    }
 }

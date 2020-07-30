@@ -53,7 +53,8 @@ public class LeetCode33SearchInRotatedSortedArray {
     }
 */
     /**
-     *  binary search
+     *  binary search 0ms
+     *  时间复杂度 log(n), n为数组长度
      * @param nums
      * @param target
      * @return
@@ -64,10 +65,13 @@ public class LeetCode33SearchInRotatedSortedArray {
         while (left <= right) {
             int mid = left + (right - left) / 2;
             if (nums[mid] > target) {
+                //中间值 > 目标值 --> 如左边值 < 中间值 &&
+                //                   左边值 > 目标值
+                //              ---> 说明中间值往左是有序的,就往右边查找, 否则往左
                 if (nums[left] <= nums[mid] && nums[left] > target) {
-                    left = mid + 1;
+                    left = mid + 1; //   目标值 < 左边值, 往右边找
                 } else {
-                    right = mid - 1;
+                    right = mid - 1; //  目标值 > 左边值, 往左边找
                 }
             } else if (nums[mid] < target) {
                 if (nums[right] >= nums[mid] && nums[right] < target) {
