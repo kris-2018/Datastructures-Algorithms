@@ -40,12 +40,12 @@ import java.util.Stack;
  * int param_3 = obj.top();
  * int param_4 = obj.getMin();
  */
-public class leetcode155_MinStack_1 {
+public class LeetCode155MinStack1 {
 
     int min = Integer.MAX_VALUE;
     Stack<Integer> stack = new Stack<>();
     public static void main(String[] args) {
-        leetcode155_MinStack_1 leetcode155_MinStack_1 = new leetcode155_MinStack_1();
+        LeetCode155MinStack1 leetcode155_MinStack_1 = new LeetCode155MinStack1();
         leetcode155_MinStack_1.push(2);
         leetcode155_MinStack_1.push(3);
         leetcode155_MinStack_1.push(4);
@@ -57,7 +57,7 @@ public class leetcode155_MinStack_1 {
     }
 
     /** initialize your data structure here. */
-    public leetcode155_MinStack_1() {}
+    public LeetCode155MinStack1() {}
 
     public void push(int x) {
         if (x <= min) {

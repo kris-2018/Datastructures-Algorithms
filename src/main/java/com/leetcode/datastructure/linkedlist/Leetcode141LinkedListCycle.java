@@ -13,8 +13,16 @@ import java.util.HashSet;
  * 解释：链表中有一个环，其尾部连接到第二个节点。
  *
  *  https://leetcode-cn.com/problems/linked-list-cycle/
+ *
+ *
+ *  ① 硬做（一直遍历循环判断是否出现空指针）
+ *  ② 用set判重   时间复杂度是O（n-1） ，把所有节点都存起来；
+ *  ③ 快慢指针 （快指针走两步，慢指针走一步，如果有环快慢指针会相遇； 时间复杂度On） -- 经典解法 - 不好想
+ *    龟兔赛跑方式：
+ *
+ *
  */
-public class leetcode141 {
+public class Leetcode141LinkedListCycle {
 
     public static void main(String[] args) {
 

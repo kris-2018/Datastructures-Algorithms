@@ -18,9 +18,20 @@ import java.util.HashMap;
  * <p>
  * 进阶:
  * 如果输入字符串包含 unicode 字符怎么办？你能否调整你的解法来应对这种情况？
+ *
  * https://leetcode-cn.com/problems/valid-anagram/
+ *
+ * 方法①. sort: String => 按照字典顺序排序, 比较排序好的单词; 如果排序好的一模一样就是
+ *     时间复杂度是--O(logN)
+ * 方法②. Map:计数 {letter: Count}
+ *  {a:3,n:1,g:1,r:1,m:1}
+ *  循环-O(N) ,循环里边操作放到map中: O(n*1) = O(N)
+ *
+ *
+ * map(hash表)
+ * 不用map, 用了一个裸写的String数组--手建一个hash表:
  */
-public class leetcode242 {
+public class LeetCode242ValidAnagram {
     public static void main(String[] args) {
         String s = "anagram";
         String t = "nagaram";

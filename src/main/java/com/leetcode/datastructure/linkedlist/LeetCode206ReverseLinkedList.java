@@ -30,8 +30,10 @@ package com.leetcode.datastructure.linkedlist;
  * 输出: 5->4->3->2->1->NULL
  * 进阶:
  * 你可以迭代或递归地反转链表。你能否用两种方法解决这道题？
+ * https://leetcode.com/problems/reverse-linked-list/
+ *
  */
-public class leetcode206 {
+public class LeetCode206ReverseLinkedList {
     public static void main(String[] args) {
         /*插入数据*/
         ListNode node1 = new ListNode(1);

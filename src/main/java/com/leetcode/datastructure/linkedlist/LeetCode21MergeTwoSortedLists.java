@@ -13,7 +13,7 @@ package com.leetcode.datastructure.linkedlist;
  *
  *  https://leetcode-cn.com/problems/merge-two-sorted-lists/
  */
-public class leetcode21 {
+public class LeetCode21MergeTwoSortedLists {
     public static void main(String[] args) {
         ListNode node1 = new ListNode(1);
         ListNode node2 = new ListNode(2);

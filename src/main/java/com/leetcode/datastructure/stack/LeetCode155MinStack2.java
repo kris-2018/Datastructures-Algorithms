@@ -10,12 +10,12 @@ import java.util.Stack;
  * 用栈来实现队列 --> 用两个栈, 每次先进后出的时候就压到另外一个栈去, 把它的顺序再倒腾一遍。
  *
  */
-public class leetcode155_MinStack_2 {
+public class LeetCode155MinStack2 {
 
     private Stack<Integer> stack;
     private Stack<Integer> min_stack;
 
-    public leetcode155_MinStack_2() {
+    public LeetCode155MinStack2() {
         stack = new Stack<>();
         min_stack = new Stack<>();
     }

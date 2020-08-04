@@ -25,6 +25,15 @@ package com.leetcode.algorithm.divideconquer;
  *
  * https://leetcode-cn.com/problems/powx-n/
  *
+ *
+ * ①. 直接调库函数 O(1)
+ * ②. 暴力相乘 O(n)
+ * ③. 分治 x.x.x.x.x..n个x
+ *   n 为偶: y = x^n, result = y * y
+ *       奇: y = x^(n-1) 取整即y=x^n, result = y * y * x
+ * x^n -> x^(n/2) -> x^(n/4) -> ... x^1 or x^0
+ *
+ * 不用递归的方式：位运算
  */
 public class LeetCode50Powxn {
     public static void main(String[] args) {

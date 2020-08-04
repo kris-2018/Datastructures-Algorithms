@@ -17,7 +17,7 @@ import java.util.Set;
  * https://leetcode-cn.com/problems/linked-list-cycle-ii/
  *
  */
-public class leetcode142 {
+public class LeetCode142LinkedListCycleII {
 
     public static void main(String[] args) {
         /** 插入数据 */
