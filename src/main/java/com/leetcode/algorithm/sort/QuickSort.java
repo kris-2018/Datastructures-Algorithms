@@ -15,6 +15,7 @@ public class QuickSort {
     }
 
     public static void quickSort(int[] array, int begin, int end) {
+        //1. 递归结束条件
         if (begin >= end) return;
         int pivot = partition(array, begin, end); //返回 counter 个数 (中间值左边数组 或者 右边数组的个数)
         quickSort(array, begin, pivot - 1); //递归左边的值
