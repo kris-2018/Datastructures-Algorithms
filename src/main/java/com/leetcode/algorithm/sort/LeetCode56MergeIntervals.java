@@ -18,4 +18,6 @@ package com.leetcode.algorithm.sort;
  *
  */
 public class LeetCode56MergeIntervals {
+
+
 }
