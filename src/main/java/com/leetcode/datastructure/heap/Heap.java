@@ -23,7 +23,7 @@ public class Heap {
     }
 
     /**
-     * 插入操作
+     * 插入操作 自下往上堆化
      * @param data
      */
     public void insert(int data) {
@@ -32,7 +32,7 @@ public class Heap {
         a[count] = data;
         int i = count;
         while (i/2 > 0 && a[i] > a[i/2]) { // 自下往上堆化
-            swap(a, i, i/2); // swap() 函数作用：交换下标为 i 和 i/2 的两个元素
+            swap(a, i, i/2); // swap() 函数作用: 交换下标为 i 和 i/2 的两个元素
             i = i/2;
         }
     }
