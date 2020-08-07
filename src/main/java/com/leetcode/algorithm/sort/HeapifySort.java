@@ -32,7 +32,7 @@ public class HeapifySort {
     }
 
     /**
-     * 1. 建堆
+     * 1. 堆化
      * @param array
      * @param length
      * @param i
