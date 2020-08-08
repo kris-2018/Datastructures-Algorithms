@@ -20,4 +20,5 @@ package com.leetcode.algorithm.sort;
  * https://leetcode-cn.com/problems/valid-anagram/
  */
 public class LeetCode242ValidAnagram {
+
 }

@@ -32,14 +32,16 @@ public class MergeSort {
         while (i <= mid && j <= right) {
             temp[k++] = array[i] <= array[j] ? array[i++] : array[j++];
         }
+        //将剩余的数据拷贝到临时数组 temp
         while (i <= mid)
             temp[k++] = array[i++];
+        //将剩余的数据拷贝到临时数组 temp
         while (j <= right)
             temp[k++] = array[j++];
         //把临时数组temp中数组拷贝到原数组中。
         for (int p = 0; p < temp.length; p++) {
             array[left + p] = temp[p];
         }
-        // 也可以⽤ System.arraycopy(a, start1, b, start2, length)
+        //System.arraycopy(temp, 0, array, left, right - left + 1); // 也可以⽤ System.arraycopy(a, start1, b, start2, length)
     }
 }
