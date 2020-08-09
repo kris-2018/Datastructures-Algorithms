@@ -36,12 +36,19 @@ import java.util.Arrays;
  */
 public class LeetCode455AssignCookies {
     public static void main(String[] args) {
-        int[] children = {1, 2, 3};
-        int[] cookies = {1, 3, 4};
+        int[] children = {1, 5, 3};
+        int[] cookies = {1, 4};
         System.out.println(findContentChildren(children, cookies));
 
     }
 
+    /**
+     * 排序时间复杂度为 O(n log n)
+     *
+     * @param children
+     * @param cookies
+     * @return
+     */
     public static int findContentChildren(int[] children, int[] cookies) {
         Arrays.sort(children);
         Arrays.sort(cookies);

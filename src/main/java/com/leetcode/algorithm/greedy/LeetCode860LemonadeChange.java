@@ -48,4 +48,44 @@ package com.leetcode.algorithm.greedy;
  *  https://leetcode-cn.com/problems/lemonade-change/description/
  */
 public class LeetCode860LemonadeChange {
+
+    public static void main(String[] args) {
+        int[] bills = {5, 10, 20};
+        System.out.println(lemonadeChange(bills));
+
+    }
+
+    /**
+     * Count the number of $5 and $10 in hand.
+     * if (customer pays with $5) five++;
+     * if (customer pays with $10) ten++, five--;
+     * if (customer pays with $20) ten--, five-- or five -= 3;
+     * Check if five is positive, otherwise return false.
+     *
+     *
+     * Time Complexity O(N) for one iteration
+     * Space O(1)
+     *
+     * @param bills
+     * @return
+     */
+    public static boolean lemonadeChange(int[] bills) {
+        int five = 0, ten = 0;
+        for (int i : bills) {
+            if (i == 5)
+                five++;
+            else if (i == 10) {
+                five--;
+                ten++;
+            }
+            else if (ten > 0) { // 20找零, 1个ten, 1个five
+                ten--;
+                five--;
+            }
+            else five -= 3;   // 20找零, 3个five
+            if (five < 0)    //最后判断是否还有 five
+                return false;
+        }
+        return true;
+    }
 }
