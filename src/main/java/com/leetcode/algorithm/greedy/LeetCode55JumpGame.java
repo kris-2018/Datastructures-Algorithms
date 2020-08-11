@@ -20,15 +20,20 @@ package com.leetcode.algorithm.greedy;
 public class LeetCode55JumpGame {
     public static void main(String[] args) {
         //int[] A = {2,3,1,1,4};
-        int[] A = {3,2,1,0,4};
-        System.out.println(canJump(A));
+        int[] nums = {3,1,3,0,4};
+        System.out.println(canJump(nums));
     }
 
-    public static boolean canJump(int[] A) {
+    /**
+     * 时间复杂度 O(n)
+     * @param nums
+     * @return
+     */
+    public static boolean canJump(int[] nums) {
         int max = 0;
-        for (int i = 0; i < A.length; i++) {
+        for (int i = 0; i < nums.length; i++) {
             if (i > max) return false;
-            max = Math.max(A[i] + i, max);
+            max = Math.max(nums[i] + i, max);
         }
         return true;
     }
