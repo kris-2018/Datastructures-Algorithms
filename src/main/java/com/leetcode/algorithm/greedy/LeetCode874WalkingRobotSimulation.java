@@ -61,7 +61,6 @@ public class LeetCode874WalkingRobotSimulation {
      *  and will decrease by one (or increase by three) when we turn left.
      *
      *  时间超过限制
-     *
      * @param commands
      * @param obstacles
      * @return
@@ -116,7 +115,6 @@ public class LeetCode874WalkingRobotSimulation {
      * 机器人每试图走一个位置，就用此位置与障碍物集合列表里的坐标进行比较，看是否刚好是障碍物坐标点
      *      不是，则“真正走到这个点”，更新机器人坐标点(curx,cury)
      *      是障碍物，那么不走下一步，停留在当前，执行下一条命令
-     *
      */
 
 }

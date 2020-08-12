@@ -29,29 +29,41 @@ package com.leetcode.algorithm.greedy;
 public class LeetCode402RemoveKDigits {
 
     public static void main(String[] args) {
-        String num = "1432219";
-        int k = 3;
+        //String num = "1432219"; //int k = 3;
+        //String num = "10200";
+        String num = "10";
+        int k = 2;
+
         System.out.println(removeKdigits(num, k));
     }
 
-    public static String removeKdigits(String num, int k) {
-        int digits = num.length() - k;
-        char[] stk = new char[num.length()];
+    /**
+     * 时间复杂度 O(n)
+     * @param str
+     * @param k
+     * @return
+     */
+    public static String removeKdigits(String str, int k) {
+        int digits = str.length() - k;
+        char[] stack = new char[str.length()];
         int top = 0;
         // k keeps track of how many characters we can remove
         // if the previous character in stk is larger than the current one then removing it will get a smaller number
             // but we can only do so when k is larger than 0
-        for (int i = 0; i < num.length(); i++) {
-            char c = num.charAt(i);
-            while (top > 0 && stk[top - 1] > c && k > 0) {
+        for (int i = 0; i < str.length(); i++) {
+            char c = str.charAt(i);
+            while (top > 0 && stack[top - 1] > c && k > 0) {
                 top -= 1;
                 k -= 1;
             }
-            stk[top++] = c;
+            stack[top++] = c;
         }
-        int idx = 0;
-        while (idx < digits && stk[idx] == '0') idx++;
-        return idx == digits ? "0" : new String(stk, idx, digits - idx);
+        //判断char[] stack中首位是否为 0
+        int index = 0;
+        while (index < digits && stack[index] == '0')
+            index++;
+        String strs = index == digits ? "0" : new String(stack, index, digits - index);
+        return strs;
     }
 
 }
