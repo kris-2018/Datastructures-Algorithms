@@ -40,7 +40,7 @@ public class LeetCode51NQueens {
 
     public static void main(String[] args) {
         final LeetCode51NQueens leetCode51NQueens = new LeetCode51NQueens();
-        for (Object o : leetCode51NQueens.solveNQueens1(4).toArray()) {
+        for (Object o : leetCode51NQueens.solveNQueens1(8).toArray()) {
             System.out.println(o);
         }
 
