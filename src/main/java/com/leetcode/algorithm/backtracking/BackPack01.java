@@ -23,33 +23,33 @@ public class BackPack01 {
     private int maxW = Integer.MIN_VALUE;// 存储背包中物品总重量的最大值
     private int[] weight = {2, 2, 4, 6, 3};
     private int n = 5;//物品个数
-    private int big = 9; // 背包承受的最大重量
+    private int bigWeight = 9; // 背包承受的最大重量
     public void f(int i, int alw) {
-        if (alw == big || i == n){  // cw==w 表示装满了，i==n 表示物品都考察完了
+        if (alw == bigWeight || i == n){  // cw==w 表示装满了，i==n 表示物品都考察完了
             if (alw > maxW) maxW = alw;
             return;
         }
         f(i+1, alw); // 选择不装第 i 个物品
-        if (alw + weight[i] <= big) {
+        if (alw + weight[i] <= bigWeight) {
             f(i+1, alw+weight[i]); // 选择装第 i 个物品
         }
     }
 
 
 
-    /*public void f(int i, int alputIn, int[] items, int n, int weight) {
+    /*public void f(int i, int alputIn, int[] items, int n, int bigWeight) {
         // alputIn 表示当前已经装进去的物品的重量和；i 表示考察到哪个物品了；
-        // weight 背包重量；items 表示每个物品的重量；n 表示物品个数
+        // bigWeight 背包重量；items 表示每个物品的重量；n 表示物品个数
         // 假设背包可承受重量 100，物品个数 10，物品重量存储在数组 items 中，那可以这样调用函数：
         // f(0, 0, items, 10, 100)
-        if (alputIn == weight || i == n) { // alputIn == weight 表示装满了 ; i==n 表示已经考察完所有的物品
+        if (alputIn == bigWeight || i == n) { // alputIn == bigWeight 表示装满了 ; i==n 表示已经考察完所有的物品
             if (alputIn > maxW)
                 maxW = alputIn;
             return;
         }
-        f(i+1, alputIn, items, n, weight);
-        if (alputIn + items[i] <= weight) { // 已经超过可以背包承受的重量的时候，就不要再装了
-            f(i + 1, alputIn + items[i], items, n, weight);
+        f(i+1, alputIn, items, n, bigWeight);
+        if (alputIn + items[i] <= bigWeight) { // 已经超过可以背包承受的重量的时候，就不要再装了
+            f(i + 1, alputIn + items[i], items, n, bigWeight);
         }
     }
 */
