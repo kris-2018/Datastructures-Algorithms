@@ -16,8 +16,9 @@ public class BackPack01 {
         BackPack01 backPack01 = new BackPack01();
         int[] items = {10, 6, 5, 4};
         //backPack01.f(0, 0, items, 4, 20);
-
+        System.out.println(backPack01.maxW);
         backPack01.f(0, 0);
+        System.out.println(backPack01.maxW);
     }
 
     private int maxW = Integer.MIN_VALUE;// 存储背包中物品总重量的最大值
