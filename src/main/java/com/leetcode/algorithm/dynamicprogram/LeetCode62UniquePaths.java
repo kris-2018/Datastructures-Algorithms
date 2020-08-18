@@ -48,26 +48,37 @@ public class LeetCode62UniquePaths {
      */
     public static int uniquePaths(int m, int n){
         Integer[][] dp = new Integer[m][n];
+        //赋予初始值
         for (int i = 0; i < m; i++) {
             dp[i][0] = 1;
         }
         for (int j = 0; j < n; j++) {
             dp[0][j] = 1;
         }
+        //开始递推
         for (int i = 1; i < m; i++) {
             for (int j = 1; j < n; j++) {
-                dp[i][j] = dp[i-1][j] + dp[i][j-1];
+                dp[i][j] = dp[i-1][j] + dp[i][j-1]; //DP 方程
             }
         }
         return dp[m-1][n-1];
     }
 
+    /**
+     *  简化操作, 不需要存整个二维数组, 和Fibonacci 数列一样（不需要存从0到n-1这么多中间结果，只需存i-1和i-2即可）
+     *  只需存最近的一行（最后一行的1 1 1 ...）,每次从当前这一行往上面垒, 最后得到最上一行的结果, 结果就在n-1的位置
+     *  这样就节省了一维的状态存储空间
+     *  这两种时间复杂度都是 O(m*n) , 这种方式在内存上更节省
+     * @param m
+     * @param n
+     * @return
+     */
     public static int uniquePaths2(int m, int n) {
-        int[] cur = new int[n];
-        Arrays.fill(cur, 1);
+        int[] cur = new int[n]; //表最近的这一行,
+        Arrays.fill(cur, 1);//一开始全部都是1
         for (int i = 1; i < m; i++) {
             for (int j = 1; j < n; j++) {
-                cur[j] += cur[j-1];
+                cur[j] += cur[j-1]; //往上累加 cur[j-1]的值
             }
         }
         return cur[n - 1];

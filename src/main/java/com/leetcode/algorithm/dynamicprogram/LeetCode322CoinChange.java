@@ -1,4 +1,4 @@
-package com.leetcode.algorithm.greedy;
+package com.leetcode.algorithm.dynamicprogram;
 
 /**
  * 322. 零钱兑换
