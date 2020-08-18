@@ -37,7 +37,7 @@ import java.util.Arrays;
 public class LeetCode62UniquePaths {
     public static void main(String[] args) {
         int m = 7, n = 3;
-        System.out.println(uniquePaths2(m, n));
+        System.out.println(uniquePaths4(m, n));
     }
 
     /**
@@ -83,4 +83,39 @@ public class LeetCode62UniquePaths {
         }
         return cur[n - 1];
     }
+
+    /**
+     * Recursive
+     * 时间复杂度 O(2^n)
+     * @param m
+     * @param n
+     * @return
+     */
+    public static int uniquePaths3(int m, int n) {
+        return uniquePathHelper(m - 1, n - 1);
+    }
+    private static int uniquePathHelper(int m, int n) {
+        if (m < 0 || n < 0) return 0;
+        if (m == 0 || n == 0) return 1;
+        return uniquePathHelper(m - 1, n) + uniquePathHelper(m, n - 1);
+    }
+
+    /**
+     * Memoization
+     * Time complexity m x n, Space complexity: m x n
+     * @param m
+     * @param n
+     * @return
+     */
+    public static int uniquePaths4(int m, int n) {
+        return uniquePathHelper2(m - 1, n - 1, new int[m][n]);
+    }
+    private static int uniquePathHelper2(int m, int n, int[][] memo) {
+        if (m < 0 || n < 0) return 0;
+        if (m == 0 || n == 0) return 1;
+        if (memo[m][n] > 0) return memo[m][n];
+        memo[m][n] = uniquePathHelper2(m - 1, n, memo) + uniquePathHelper2(m, n - 1, memo);
+        return memo[m][n];
+    }
+
 }
