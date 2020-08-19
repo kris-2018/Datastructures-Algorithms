@@ -1,4 +1,4 @@
-package com.leetcode.algorithm.dynamicprogram;
+package com.leetcode.algorithm.dynamicprogram.stockquestion;
 
 /**
  *714. 买卖股票的最佳时机含手续费

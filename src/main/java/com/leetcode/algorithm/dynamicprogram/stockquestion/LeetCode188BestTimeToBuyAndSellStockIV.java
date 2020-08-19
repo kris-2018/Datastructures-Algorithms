@@ -1,4 +1,4 @@
-package com.leetcode.algorithm.dynamicprogram;
+package com.leetcode.algorithm.dynamicprogram.stockquestion;
 
 /**
  *188. 买卖股票的最佳时机 IV
