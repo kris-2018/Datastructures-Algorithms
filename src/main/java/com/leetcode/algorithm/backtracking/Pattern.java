@@ -4,6 +4,14 @@ package com.leetcode.algorithm.backtracking;
  *
  */
 public class Pattern {
+    public static void main(String[] args) {
+        char[] pattern = {'.', '*'};
+        int plen = 2;
+        Pattern pat = new Pattern(pattern, plen);
+        char[] text = {'a', 'b', 'c', 'd'};
+        int tlen = 4;
+        System.out.println(pat.match(text, tlen));
+    }
     private boolean matched = false;
     private char[] pattern;//正则表达式
     private int plen;
