@@ -19,4 +19,13 @@ package com.leetcode.algorithm.string.basequestion;
  *
  */
 public class LeetCode771JewelsAndStones {
+
+
+
+
+    public static int numJewelsInStones(String J, String S) {
+        return S.replaceAll("[^" + J + "]", "").length();
+    }
+
+
 }

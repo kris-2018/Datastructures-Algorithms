@@ -19,4 +19,26 @@ package com.leetcode.algorithm.string.basequestion;
  * https://leetcode-cn.com/problems/to-lower-case/
  */
 public class LeetCode709ToLowerCase {
+
+    public static void main(String[] args) {
+        String str = "Hello";
+        System.out.println(toLowerCase2(str));
+    }
+
+    /**
+     * the whole point is to avoid String#toLowerCase() and Character#toLowerCase() methods
+     * @param str
+     * @return
+     */
+    public static String toLowerCase(String str) {
+        char[] c = str.toCharArray();
+        for (int i = 0; i < c.length; i++)
+            if ('A' <= c[i] && c[i] <= 'Z')
+                c[i] = (char) (c[i] - 'A' + 'a');
+        return new String(c);
+    }
+
+    public static String toLowerCase2(String str) {
+        return str.toLowerCase();
+    }
 }

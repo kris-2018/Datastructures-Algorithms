@@ -14,4 +14,56 @@ package com.leetcode.algorithm.string.basequestion;
  *
  */
 public class LeetCode58LengthOfLastWord {
+    public static void main(String[] args) {
+        String str = "Hello World";
+        System.out.println(lengthOfLastWord(str));
+        System.out.println(lengthOfLastWord2(str));
+        System.out.println(lengthOfLastWord3(str));
+    }
+
+    /**
+     * use lastIndexOf
+     * @param s
+     * @return
+     */
+    public static int lengthOfLastWord(String s) {
+        return s.trim().length() - s.trim().lastIndexOf(" ") - 1;
+    }
+
+    /**
+     * Use split
+     * @param s
+     * @return
+     */
+    public static int lengthOfLastWord2(String s) {
+        String[] words = s.split(" ");
+        if (words.length == 0) return 0;
+        else return words[words.length - 1].length();
+    }
+
+    /**
+     * Use 2 loops. One to locate the last non-space character, one to count.
+     * @param s
+     * @return
+     */
+    public static int lengthOfLastWord3(String s) {
+        int lenIndex = s.length() - 1;
+        int len = 0;
+
+          /*
+        can also use while here, resulting in 264ms
+        while (lenIndex>=0 && s.charAt(lenIndex)==' ')
+            lenIndex--;
+         */
+
+        /*
+        or use trim - 324ms
+        s = s.trim();
+        */
+        for (int i = lenIndex; i >= 0 && s.charAt(i) == ' '; i--)
+            lenIndex--;
+        for (int i = lenIndex; i >= 0 && s.charAt(i) != ' '; i--)
+            len++;
+        return len;
+    }
 }
