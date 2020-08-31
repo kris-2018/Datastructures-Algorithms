@@ -1,6 +1,7 @@
 package com.leetcode.datastructure.hashtable;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 1. 两数之和
@@ -46,9 +47,8 @@ public class LeetCode01TwoSum {
     }
 
     public static int[] twoSum(int[] nums, int target) {
-        HashMap<Integer, Integer> tracker = new HashMap<>();
-        int len = nums.length;
-        for (int i = 0; i < len; i++) {
+        Map<Integer, Integer> tracker = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
             if (tracker.containsKey(nums[i])) {
                 int left = tracker.get(nums[i]);
                 return new int[]{left, i};
