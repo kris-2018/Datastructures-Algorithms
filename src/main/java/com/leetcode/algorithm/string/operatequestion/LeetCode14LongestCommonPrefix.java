@@ -11,9 +11,10 @@ package com.leetcode.algorithm.string.operatequestion;
  * 3. Trie，把所有单词都进trie中
  * 4. 分治的时间复杂度也是比较高的
  * https://leetcode-cn.com/problems/longest-common-preﬁx/ description/
+ * https://leetcode-cn.com/problems/longest-common-prefix/
  *
  */
-public class LeetCodeLongestCommonPrefix {
+public class LeetCode14LongestCommonPrefix {
     public static void main(String[] args) {
         String[] strs = {"flower", "flow", "flight"};
         System.out.println(longestCommonPrefix(strs));
