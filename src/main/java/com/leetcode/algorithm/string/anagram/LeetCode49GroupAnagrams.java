@@ -20,4 +20,10 @@ package com.leetcode.algorithm.string.anagram;
  */
 public class LeetCode49GroupAnagrams {
 
+    public static void main(String[] args) {
+        //见 com.leetcode.datastructure.hashtable.LeetCode49GroupAnagrams; hash
+        com.leetcode.datastructure.hashtable.LeetCode49GroupAnagrams groupAnagrams =
+                new com.leetcode.datastructure.hashtable.LeetCode49GroupAnagrams();
+    }
+
 }

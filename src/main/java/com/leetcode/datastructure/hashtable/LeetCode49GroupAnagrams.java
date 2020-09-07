@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 public class LeetCode49GroupAnagrams {
     public static void main(String[] args) {
         String[] str = {"eat", "tea", "tan", "ate", "nat", "bat"};
-        for (Object o : groupAnagrams3(str).toArray()) {
+        for (Object o : groupAnagrams(str).toArray()) {
             System.out.print(o + " ");
         }
 
@@ -48,7 +48,8 @@ public class LeetCode49GroupAnagrams {
             char[] ca = s.toCharArray();
             Arrays.sort(ca); //将数组中每个元素的字母排序
             String keyStr = String.valueOf(ca); //获取ca数组的 value值作为key valueOf -> contains the characters of the character array.
-            if (!map.containsKey(keyStr)) map.put(keyStr, new ArrayList<String>());
+            if (!map.containsKey(keyStr))
+                map.put(keyStr, new ArrayList<String>());
             map.get(keyStr).add(s);
         }
         return new ArrayList<>(map.values());
@@ -72,7 +73,8 @@ public class LeetCode49GroupAnagrams {
                 ca[c - 'a']++; //记录每个字符出现的次数
             }
             String keyStr = String.valueOf(ca);
-            if (!map.containsKey(keyStr)) map.put(keyStr, new ArrayList<String>());
+            if (!map.containsKey(keyStr))
+                map.put(keyStr, new ArrayList<String>());
             map.get(keyStr).add(str);
         }
         return new ArrayList<>(map.values());
