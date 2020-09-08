@@ -34,6 +34,9 @@ public class LeetCode88MergeSortedArray {
 
     /**
      * 时间复杂度为 O(m + n)
+     * insert from the m+n-1 position at the bigger array
+     * keep 3 pointers: one at the insertion point
+     * one at the end of nums1; one at the end of nums2
      * @param nums1
      * @param m
      * @param nums2
@@ -42,8 +45,10 @@ public class LeetCode88MergeSortedArray {
     public static void merge(int[] nums1, int m, int[] nums2, int n) {
         //m > 0, n > 0, k = m + n - 1 合并后新数组长度;   i, j 分别为数组num1和nums2的最后一位
         int i = m - 1, j = n - 1, k = m + n - 1;
-        while (i > -1 && j > -1) nums1[k--] = (nums1[i] > nums2[j]) ? nums1[i--] : nums2[j--]; //因为两个数组都是排好序的, 都从最后一位开始比较大小, 把较大者赋值给 nums1[k--];  i-- 是先运算,后--
-        while (j > -1) nums1[k--] = nums2[j--];
+        while (i >= 0 && j >= 0)
+            nums1[k--] = (nums1[i] > nums2[j]) ? nums1[i--] : nums2[j--]; //因为两个数组都是排好序的, 都从最后一位开始比较大小, 把较大者赋值给 nums1[k--];  i-- 是先运算,后--
+        while (j >= 0)
+            nums1[k--] = nums2[j--];
     }
 
     /**
@@ -66,6 +71,8 @@ public class LeetCode88MergeSortedArray {
 
     /**
      * 可利用 插入排序 或者 归并排序的写法
+     * https://leetcode-cn.com/problems/merge-sorted-array/solution/cha-ru-pai-xu-shuang-zhi-zhen-liang-chong-jie-fa-b/
+     *
      */
 
 }
