@@ -1,4 +1,4 @@
-package com.leetcode.algorithm.bdfs;
+package com.leetcode.algorithm.bdfs.twoendedbfs;
 
 /**
  * 126. 单词接龙 II
