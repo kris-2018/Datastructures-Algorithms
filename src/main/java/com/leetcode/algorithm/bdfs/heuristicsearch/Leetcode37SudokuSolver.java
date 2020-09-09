@@ -1,4 +1,4 @@
-package com.leetcode.algorithm.bdfs;
+package com.leetcode.algorithm.bdfs.heuristicsearch;
 
 import java.util.Arrays;
 

@@ -36,7 +36,7 @@ public class LeetCode127WordLadder {
 
     public static void main(String[] args) {
         String beginWord = "hit", endWord = "cog";
-        Set<String> wordList = new HashSet<>();
+        List<String> wordList = new ArrayList<>();
         wordList.add("hot");
         wordList.add("dot");
         wordList.add("dog");
@@ -48,7 +48,7 @@ public class LeetCode127WordLadder {
             System.out.print(str + "\t");
         }
         System.out.println();
-        System.out.println(ladderLength(beginWord, endWord, wordList));
+        System.out.println(ladderLength2(beginWord, endWord, wordList));
 
     }
 
@@ -128,8 +128,9 @@ public class LeetCode127WordLadder {
      * @param wordList
      * @return
      */
-    public static int ladderLength2(String beginWord, String endWord, Set<String> wordList) {
-        if(!wordList.contains(endWord)) return 0;
+    public static int ladderLength2(String beginWord, String endWord, List<String> wordList) {
+        Set<String> wordSet = new HashSet<>(wordList);//wordList转换成哈希表,便于查询这个单词是否在wordList中更加快捷; 如果是List要查询单词是否存在时间复杂度是O(n); 如果是HashSet它的时间复杂度就是O(1)
+        if(!wordSet.contains(endWord)) return 0;
         /*分别用左边和
               右边扩散的哈希表代替单向 BFS 里的队列 */
         Set<String> beginSet = new HashSet<>();
@@ -163,7 +164,7 @@ public class LeetCode127WordLadder {
                         if (endSet.contains(target)) {
                             return len + 1;
                         }
-                        if (!visited.contains(target) && wordList.contains(target)) {
+                        if (!visited.contains(target) && wordSet.contains(target)) {
                             temp.add(target);
                             visited.add(target);
                         }
