@@ -1,4 +1,4 @@
-package com.leetcode.datastructure.linkedlist;
+package com.leetcode.algorithm.cacheelimination;
 
 /**
  * LRU 缓存
@@ -16,7 +16,56 @@ package com.leetcode.datastructure.linkedlist;
  * 如果此数据没有在缓存链表中,，则将此结点插入到链表的头部；
  * 如果此时缓存超过容量，则链表尾结点删除。
  */
-public class LRUBaseLinkedList {
+public class LRUBaseLinkedList<T> {
 
+    private final static Integer DEFAULT_CAPACITY = 10;
+    private SNode<T> headNode;
+    private Integer length;
+    private Integer capacity;
 
+    public LRUBaseLinkedList() {
+        this.headNode = new SNode<>();
+        this.length = 0;
+        this.capacity = DEFAULT_CAPACITY;
+    }
+
+    public LRUBaseLinkedList(Integer capacity) {
+        this.headNode = new SNode<>();
+        this.length = 0;
+        this.capacity = capacity;
+    }
+
+}
+
+class SNode<T> {
+    private T element;
+    private SNode next;
+
+    public SNode(T element) {
+        this.element = element;
+    }
+    public SNode(T element, SNode next) {
+        this.element = element;
+        this.next = next;
+    }
+
+    public SNode() {
+        this.next = null;
+    }
+
+    public T getElement() {
+        return element;
+    }
+
+    public void setElement(T element) {
+        this.element = element;
+    }
+
+    public SNode getNext() {
+        return next;
+    }
+
+    public void setNext(SNode next) {
+        this.next = next;
+    }
 }

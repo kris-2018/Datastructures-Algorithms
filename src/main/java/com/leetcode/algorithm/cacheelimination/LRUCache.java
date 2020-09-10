@@ -1,4 +1,4 @@
-package com.leetcode.datastructure.linkedlist;
+package com.leetcode.algorithm.cacheelimination;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

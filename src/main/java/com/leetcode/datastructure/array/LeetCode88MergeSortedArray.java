@@ -22,11 +22,11 @@ import java.util.Arrays;
 public class LeetCode88MergeSortedArray {
 
     public static void main(String[] args) {
-        int[] nums1 = {1,2,3,0,0};
+        int[] nums1 = {6,7,8,0,0,0};
         int m = 3;
-        int[] nums2 = {1,6};
-        int n = 2;
-        merge1(nums1, m, nums2, n);
+        int[] nums2 = {1,2,3};
+        int n = 3;
+        merge3(nums1, m, nums2, n);
         for (int i : nums1) {
             System.out.print(i + "\t");
         }
@@ -35,8 +35,10 @@ public class LeetCode88MergeSortedArray {
     /**
      * 时间复杂度为 O(m + n)
      * insert from the m+n-1 position at the bigger array
-     * keep 3 pointers: one at the insertion point
-     * one at the end of nums1; one at the end of nums2
+     * keep 3 pointers:
+     *                one at the insertion point
+     *                one at the end of nums1;
+     *                one at the end of nums2
      * @param nums1
      * @param m
      * @param nums2
@@ -46,7 +48,8 @@ public class LeetCode88MergeSortedArray {
         //m > 0, n > 0, k = m + n - 1 合并后新数组长度;   i, j 分别为数组num1和nums2的最后一位
         int i = m - 1, j = n - 1, k = m + n - 1;
         while (i >= 0 && j >= 0)
-            nums1[k--] = (nums1[i] > nums2[j]) ? nums1[i--] : nums2[j--]; //因为两个数组都是排好序的, 都从最后一位开始比较大小, 把较大者赋值给 nums1[k--];  i-- 是先运算,后--
+            //因为两个数组都是排好序的, 都从最后一位开始比较大小, 把较大者赋值给 nums1[k--] 最后一个位置 ;  i-- 是先运算,后--
+            nums1[k--] = (nums1[i] > nums2[j]) ? nums1[i--] : nums2[j--];
         while (j >= 0)
             nums1[k--] = nums2[j--];
     }
@@ -64,15 +67,29 @@ public class LeetCode88MergeSortedArray {
      * @param nums2
      * @param n
      */
-    public static void merge1(int[] nums1, int m, int[] nums2, int n) {
+    public static void merge2(int[] nums1, int m, int[] nums2, int n) {
         System.arraycopy(nums2, 0, nums1, m, n);//
         Arrays.sort(nums1);
     }
 
     /**
      * 可利用 插入排序 或者 归并排序的写法
-     * https://leetcode-cn.com/problems/merge-sorted-array/solution/cha-ru-pai-xu-shuang-zhi-zhen-liang-chong-jie-fa-b/
-     *
      */
+    public static void merge3(int[] nums1, int m, int[] nums2, int n) {
+        //正序遍历nums2, 把nums2的第i个元素插入nums1的末尾
+        for (int i = 0; i < n; i++) {
+            nums1[m + i] = nums2[i];
+            //倒序遍历nums1, 进行插入排序
+            for (int j = m + i; j > 0; j--) {
+                if (nums1[j - 1] > nums1[j]) {
+                    int temp = nums1[j - 1];
+                    nums1[j - 1] = nums1[j];
+                    nums1[j] = temp;
+                } else
+                    break;
+            }
+        }
+    }
+
 
 }

@@ -5,9 +5,9 @@ package com.leetcode.algorithm.sort;
  */
 public class InsertionSort {
     public static void main(String[] args) {
-        //int[] nums = {4, 5, 6, 1, 3, 2};
-        int[] nums = {4, 5, 6};
-        int n = 3;
+        int[] nums = {4, 5, 6, 1, 3, 2};
+        //int[] nums = {4, 5, 6};
+        int n = 6;
         insertionSort(nums, n);
         for (int num : nums) {
             System.out.print(num + "\t");

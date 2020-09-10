@@ -1,4 +1,4 @@
-package com.leetcode.datastructure.linkedlist;
+package com.leetcode.algorithm.cacheelimination;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -31,19 +31,30 @@ import java.util.Map;
  *
  * */
 
+
+/*
+* 使用 LinkedHashMap
+* HashMap底层是 数组 + 红黑树 + 链表, 是无序的。
+* LinkedHashMap<K,V> extends HashMap<K,V>, 比HashMap多一个有序(按插入顺序 or 按读取顺序)的功能;
+* 其内部是靠建立一个双向链表来维护这个顺序:
+* 每次插入、删除后，都会调用一个函数来进行 双向链表的维护( afterNodeAccess| afterNodeRemoval| afterNodeInsertion )
+* */
 public class LeetCode146LRUCache extends LinkedHashMap<Integer, Integer> {
+
     private int capacity;
-    public LeetCode146LRUCache(int initialCapacity) {
-        super(initialCapacity,0.75F, true);
+    public LeetCode146LRUCache(int capacity) {
+        super(capacity, 0.75F, true);
         this.capacity = capacity;
     }
     public int get(int key) {
-        return super.getOrDefault(key, -1); //调用父类被重写的方法
+        return super.getOrDefault(key, -1);
     }
+    // 这个可不写
     public void put(int key, int value) {
         super.put(key, value);
     }
 
+    /* 重写 removeEldestEntry()函数，就能拥有我们自己的缓存策略 */
     @Override
     protected boolean removeEldestEntry(Map.Entry<Integer, Integer> eldest) {
         return size() > capacity;
@@ -63,3 +74,25 @@ public class LeetCode146LRUCache extends LinkedHashMap<Integer, Integer> {
 
     }
 }
+
+/*
+    private final Map<Integer, Integer> map;
+    private final int capacity;
+
+    public LRUCache(int capacity) {
+        this.capacity = capacity;
+        this.map = new LinkedHashMap<Integer, Integer>(capacity, 0.75f, true) {
+            @Override
+            protected boolean removeEldestEntry(Map.Entry<Integer, Integer> eldest) {
+                return size() > capacity;
+            }
+        };
+    }
+
+    public int get(int key) {
+        return map.getOrDefault(key, -1);
+    }
+
+    public void put(int key, int value) {
+        map.put(key, value);
+    }*/
