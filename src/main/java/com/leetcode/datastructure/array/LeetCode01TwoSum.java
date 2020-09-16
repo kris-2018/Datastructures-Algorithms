@@ -1,7 +1,4 @@
 package com.leetcode.datastructure.array;
-
-import com.sun.java.swing.plaf.windows.WindowsDesktopIconUI;
-
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
