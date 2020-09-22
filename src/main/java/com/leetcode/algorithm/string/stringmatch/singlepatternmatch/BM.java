@@ -1,4 +1,4 @@
-package com.leetcode.algorithm.string.stringmatch;
+package com.leetcode.algorithm.string.stringmatch.singlepatternmatch;
 
 /**
  * BM 算法
