@@ -3,47 +3,62 @@ package com.leetcode.algorithm.string.stringmatch.singlepatternmatch;
 /**
  * Brute-Force算法，简称为 BF算法，是一种简单朴素的模式匹配算法，常用于在一个主串 S 内查找一个子串 T 的出现位置。
  * BF算法 在主串和字串匹配失败时，主串进行的回溯操作会影响效率，回溯之后，主串与字串有些部分比较是没有必要的。这种简单的丢弃前面的匹配信息是 BF算法 之所以效率低效的一个重要因素。
- *
  */
 public class BF {
     public static void main(String[] args) {
-        String a = "accbbaaaccssdd";
-        String b = "acc";
-        System.out.println(bfFind(a, b, 1));
+        String src = "BBC ABCDAB ABCDABCDABDE";
+        String sub = "ABCDABD";
+        System.out.println(bfFind(src, sub));
+        System.out.println(forceSearch(src, sub));
     }
 
-    public static int bfFind(String S, String T, int pos) {
-        /*char[] arr1 = S.toCharArray();
-        char[] arr2 = T.toCharArray();
-        int i = pos;
-        int j = 0;
-        while (i < arr1.length && j < arr2.length) {
-            if (arr1[i] == arr2[j]) {
+    /**
+     * 1、如果在主串中查找到子串，则称为模式匹配成功，返回模式串的第一个字符在主串中出现的位置。
+     * 2、如果在主串中未找到子串，则称为模式匹配失败，返回-1。
+     * @param src 主串
+     * @param sub 子串
+     * @return 返回模式串的第一个字符在主串中出现的位置。
+     */
+    public static int bfFind(String src, String sub) {
+        int i = 0, j = 0, index = -1;
+        while (i < src.length() && j < sub.length()) {
+            if (src.charAt(i) == sub.charAt(j)) {
                 i++;
                 j++;
             } else {
-                i = i - j + 1; //针回退，并且+1从下一个开始继续匹配
+                /*该式子的目的是保证i 的值在匹配不成功时不断向后+1,i是一个不断累加的过程;  j其实表示已经成功匹配的字符数，*/
+                i = i - j + 1;
                 j = 0;
             }
         }
-        if (j == arr2.length) return i - j;
-        else return -1;*/
+        //判断
+        if (j == sub.length()) {
+            // 此处表示在index处开始匹配，并且后面完全匹配成功
+            index = i - sub.length();
+        }
+        return index;
+    }
 
-        char[] s = S.toCharArray();
-        char[] t = T.toCharArray();
-        int i = pos;
-        int j = 1;
-        while (i <= s[0] && j <= t[0]) {
-            if (s[i] == t[j]) {
-                i++;
-                j++;
-            } else {
-                i = i - j + 2;
-                j = 1;
+    /**
+     * 时间复杂度O(mn)
+     * @param txt
+     * @param pat
+     * @return
+     */
+    public static int forceSearch(String txt, String pat) {
+        int M = txt.length();
+        int N = pat.length();
+        //i 枚举起点本身, 一般是不能加速的
+        for (int i = 0; i <= M -N; i++) {
+            int j;
+            for (j = 0; j < N; j++) {
+                if (txt.charAt(i + j) != pat.charAt(j))
+                    break;
+            }
+            if (j == N) {
+                return i;
             }
         }
-        if (j > t[0]) {
-            return i - t[0];
-        } else return 0;
+        return -1;
     }
 }
