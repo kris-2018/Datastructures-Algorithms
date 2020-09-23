@@ -5,13 +5,20 @@ package com.leetcode.datastructure.trie;
  *
  */
 public class Trie {
+    public static void main(String[] args) {
+        Trie trie = new Trie();
+        String str = "abc";
+        char[] chars = str.toCharArray();
+        trie.insert(chars);
+        System.out.println(trie.find("abc".toCharArray()));
+    }
 
     private TrieNode root = new TrieNode('/'); // 存储无意义字符
 
     // 往 Trie 树中插入一个字符串
     public void insert(char[] text) {
         TrieNode p = root;
-        for (int i = 0; i < text.length; ++i) {
+        for (int i = 0; i < text.length; i++) {
             int index = text[i] - 'a';
             if (p.children[index] == null) {
                 TrieNode newNode = new TrieNode(text[i]);
@@ -25,7 +32,7 @@ public class Trie {
     // 在 Trie 树中查找一个字符串
     public boolean find(char[] pattern) {
         TrieNode p = root;
-        for (int i = 0; i < pattern.length; ++i) {
+        for (int i = 0; i < pattern.length; i++) {
             int index = pattern[i] - 'a';
             if (p.children[index] == null) {
                 return false; // 不存在 pattern
