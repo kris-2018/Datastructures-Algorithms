@@ -24,15 +24,22 @@ public class LRUBaseLinkedList<T> {
 
     public static void main(String[] args) {
         LRUBaseLinkedList list = new LRUBaseLinkedList();
-        Scanner sc = new Scanner(System.in);
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.printAll();
+        list.add(5);
+        list.printAll();
+        /*Scanner sc = new Scanner(System.in);
         while (true) {
             list.add(sc.nextInt());
             list.printAll();
-        }
+        }*/
     }
 
 
-    private final static Integer DEFAULT_CAPACITY = 10; //链表容量
+    private final static Integer DEFAULT_CAPACITY = 3; //链表容量
     private SNode<T> headNode; //头结点
     private Integer length; //长度
     private Integer capacity; //容量
