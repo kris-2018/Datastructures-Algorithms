@@ -7,26 +7,30 @@ package com.leetcode.algorithm.string.stringmatch.singlepatternmatch;
  */
 public class KMP {
     public static void main(String[] args) {
-        String src = "aaaaaaab";
-        String sub = "ABCDABDABD";
-        /*int[] next = KMP.getNext(sub);
-        //int[] next = lengthKMP(sub.toCharArray());
-        for (int i : next) {
-            System.out.print(i + "  ");// -1 0 1 2 3
-        }*/
+        char[] a = {'a', 'c', 'd', 'a', 'b', 'a', 'b', 'a', 'c', 'd'};
+        int n = 10;
+        char[] b = {'a', 'b', 'a', 'b', 'a', 'c', 'd'}; //next:{-1,-1,0,1,2,-1,-1}
+        int m = 7;
+        System.out.println(kmp(a, n, b, m));
 
     }
 
-    // a, b 分别是主串和模式串；n, m 分别是主串和模式串的长度。
+    /**
+     * @param a 主串
+     * @param n 主串长度
+     * @param b 模式串
+     * @param m 模式串的长度
+     * @return 匹配后的主串起始下标
+     */
     public static int kmp(char[] a, int n, char[] b, int m) {
         int[] next = getNexts(b, m);
         int j = 0;
-        for (int i = 0; i < n; ++i) {
+        for (int i = 0; i < n; i++) {
             while (j > 0 && a[i] != b[j]) { // 一直找到 a[i] 和 b[j]
                 j = next[j - 1] + 1;
             }
             if (a[i] == b[j]) {
-                ++j;
+                j++;
             }
             if (j == m) { // 找到匹配模式串的了
                 return i - m + 1;
@@ -34,90 +38,28 @@ public class KMP {
         }
         return -1;
     }
-    // b 表示模式串，m 表示模式串的长度
+    /**
+     * next数组,失效函数
+     * 按照下标 i 从小到大，依次计算 next[i]，并且 next[i] 的计算通过前面已经计算出来的 next[0]，next[1]，……，next[i-1]来推导
+     * @param b 表示模式串
+     * @param m 表示模式串的长度
+     * @return next数组也叫失效函数(failure function),用来存储模式串中每个前缀（这些前缀都有可能是好前缀）的最长可匹配前缀子串的结尾字符下标
+     *  数组的下标是每个前缀结尾字符下标, 数组的值是这个前缀的最长可以匹配前缀子串的结尾字符下标
+     */
     private static int[] getNexts(char[] b, int m) {
         int[] next = new int[m];
         next[0] = -1;
         int k = -1;
-        for (int i = 1; i < m; ++i) {
+        for (int i = 1; i < m; i++) {
             while (k != -1 && b[k + 1] != b[i]) {
                 k = next[k];
             }
             if (b[k + 1] == b[i]) {
-                        ++k;
+                k++;
             }
             next[i] = k;
         }
         return next;
     }
-
-
-/*    //补充上一篇中的对于前缀后缀的讨论的获取部分匹配数组的算法
-    public static int[] lengthKMP(char[] mchar) {
-        int[] fixNum = new int[mchar.length];
-        for (int i = 1, j = 0; i < mchar.length; i++) {
-            if (mchar[j] == mchar[i]) {
-                fixNum[i] = j + 1;
-                j++;
-            } else if (j > 0) {
-                j = 0;
-                i -= j;
-            }
-        }
-        // return [0, 0, 0, 0, 1, 2, 0, 1, 2, 0]ABCDABDABD
-        return fixNum;
-    }
-
-
-    // 获取next数组的方法,根据给定的字符串求
-    public static int[] getNext(String sub) {
-
-        int j = 1, k = 0;
-        int[] next = new int[sub.length()];
-        next[0] = -1; // 这个是规定
-        next[1] = 0; // 这个也是规定
-        //
-        while (j < sub.length() - 1) {
-            if (sub.charAt(j) == sub.charAt(k)) {
-                next[j + 1] = k + 1;
-                j++;
-                k++;
-            } else if (k == 0) {
-                next[j + 1] = 0;
-                j++;
-            } else {
-                k = next[k];
-            }
-
-        }
-        return next;
-    }
-
-    // 根据给定的主串和子串，采用KMP算法来获取模式匹配
-    public static int kmp(String src, String sub) {
-
-        // 首先生成模式串sub的next[j]
-        int[] next = getNext(sub);
-        int i = 0, j = 0, index = -1;
-        while (i < src.length() && j < sub.length()) {
-            if (src.charAt(i) == sub.charAt(j)) {
-                i++;
-                j++;
-            } else if (j == 0) {
-                i++;
-            } else {
-                j = next[j];
-            }
-        }
-
-        // 得到开始匹配的位置索引
-        if (j == sub.length()) {
-            index = i - sub.length();
-        }
-        return index;
-    }
-    */
-
-
 
 }

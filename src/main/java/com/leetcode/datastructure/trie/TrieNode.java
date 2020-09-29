@@ -6,6 +6,8 @@ public class TrieNode {
     public boolean isEndingChar = false;
     public boolean isWord;
 
+    public String fail;
+
     public TrieNode() {}
     public TrieNode(char data) {
         this.data = data;

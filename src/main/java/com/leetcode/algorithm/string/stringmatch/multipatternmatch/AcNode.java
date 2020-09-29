@@ -1,7 +1,5 @@
 package com.leetcode.algorithm.string.stringmatch.multipatternmatch;
 
-import java.util.LinkedList;
-import java.util.Queue;
 
 public class AcNode {
     public char data;
@@ -15,7 +13,4 @@ public class AcNode {
     }
 
 
-    public void buildFailurePointer() {
-        Queue<AcNode> queue = new LinkedList<>();
-    }
 }
