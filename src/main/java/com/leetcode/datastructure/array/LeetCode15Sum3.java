@@ -25,10 +25,10 @@ import java.util.*;
 
 public class LeetCode15Sum3 {
     public static void main(String[] args) {
-        int arr[] = {-1,0,1,2,-1,-4};
+        int arr[] = {};
         LeetCode15Sum3 leetcode15 = new LeetCode15Sum3();
 
-        for (List<Integer> integers : leetcode15.threeSum(arr)) {
+        for (List<Integer> integers : leetcode15.threeSum2(arr)) {
             System.out.println(integers);
         }
     }
@@ -73,19 +73,21 @@ public class LeetCode15Sum3 {
      * @return
      */
     public List<List<Integer>> threeSum2(int[] num) {
-        Arrays.sort(num);//排序[-4,-1,-1,0,1,2]
         List<List<Integer>> res = new LinkedList<>();
-        for (int i = 0; i < num.length-2; i++) {
+        if (num == null || num.length <= 2) return res;
+
+        Arrays.sort(num);//排序[-4,-1,-1,0,1,2]  时间复杂度 O(n log n)
+        for (int i = 0; i < num.length - 2; i++) {  //时间复杂度 O(n^2)
             if (i == 0 || (i > 0 && num[i] != num[i-1])) { //num[i] = num[i-1]说明该数字会重复,结果会重复,所以要跳过
-                int lo = i+1, hi = num.length-1, sum = 0 - num[i];//lo 和 hi为两条指针,初始分别为数组两端, 往中间移动; 三数之和变成2数之和,
-                while (lo < hi) { //不成立就返回for循环 i++   num[i]为固定的两数之和
-                    if (num[lo] + num[hi] == sum) { //如果相等就添加到数组中
-                        res.add(Arrays.asList(num[i], num[lo], num[hi]));
-                        while (lo < hi && num[lo] == num[lo+1]) lo++; //num[lo] == num[lo+1]会导致结果重复, 应该跳过 lo++
-                        while (lo < hi && num[hi] == num[hi-1]) hi--; //num[hi] == num[hi-1]会导致结果重复, 应该跳过 hi--
-                        lo++; hi--;
-                    } else if (num[lo] + num[hi] < sum) lo++; //如果两数之和 < 固定的num[0],因为是排好序的, 就将左指针右移, 右指针不动
-                    else hi--;
+                int left = i + 1, right = num.length - 1, sum = 0 - num[i];//left 和 right 为两个指针,初始分别为数组两端, 往中间移动; 三数之和变成2数之和,
+                while (left < right) { //不成立就返回for循环 i++   num[i]为固定的两数之和
+                    if (num[left] + num[right] == sum) { //如果相等就添加到数组中
+                        res.add(Arrays.asList(num[i], num[left], num[right]));
+                        while (left < right && num[left] == num[left+1]) left++; //num[left] == num[left+1]会导致结果重复, 应该跳过 left++
+                        while (left < right && num[right] == num[right-1]) right--; //num[right] == num[right-1]会导致结果重复, 应该跳过 right--
+                        left++; right--;
+                    } else if (num[left] + num[right] < sum) left++; //如果两数之和 < 固定的num[i],因为是排好序的, 就将左指针右移, 右指针不动
+                    else right--;
                 }
             }
         }

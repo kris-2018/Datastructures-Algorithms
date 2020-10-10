@@ -1,4 +1,5 @@
 package com.leetcode.datastructure.array;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -7,37 +8,37 @@ import java.util.Map;
  * 1. 两数之和
  * 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。
  * 你可以假设每种输入只会对应一个答案。但是，数组中同一个元素不能使用两遍。
- *
+ * <p>
  * 示例:
  * 给定 nums = [2, 7, 11, 15], target = 9
  * 因为 nums[0] + nums[1] = 2 + 7 = 9
  * 所以返回 [0, 1]
- *
+ * <p>
  * 来源：力扣（LeetCode）
  * 链接：https://leetcode-cn.com/problems/two-sum
- *
  */
 public class LeetCode01TwoSum {
 
     public static void main(String[] args) {
-        int[] nums = {2, 6, 7};
+        int[] nums = {6, 2, 1, 7};
         LeetCode01TwoSum leetcode01 = new LeetCode01TwoSum();
-        for (int i: leetcode01.twoSum3(nums,9)){
+        for (int i : leetcode01.twoSum3(nums, 13)) {
             System.out.print(i + "\t");
         }
     }
 
     /**
      * 方法一: 暴力解法  2层for循环, 时间复杂度为 O(n^2)  空间复杂度为 O(1)
+     *
      * @param nums
      * @param target
      * @return
      */
-    public int[] twoSum(int[] nums, int target){
-        for (int i = 0; i < nums.length; i++){
-            for (int j = i + 1; j < nums.length; j++){
-                if (nums[i] + nums[j] == target){
-                    return new int[] {i,j};
+    public int[] twoSum(int[] nums, int target) {
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                if (nums[i] + nums[j] == target) {
+                    return new int[]{i, j};
                 }
             }
         }
@@ -47,7 +48,10 @@ public class LeetCode01TwoSum {
     /**
      * 方法二: 利用哈希表
      * 数组下标对应的值为 K, 下标为 V , 将每个键值对存入map中, 遍历
-     * 时间复杂度为 O(n)  空间复杂度为 O(n)
+     * 时间复杂度为 O(n) 遍历了包含有 n 个元素的列表一次。在表中进行的每次查找只花费 O(1) 的时间
+     * 空间复杂度为 O(n) 所需的额外空间取决于哈希表中存储的元素数量，该表最多需要存储 n 个元素。
+     * 如果nums中有重复值, 但map中key为Set类型, 不能有重复值; map.put重复的key值时, value以最后一个为准;
+     *
      * @param nums
      * @param target
      * @return
@@ -57,7 +61,7 @@ public class LeetCode01TwoSum {
         Map<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {
             if (map.containsKey(target - nums[i])) {
-                return new int[] { map.get(target - nums[i]), i };
+                return new int[]{map.get(target - nums[i]), i};
                 //result[1] = i;
                 //result[0] = map.get(target - nums[i]);
                 //return result;
@@ -73,6 +77,7 @@ public class LeetCode01TwoSum {
      * 2. 双指针遍历, 使用数组indices记录两个数值;
      * 3. 再遍历数组由数值找下标index O(n)
      * 根据时间复杂度的加法法则, 总的时间复杂度为 O(nlogn)
+     *
      * @param nums
      * @param target
      * @return
@@ -90,8 +95,9 @@ public class LeetCode01TwoSum {
             if (sum == target) {
                 indices[0] = start;
                 indices[1] = end;
+                break;
             } else if (sum < target) start++;
-            else  end--;
+            else end--;
         }
         /* 3. 遍历数组由数值找下标index */
         for (int i = 0; i < nums.length; i++) {

@@ -35,7 +35,7 @@ public class LeetCode26RemoveDuplicates {
     public static void main(String[] args) {
         int[] nums = {4, 5, 5, 5, 5, 5};
         LeetCode26RemoveDuplicates leetcode26 = new LeetCode26RemoveDuplicates();
-        System.out.println(leetcode26.removeDuplicates2(nums));
+        System.out.println(leetcode26.removeDuplicates(nums));
 
     }
 
@@ -54,6 +54,7 @@ public class LeetCode26RemoveDuplicates {
 
     /**
      *  双指针法  i 是慢指针，而 j 是快指针; 时间复杂度 O(n)  空间复杂度 O(1)
+     *  这个解法的前提是排好序的数组
      *  当 nums[i] == nums[j], 就增加 j 以跳过重复项。
      *  当 nums[j] != nums[i], num[i+1] = num[j]
      * @param nums

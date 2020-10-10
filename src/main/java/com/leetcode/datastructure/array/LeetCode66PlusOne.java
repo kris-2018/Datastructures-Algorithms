@@ -22,17 +22,20 @@ package com.leetcode.datastructure.array;
  */
 public class LeetCode66PlusOne {
     public static void main(String[] args) {
-        int[] digits = {9,8};
+        int[] digits = {9,9};
         for (int i : plusOne(digits)) {
             System.out.print(i + "\t");
         }
     }
 
     /**
+     * Iterative
      * 分两种情况:
      * 1. 除 9 之外的数加 1
      * 2. 数字 9 进位
      * 时间复杂度为 O(n) 空间复杂度为 O(n)
+     *  average case space complexity O(1)
+     *  worst case happen if all digtis in array 9, in worst case complexity O(n)
      * @param digits
      * @return
      */
