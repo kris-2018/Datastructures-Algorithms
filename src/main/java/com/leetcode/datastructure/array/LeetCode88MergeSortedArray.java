@@ -26,7 +26,7 @@ public class LeetCode88MergeSortedArray {
         int m = 3;
         int[] nums2 = {1,2,3};
         int n = 3;
-        merge3(nums1, m, nums2, n);
+        merge(nums1, m, nums2, n);
         for (int i : nums1) {
             System.out.print(i + "\t");
         }
@@ -50,7 +50,7 @@ public class LeetCode88MergeSortedArray {
         while (i >= 0 && j >= 0)
             //因为两个数组都是排好序的, 都从最后一位开始比较大小, 把较大者赋值给 nums1[k--] 最后一个位置 ;  i-- 是先运算,后--
             nums1[k--] = (nums1[i] > nums2[j]) ? nums1[i--] : nums2[j--];
-        while (j >= 0)
+        while (j >= 0) //m为nums1数组的长度,m肯定大于n
             nums1[k--] = nums2[j--];
     }
 
@@ -60,7 +60,7 @@ public class LeetCode88MergeSortedArray {
      *  dest     the destination array.
      *  destPos  starting position in the destination data.
      *  length   the number of array elements to be copied.
-     * 将两个数组合并之后再排序,  时间复杂度为 (m + n)log(m + n) , 空间复杂度为 O(1) 这种方法没有利用两个数组本身已经有序这一点, 所以时间复杂度交高
+     * 将两个数组合并之后再排序,  时间复杂度为 (m + n)log(m + n) , 空间复杂度为 O(1) 这种方法没有利用两个数组本身已经有序这一点, 所以时间复杂度较高
      *
      * @param nums1
      * @param m

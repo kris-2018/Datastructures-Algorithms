@@ -18,7 +18,7 @@ public class LeetCode283MoveZeroes {
         LeetCode283MoveZeroes leetcode283 = new LeetCode283MoveZeroes();
         int[] numbers = new int[5];
         int[] numbs = {0,1,0,3,9,4};
-        leetcode283.moveZeroes1(numbs);
+        leetcode283.moveZeroes(numbs);
         for (int num : numbs) {
             System.out.print(num + " ");
         }
@@ -33,10 +33,11 @@ public class LeetCode283MoveZeroes {
      * @return
      */
     public void moveZeroes(int[] nums) {
+        if (nums == null || nums.length == 0) return;
         int j = 0; //nums[j] 为记录为 0 数,
         for (int i = 0; i < nums.length; i++) {
-            if (nums[i] != 0){
-                if (i != j){
+            if (nums[i] != 0){ //int temp = nums[j]; nums[j] = nums[i]; nums[i] = temp; j++; 交互的解法, 下面是赋值的解法
+                if (i != j){ //优化可换成: if(i > j) 它避免了数组开头是非零元素的交换也就是阻止（i==j）时交换;当i > j 时，只需要把i 的值赋值给j 并把原位置的值置0。同时这里也把交换操作换成了赋值操作，减少了一条操作语句，理论上能更节省时间.
                     nums[j] = nums[i]; //将为0 的和不为0的数依次做交换;
                     nums[i] = 0;
                 }
@@ -46,17 +47,24 @@ public class LeetCode283MoveZeroes {
         //return nums;
     }
 
-    public void moveZeroes1(int[] nums) {
+    /**
+     * O(N) Using Insert Index
+     * Shift non-zero values as far forward as possible
+     * Fill remaining space with zeros
+     *  Nice idea, but waste much time on swapping two equal numbers and filling the last zeros.
+     * @param nums 数组
+     */
+    public void moveZeroes2(int[] nums) {
         if (nums == null || nums.length == 0) return;
         int pos = 0;
         for (int num: nums) {
-            if (num != 0) nums[pos++] = num;
+            if (num != 0)
+                nums[pos++] = num;
         }
         //上步的循环是把不是0的元素依次移动到数组的前边, 下步的循环是把数组后边空缺的位置补0;
         while (pos < nums.length) {
             nums[pos++] = 0;
         }
-
     }
 
 
