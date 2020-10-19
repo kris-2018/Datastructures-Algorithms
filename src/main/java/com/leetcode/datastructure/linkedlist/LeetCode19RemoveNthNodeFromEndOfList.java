@@ -1,5 +1,8 @@
 package com.leetcode.datastructure.linkedlist;
 
+import java.util.Deque;
+import java.util.LinkedList;
+
 /**
  * 19. 删除链表的倒数第N个节点
  * 给定一个链表，删除链表的倒数第 n 个节点，并且返回链表的头结点。
@@ -27,23 +30,26 @@ public class LeetCode19RemoveNthNodeFromEndOfList {
         node2.setNext(node3);
         node3.setNext(node4);
 
-        System.out.println(removeNthFromEnd2(node1, 2));
+        System.out.println(removeNthFromEnd(node1, 3));
     }
 
     /**
      * 一次遍历
-     * 两个指针被 n 个结点分开
+     * 两个指针被 n个结点分开
      * 时间复杂度为 O(L) L为结点个数 , 空间复杂度为O(1)
+     * 使用两个指针 fast 和 slow 同时对链表进行遍历，且 fast 比 slow超前 n个节点。
+     *     当 fast 遍历到链表的末尾时, slow 就恰好处于倒数第 n个节点。
+     *
      * @param head
      * @param n
      * @return
      */
     public static ListNode removeNthFromEnd(ListNode head, int n) {
         ListNode start = new ListNode(0);
-        ListNode fast = start, slow = start;
+        ListNode fast = head, slow = start;
         start.next = head;
-        //fast指针移动到倒数 n位, Advances fast pointer so that the gap between fast and slow is n nodes apart
-        for (int i = 1; i <= n+1; i++) {
+        //fast指针向右移动 n位, Advances fast pointer so that the gap between fast and slow is n nodes apart
+        for (int i = 0; i < n; i++) {
             fast = fast.next;
         }
         //fast 和 slow相同的速度移动, 直到fast为null, maintaining the gap
@@ -80,6 +86,34 @@ public class LeetCode19RemoveNthNodeFromEndOfList {
             node = node.next;
         }
         node.next = node.next.next;
+        return start.next;
+    }
+
+    /**
+     * 栈
+     * 遍历链表的同时将所有节点依次入栈。根据栈「先进后出」的原则,
+     * 弹出栈的第n个节点就是需要删除的节点并且目前栈顶的节点就是待删除节点的前驱节点。
+     * 时间复杂度：O(L)，其中 L 是链表的长度。
+     * 空间复杂度：O(L)，其中 L 是链表的长度。主要为栈的开销。
+     * @param head
+     * @param n
+     * @return
+     */
+    public static ListNode removeNthFromEnd3(ListNode head, int n) {
+        ListNode start = new ListNode(0);
+        Deque<ListNode> stack = new LinkedList<>();
+        start.next = head;
+        ListNode cur = start;
+        //遍历链表把各个元素放入栈中
+        while (cur != null) {
+            stack.push(cur);
+            cur = cur.next;
+        }
+        for (int i = 0; i < n; i++) {
+            stack.pop();
+        }
+        ListNode prev = stack.peek();
+        prev.next = prev.next.next;
         return start.next;
     }
 }

@@ -24,7 +24,7 @@ public class LeetCode88MergeSortedArray {
     public static void main(String[] args) {
         int[] nums1 = {6,7,8,0,0,0};
         int m = 3;
-        int[] nums2 = {1,2,3};
+        int[] nums2 = {4,5,6};
         int n = 3;
         merge(nums1, m, nums2, n);
         for (int i : nums1) {
@@ -33,7 +33,9 @@ public class LeetCode88MergeSortedArray {
     }
 
     /**
+     * 双指针倒序比较插入
      * 时间复杂度为 O(m + n)
+     * 空间复杂度 O(1)
      * insert from the m+n-1 position at the bigger array
      * keep 3 pointers:
      *                one at the insertion point
@@ -50,8 +52,9 @@ public class LeetCode88MergeSortedArray {
         while (i >= 0 && j >= 0)
             //因为两个数组都是排好序的, 都从最后一位开始比较大小, 把较大者赋值给 nums1[k--] 最后一个位置 ;  i-- 是先运算,后--
             nums1[k--] = (nums1[i] > nums2[j]) ? nums1[i--] : nums2[j--];
-        while (j >= 0) //m为nums1数组的长度,m肯定大于n
+        while (j >= 0) //剩下nums2,倒序插入即可; 如果剩下nums1, 直接就是其中的值
             nums1[k--] = nums2[j--];
+        //System.arraycopy(nums2,0,nums1,0,j+1); //最后一个while循环可改成此处; nums1和nums2比较完之后, 剩下的即是最小的了,arraycopy完成即可,j为nums2的下标,此处参数为nums2的length, 所以+1即可;
     }
 
     /**
