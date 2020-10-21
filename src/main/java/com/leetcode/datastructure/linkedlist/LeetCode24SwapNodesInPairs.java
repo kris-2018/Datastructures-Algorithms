@@ -64,12 +64,18 @@ public class LeetCode24SwapNodesInPairs {
     }
 
     /**
-     *  方法二
-     *  递归
+     * 方法二
+     * 递归
+     * 时间复杂度：O(n)，其中 n是链表的节点数量。需要对每个节点进行更新指针的操作。
+     *空间复杂度：O(n)，其中 n是链表的节点数量。空间复杂度主要取决于递归调用的栈空间。
      * @param head
      * @return
      */
-    public ListNode swapPairs1(ListNode head) {
-        return head;
+    public ListNode swapPairs2(ListNode head) {
+        if (head == null || head.next == null) return head;
+        ListNode newHead  = head.next;
+        head.next = swapPairs2(head.next.next);
+        newHead .next = head;
+        return newHead ;
     }
 }
