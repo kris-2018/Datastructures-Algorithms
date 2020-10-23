@@ -45,9 +45,9 @@ public class LeetCode19RemoveNthNodeFromEndOfList {
      * @return
      */
     public static ListNode removeNthFromEnd(ListNode head, int n) {
-        ListNode start = new ListNode(0);
-        ListNode fast = head, slow = start;
-        start.next = head;
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode fast = head, slow = dummy;
         //fast指针向右移动 n位, Advances fast pointer so that the gap between fast and slow is n nodes apart
         for (int i = 0; i < n; i++) {
             fast = fast.next;
@@ -59,7 +59,7 @@ public class LeetCode19RemoveNthNodeFromEndOfList {
         }
         //删除结点 slow 的后继结点
         slow.next = slow.next.next;
-        return start.next;
+        return dummy.next;
     }
 
     /**
@@ -71,22 +71,22 @@ public class LeetCode19RemoveNthNodeFromEndOfList {
      * @return
      */
     public static ListNode removeNthFromEnd2(ListNode head, int n) {
-        ListNode start = new ListNode(0);
-        start.next = head;
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
         int length = 0;
-        ListNode node = head;
-        while (node != null) {
+        ListNode current = head;
+        while (current != null) {
             length++;
-            node = node.next;
+            current = current.next;
         }
         length -= n;
-        node = start;
+        current = dummy;
         while (length > 0) {
             length--;
-            node = node.next;
+            current = current.next;
         }
-        node.next = node.next.next;
-        return start.next;
+        current.next = current.next.next;
+        return dummy.next;
     }
 
     /**
@@ -100,20 +100,20 @@ public class LeetCode19RemoveNthNodeFromEndOfList {
      * @return
      */
     public static ListNode removeNthFromEnd3(ListNode head, int n) {
-        ListNode start = new ListNode(0);
+        ListNode dummy = new ListNode(0);
         Deque<ListNode> stack = new LinkedList<>();
-        start.next = head;
-        ListNode cur = start;
+        dummy.next = head;
+        ListNode current = dummy;
         //遍历链表把各个元素放入栈中
-        while (cur != null) {
-            stack.push(cur);
-            cur = cur.next;
+        while (current != null) {
+            stack.push(current);
+            current = current.next;
         }
         for (int i = 0; i < n; i++) {
             stack.pop();
         }
         ListNode prev = stack.peek();
         prev.next = prev.next.next;
-        return start.next;
+        return dummy.next;
     }
 }

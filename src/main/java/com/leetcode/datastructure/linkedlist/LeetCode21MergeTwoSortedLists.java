@@ -82,20 +82,20 @@ public class LeetCode21MergeTwoSortedLists {
      * @return
      */
     public static ListNode mergeTwoLists2(ListNode l1, ListNode l2) {
-        ListNode prehead = new ListNode(-1); //哨兵节点 prehead, 可以在最后比较容易地返回合并后的链表;
-        ListNode prev = prehead; //维护一个prev 指针，比较大小然后调整它的 next 指针
+        ListNode dummy = new ListNode(0); //哨兵节点 dummy, 可以在最后比较容易地返回合并后的链表;
+        ListNode current = dummy; //维护一个 current 指针，比较大小然后调整它的 next 指针
         while (l1 != null && l2 != null) {
             if (l1.data <= l2.data) {
-                prev.next = l1;
+                current.next = l1;
                 l1 = l1.next;
             } else {
-                prev.next = l2;
+                current.next = l2;
                 l2 = l2.next;
             }
-            prev = prev.next;
+            current = current.next;
         }
         // 合并后 l1 和 l2 最多只有一个还未被合并完，将非空链表接在合并链表的后面，并返回合并链表即可
-        prev.next = (l1 == null ? l2 : l1);
-        return prehead.next;
+        current.next = (l1 == null ? l2 : l1);
+        return dummy.next;
     }
 }

@@ -65,7 +65,7 @@ public class LeetCode142LinkedListCycleII {
      * @param head
      * @return
      */
-    public static ListNode detectCycle1(ListNode head) {
+    public static ListNode detectCycle2(ListNode head) {
         Set nodes = new HashSet();
         //ListNode current = head;
         while (head != null) {

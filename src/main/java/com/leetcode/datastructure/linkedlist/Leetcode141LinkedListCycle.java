@@ -42,7 +42,7 @@ public class Leetcode141LinkedListCycle {
             node = node.getNext();
         }*/
 
-        System.out.println("\n 链表是否有环");
+        System.out.println("\n链表是否有环:");
         System.out.println(hasCycle(node1));
     }
 
