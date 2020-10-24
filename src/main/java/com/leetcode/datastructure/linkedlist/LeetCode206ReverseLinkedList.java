@@ -95,6 +95,11 @@ public class LeetCode206ReverseLinkedList {
         return newHead;
     }
 
+    /**
+     * 递归方法
+     * @param head
+     * @return
+     */
     public static ListNode reverseList2(ListNode head){
         /* recursive solution 递归调用 */
         return reverseListInt(head, null);
