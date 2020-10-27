@@ -21,7 +21,7 @@ public class LeetCode234PalindromeLinkedList {
 
     public static void main(String[] args) {
         ListNode node1 = new ListNode(1);
-        ListNode node2 = new ListNode(1);
+        ListNode node2 = new ListNode(2);
         ListNode node3 = new ListNode(2);
         ListNode node4 = new ListNode(1);
 
@@ -32,8 +32,16 @@ public class LeetCode234PalindromeLinkedList {
         System.out.println(isPalindrome(node1));
     }
 
+    /**
+     * 快慢指针
+     * 时间复杂度O(n), 空间复杂度O(1)
+     * 链表被修改(反转了)
+     * @param head
+     * @return
+     */
     public static boolean isPalindrome(ListNode head) {
         ListNode fast = head, slow = head;
+        //1. fast走2步, slow走1步, fast到达终点为null时, slow到达中点;
         while (fast != null && fast.next != null) {
             fast = fast.next.next;
             slow = slow.next;
@@ -41,8 +49,10 @@ public class LeetCode234PalindromeLinkedList {
         if (fast != null) { // odd nodes: let right half smaller
             slow = slow.next;
         }
+        // 2. Reverse 反转 the right half is reversed, and slow pointer becomes the 2nd head. 1 -> 1    null <- 2 <- 1
         slow = reverse(slow);
-        fast = head;
+        // 3. Compare: run the two pointers head and slow together and compare. 把head赋给fast, 让fast和slow进行比较
+        fast = head; // head: 1->1->2 ??
         while (slow != null) {
             if (fast.data != slow.data) {
                 return false;

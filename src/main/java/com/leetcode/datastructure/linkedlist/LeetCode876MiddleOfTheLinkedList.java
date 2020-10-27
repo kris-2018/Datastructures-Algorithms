@@ -33,7 +33,7 @@ public class LeetCode876MiddleOfTheLinkedList {
         node2.setNext(node3);
         node3.setNext(node4);
         node4.setNext(node5);
-        System.out.println(middleNode(node1));
+        System.out.println(middleNode2(node1));
     }
 
     /**
@@ -64,17 +64,18 @@ public class LeetCode876MiddleOfTheLinkedList {
      * @return
      */
     public static ListNode middleNode2(ListNode head) {
-        int n = 0;
+        if (head == null) return null;
+        int len = 0;
         ListNode cur = head;
         while (cur != null) {
-            n++;
+            len++;
             cur = cur.next;
         }
-        int k = 0;
+        len /= 2;
         cur = head;
-        while (k < n / 2) {
-            k++;
+        while (len > 0) {
             cur = cur.next;
+            len--;
         }
         return cur;
     }

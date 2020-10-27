@@ -63,36 +63,27 @@ public class LeetCode206ReverseLinkedList {
 
     /**
      * 单链表的反转  iterative solution
+     * 3个指针 prevHead, head, recordNext
+     * 时间复杂度 O(n), 空间复杂度O(1)
      * @param head
      * @return
-     *      //head = ListNode(data=1, next=ListNode(data=2, next=ListNode(data=3, next=ListNode(data=4, next=ListNode(data=5, next=null)))))
-     *      //newHead = null
-     *      //next = head.next = ListNode(data=2, next=ListNode(data=3, next=ListNode(data=4, next=ListNode(data=5, next=null))))
-     * ListNode next = head.next;
-     *      //head = ListNode(data=1, next=ListNode(data=2, next=ListNode(data=3, next=ListNode(data=4, next=ListNode(data=5, next=null)))))
-     *      //newHead = null
-     *      //next = ListNode(data=2, next=ListNode(data=3, next=ListNode(data=4, next=ListNode(data=5, next=null))))
-     *      //head.next = ListNode(data=2, next=ListNode(data=3, next=ListNode(data=4, next=ListNode(data=5, next=null))))
-     * head.next = newHead;
-     *      //head = ListNode(data=1, next=null)
-     *      //newHead = null
-     *      //next = ListNode(data=2, next=ListNode(data=3, next=ListNode(data=4, next=ListNode(data=5, next=null))))
-     *     //head.next = null
-     * newHead = head;
-     *      //head = ListNode(data=1, next=null)
-     *      //newHead = ListNode(data=1, next=null)
-     *      //next = ListNode(data=2, next=ListNode(data=3, next=ListNode(data=4, next=ListNode(data=5, next=null))))
-     * head = next;
+     * prevHead, head, recordNext. Everytime in loop just make head. next points to prevHead,
+     *               and then move all these three pointers to one next step.
+     * Since when we exit the while loop, head is pointing to null,
+     *            so prevHead points to the end node of original list, and thus we return prevHead.
+     *        1->2->3->4->null
+     * null<-1<-2<-3<-4
+     *
      */
     public static ListNode reverseList(ListNode head) {
-        ListNode newHead = null; //新链表
+        ListNode prevHead = null; //
         while (head != null) {
-            ListNode next = head.next;
-            head.next = newHead;
-            newHead = head;
-            head = next;
+            ListNode recordNext = head.next; //recordNext 只记录下一个结点
+            head.next = prevHead; //head: 1->null  => 2->1->null  =>  3->2->1->null => 4->3->2->1->null
+            prevHead = head;   //preHead: 1->null  => 2->1->null  =>  3->2->1->null => 4->3->2->1->null
+            head = recordNext;    //head: 2->3->4->null =>  3->4->null  => 4->null  将recordHead指向 head,准备下次loop
         }
-        return newHead;
+        return prevHead;
     }
 
     /**
