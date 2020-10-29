@@ -1,12 +1,14 @@
 package com.leetcode.datastructure.queue;
 
+import java.util.PriorityQueue;
+
 /**
  * 703. 数据流中的第K大元素
  * 设计一个找到数据流中第K大元素的类（class）。注意是排序后的第K大元素，不是第K个不同的元素。
  * 你的 KthLargest 类需要一个同时接收整数 k 和整数数组nums 的构造器，它包含数据流中的初始元素。每次调用 KthLargest.add，返回当前数据流中第K大的元素。
- *
+ * <p>
  * 示例:
- *
+ * <p>
  * int k = 3;
  * int[] arr = [4,5,8,2];
  * KthLargest kthLargest = new KthLargest(3, arr);
@@ -18,19 +20,49 @@ package com.leetcode.datastructure.queue;
  * 说明:
  * 你可以假设 nums 的长度≥ k-1 且k ≥ 1。
  * https://leetcode-cn.com/problems/kth-largest-element-in-a-stream/
- *
- *
- *
+ * <p>
+ * <p>
+ * <p>
  * 示例:  int k = 3;
  * 　　　 int[ ] = [ 4, 5, 8 ,2 ]
- *   每次进来一个元素就判断第K大个元素是多少？
- *  ① 前最大的K个数进行排序 ---> sorted（每次进来一个新数在里边排序，把最小的淘汰掉）  它的时间复杂度是：N.K LogK
- *  ②使用优先队列的方法：每次把最大的或者最小的元素放在最上边；小顶堆 MinHeap，优先级按从小到大来排列即最上面的元素永远是最小的。
- *  要找的是第K大个元素，要保证堆的size = k；
- *  它的好处是还是做N次比较运算，如果顶上的元素比这个小的话，那么只需要一次就可以找到最大不需KLogK，如果最大一个最大，它进来再调整后时间复杂度是log2K；整体即是N * （1 + log2K），取平均即 Nlog2k
- *
- *
+ * 每次进来一个元素就判断第K大个元素是多少？
+ * ① 前最大的K个数进行排序 ---> sorted（每次进来一个新数在里边排序，把最小的淘汰掉）  它的时间复杂度是：N.K LogK
+ * ②使用优先队列的方法：每次把最大的或者最小的元素放在最上边；小顶堆 MinHeap，优先级按从小到大来排列即最上面的元素永远是最小的。
+ * 要找的是第K大个元素，要保证堆的size = k；
+ * 它的好处是还是做N次比较运算，如果顶上的元素比这个小的话，那么只需要一次就可以找到最大不需KLogK，如果最大一个最大，它进来再调整后时间复杂度是log2K；整体即是N * （1 + log2K），取平均即 Nlog2k
  */
 public class LeetCode703KthLargestElementInAStream {
+
+    public static void main(String[] args) {
+        int k = 3;
+        int[] nums = {4, 5, 8, 2};
+        LeetCode703KthLargestElementInAStream kth = new LeetCode703KthLargestElementInAStream(k, nums);
+        System.out.println(kth.add(3));  //4
+        System.out.println(kth.add(5));  //5
+        System.out.println(kth.add(10)); //5
+        System.out.println(kth.add(9));  //8
+        System.out.println(kth.add(4));  //8
+        //System.out.println(kth.priorityQueue.peek());
+    }
+
+    PriorityQueue<Integer> priorityQueue;
+    int k;
+
+    public LeetCode703KthLargestElementInAStream(int k, int[] nums) {
+        this.k = k;
+        priorityQueue = new PriorityQueue<>(k);
+        for (int num : nums)
+            add(num);
+    }
+
+    private int add(int val) {
+        if (priorityQueue.size() < k)
+            priorityQueue.add(val);
+        else if (priorityQueue.peek() < val) {
+            priorityQueue.poll();
+            priorityQueue.add(val);
+        }
+        return priorityQueue.peek();
+    }
 
 }
