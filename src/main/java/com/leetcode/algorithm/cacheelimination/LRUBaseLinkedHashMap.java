@@ -10,10 +10,10 @@ import java.util.Map;
  * 其内部是靠建立一个双向链表来维护这个顺序:
  *   每次插入、删除后，都会调用一个函数来进行 双向链表的维护( afterNodeAccess| afterNodeRemoval| afterNodeInsertion )
  */
-public class LRUCache {
+public class LRUBaseLinkedHashMap {
     private Map<Integer, Integer> map;
 
-    public LRUCache(int capacity) {
+    public LRUBaseLinkedHashMap(int capacity) {
         map = new LinkedCappedHashMap<>(capacity);
     }
     public int get(int key) {
@@ -41,10 +41,14 @@ public class LRUCache {
     }
 
     public static void main(String[] args) {
-        final LRUCache lruCache = new LRUCache(10);
+        LRUBaseLinkedHashMap lruCache = new LRUBaseLinkedHashMap(3);
         lruCache.put(1, 1001);
         lruCache.put(2, 1002);
         lruCache.put(3, 1003);
+        lruCache.put(4, 1004);
         System.out.println(lruCache.get(1));
+        System.out.println(lruCache.get(2));
+        System.out.println(lruCache.get(3));
+        System.out.println(lruCache.get(4));
     }
 }

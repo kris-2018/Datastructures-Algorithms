@@ -1,4 +1,4 @@
-package com.leetcode.datastructure.test;
+package com.leetcode.test;
 
 public class TestMap {
 
