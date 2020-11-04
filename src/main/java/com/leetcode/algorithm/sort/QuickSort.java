@@ -27,6 +27,7 @@ public class QuickSort {
         //1. 把小于 array[pivot] 的元素依次放数组左边,
         for (int i = begin; i < end; i++) {
             if (array[i] < array[pivot]) {
+                //数组的插入操作, 在数组某个位置插入元素需要搬移数据,非常耗时。一种处理技巧就是交换, 在O(1) 的时间复杂度内完成插入操作。这里也是借助这个思想,只需要将 array[i] 与 array[counter] 交换，就可以在 O(1) 时间复杂度内将 array[i] 放到下标为 counter的位置。
                 int temp = array[counter];
                 array[counter] = array[i];
                 array[i] = temp;

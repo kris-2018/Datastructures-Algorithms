@@ -13,5 +13,19 @@ public class StringPool {
         System.out.println(str2);
         System.out.println(str2.intern());
         System.out.println(str2 == str2.intern());
+
+        int a = 1;
+        int ret = 0;
+        int res = 0;
+        ret = add(3, 5);
+        res = a + ret;
+        System.out.println(res);
+
+    }
+
+    private static int add(int x, int y) {
+        int sum = 0;
+        sum = x + y;
+        return sum;
     }
 }
