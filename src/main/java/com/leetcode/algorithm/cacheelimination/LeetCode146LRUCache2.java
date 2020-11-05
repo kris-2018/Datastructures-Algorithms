@@ -35,24 +35,23 @@ public class LeetCode146LRUCache2 {
         // 使用伪头部和伪尾部节点
         head = new DLinkedNode();
         tail = new DLinkedNode();
-
+        // dummy head <--> dummy tail
         head.next = tail;
         tail.prev = head;
-
     }
     public int get(int key) {
         DLinkedNode node = cache.get(key);
         if (node == null) {
             return -1;
         }
-        // 如果 key 存在，先通过哈希表定位，再移到头部
+        // 如果 key 存在(说明key 对应的节点是最近被使用), 先通过哈希表定位到该节点在双向链表中的位置, 再移到双向链表的头部
         moveToHead(node); // move the accessed node to the head;
         return node.value;
     }
     public void put(int key, int value) {
-        DLinkedNode node = cache.get(key);
-        if (node == null) {
-            DLinkedNode newNode = new DLinkedNode(key, value); // 如果 key 不存在，创建一个新的节点
+        DLinkedNode node = cache.get(key); //获取当前key是否有值
+        if (node == null) { // 如果 key 不存在
+            DLinkedNode newNode = new DLinkedNode(key, value); // 创建一个新的节点
             cache.put(key, newNode);  // 添加进哈希表
             addToHead(newNode); // 添加至双向链表的头部
             count++;
@@ -81,12 +80,14 @@ public class LeetCode146LRUCache2 {
             this.value = value;
         }
     }
+    /* 添加第一个节点时放在tail之前, 第二个节点放第一个节点之前, 以此类推 */
     private void addToHead(DLinkedNode node) {
         node.prev = head;
         node.next = head.next;
         head.next.prev = node;
         head.next = node;
     }
+    /* 删除当前的k, v */
     private void removeNode(DLinkedNode node) {
         node.prev.next = node.next;
         node.next.prev = node.prev;
@@ -105,8 +106,14 @@ public class LeetCode146LRUCache2 {
         LeetCode146LRUCache2 cache = new LeetCode146LRUCache2(2);
         cache.put(1, 1);
         cache.put(2, 2);
+        cache.put(2, 22);
+        //cache.put(3, 3);
         System.out.println(cache.get(1));
-        cache.put(3, 3);
         System.out.println(cache.get(2));
+        System.out.println("阈值满了之后, 删除链表尾部的元素");
+        cache.put(3, 3);
+        System.out.println(cache.get(1));
+        System.out.println(cache.get(2));
+        System.out.println(cache.get(3));
     }
 }
