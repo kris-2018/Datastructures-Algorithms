@@ -21,10 +21,23 @@ import java.util.Hashtable;
  *
  * 小贴士
  * 在双向链表的实现中，使用一个伪头部（dummy head）和伪尾部（dummy tail）标记界限，这样在添加节点和删除节点的时候就不需要检查相邻的节点是否存在。
- *
+ * https://leetcode-cn.com/problems/lru-cache
  */
 public class LeetCode146LRUCache2 {
+    class DLinkedNode {
+        int key;
+        int value;
+        DLinkedNode next;
+        DLinkedNode prev;
 
+        public DLinkedNode() {}
+        public DLinkedNode(int key, int value) {
+            this.key = key;
+            this.value = value;
+        }
+    }
+    /*Hashtable旧版的，线程安全的，不允许key和value为null值; HashMap新版的，线程不安全的，允许key和value为null值 */
+    /*If a thread-safe implementation is not needed, it is recommended to use HashMap in place of Hashtable. If a thread-safe highly-concurrent implementation is desired, then it is recommended to use java.util.concurrent.ConcurrentHashMap in place of Hashtable.*/
     private Hashtable<Integer, DLinkedNode> cache = new Hashtable<>();
     private int count;
     private int capacity;
@@ -68,18 +81,7 @@ public class LeetCode146LRUCache2 {
     }
 
 
-    class DLinkedNode {
-        int key;
-        int value;
-        DLinkedNode next;
-        DLinkedNode prev;
 
-        public DLinkedNode() {}
-        public DLinkedNode(int key, int value) {
-            this.key = key;
-            this.value = value;
-        }
-    }
     /* 添加第一个节点时放在tail之前, 第二个节点放第一个节点之前, 以此类推 */
     private void addToHead(DLinkedNode node) {
         node.prev = head;
