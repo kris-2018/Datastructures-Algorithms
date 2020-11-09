@@ -1,6 +1,7 @@
 package com.leetcode.datastructure.stack;
 
-import java.util.Stack;
+import java.util.Deque;
+import java.util.LinkedList;
 
 /**
  * 155. 最小栈
@@ -31,7 +32,8 @@ import java.util.Stack;
  * 提示：
  * pop、top 和 getMin 操作总是在 非空栈 上调用。
  *
- *  https://leetcode-cn.com/problems/min-stack/
+ *  https://leetcode.com/problems/min-stack/discuss/49014/Java-accepted-solution-using-one-stack     此方法一个栈, 利用栈存储最小值
+ *  https://leetcode.com/problems/min-stack/discuss/49031/Share-my-Java-solution-with-ONLY-ONE-stack 此方法一个栈, 利用差值 store the gap between the min value and the current value;
  *
  * Your MinStack object will be instantiated and called as such:
  * MinStack obj = new MinStack();
@@ -39,35 +41,41 @@ import java.util.Stack;
  * obj.pop();
  * int param_3 = obj.top();
  * int param_4 = obj.getMin();
+ *
+ * using one stack
+ * 当有更小的值来的时候，只需要把之前的最小值入栈，当前更小的值再入栈即可。
+ *  当这个最小值要出栈的时候，下一个值便是之前的最小值了。
  */
 public class LeetCode155MinStack1 {
 
-    int min = Integer.MAX_VALUE;
-    Stack<Integer> stack = new Stack<>();
     public static void main(String[] args) {
-        LeetCode155MinStack1 leetcode155_MinStack_1 = new LeetCode155MinStack1();
-        leetcode155_MinStack_1.push(2);
-        leetcode155_MinStack_1.push(3);
-        leetcode155_MinStack_1.push(4);
-        System.out.println(leetcode155_MinStack_1.top());
-        leetcode155_MinStack_1.pop();
-        System.out.println(leetcode155_MinStack_1.top());
-        System.out.println(leetcode155_MinStack_1.getMin());
+        LeetCode155MinStack1 minStack_1 = new LeetCode155MinStack1();
+        minStack_1.push(4);
+        minStack_1.push(2);
+        minStack_1.push(3);
+        System.out.println(minStack_1.top());
+        minStack_1.pop();
+        System.out.println(minStack_1.top());
+        System.out.println(minStack_1.getMin());
 
     }
 
-    /** initialize your data structure here. */
+    int min = Integer.MAX_VALUE;
+    Deque<Integer> stack = new LinkedList<>();
+    /** initialize your data structure here.  */
     public LeetCode155MinStack1() {}
-
+    // stack: MAX_VALUE/4/4/2/3, 每次push一个值时先与上次的最小值min做比较,if(x<min) 就把上次push的min值也push进去。
     public void push(int x) {
         if (x <= min) {
             stack.push(min);
+            min = x;
         }
         stack.push(x);
     }
-
+    /*删除时,与min值做比较 */
     public void pop() {
-        if (stack.pop() == min) min = stack.pop();
+        if (stack.pop() == min)
+            min = stack.pop();
     }
     /** peek -- top  查看栈顶元素  */
     public int top() {

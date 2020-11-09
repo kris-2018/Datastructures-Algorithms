@@ -1,4 +1,6 @@
 package com.leetcode.datastructure.queue;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.Stack;
 
 /**
@@ -29,6 +31,9 @@ import java.util.Stack;
  * 假设所有操作都是有效的 （例如，一个空的队列不会调用 pop 或者 peek 操作）。
  * <p>
  * https://leetcode-cn.com/problems/implement-queue-using-stacks/
+ *
+ * 时间复杂度(向栈压入元素) 入队O(1)
+ *         出队 -- 摊还复杂度 O(1), 最坏情况下output空 O(n), 最好情况是O(1) 即output非空,就不需要将input中的数据搬迁到output中;
  */
 public class LeetCode232ImplementQueueUsingStacks {
 
@@ -37,12 +42,15 @@ public class LeetCode232ImplementQueueUsingStacks {
         queue.push(1);
         queue.push(2);
         queue.push(3);
-        queue.peek();
+        System.out.println("push入栈, peek查看栈顶元素, 利用2个栈实现队列先进先出: ");
+        System.out.println(queue.peek());
+        queue.pop();
+        System.out.println(queue.peek());
+        System.out.println(queue.empty());
     }
 
-    Stack<Integer> input = new Stack<>();
-    Stack<Integer> output = new Stack<>();
-
+    Deque<Integer> input = new LinkedList<>();  //入队
+    Deque<Integer> output = new LinkedList<>(); //出队
     public void push(int x) {
         input.push(x);
     }
@@ -59,14 +67,14 @@ public class LeetCode232ImplementQueueUsingStacks {
      * @return
      */
     private int peek() {
-        if (output.empty())
-            while (!input.empty()) {
+        if (output.isEmpty())
+            while (!input.isEmpty()) {
                 output.push(input.pop());
             }
         return output.peek();
     }
 
     public boolean empty() {
-        return input.empty() && output.empty();
+        return input.isEmpty() && output.isEmpty();
     }
 }

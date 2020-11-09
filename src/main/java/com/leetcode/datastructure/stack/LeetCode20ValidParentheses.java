@@ -1,7 +1,6 @@
 package com.leetcode.datastructure.stack;
 
-import java.util.HashMap;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * 20. 有效的括号  Valid Parentheses
@@ -49,12 +48,12 @@ import java.util.Stack;
 
 public class LeetCode20ValidParentheses {
     public static void main(String[] args) {
-        String str = "()[]{}";
+        String str = "{()[]}";
         for (char c: str.toCharArray()){
             System.out.print(c + "\t");
         }
         System.out.println("\n判断是否是有效括号: ");
-        System.out.println(isValid2(str));
+        System.out.println(isValid(str));
     }
 
     /**
@@ -66,7 +65,7 @@ public class LeetCode20ValidParentheses {
      * @return
      */
     public static boolean isValid(String s) {
-        Stack<Character> stack = new Stack<>();
+        Deque<Character> stack = new LinkedList<>();
         for (char c : s.toCharArray()) {
             if (c == '(') stack.push(')');
             else if (c == '{') stack.push('}');
@@ -83,11 +82,11 @@ public class LeetCode20ValidParentheses {
      * @return
      */
     public static boolean isValid2(String s) {
-        HashMap<Character, Character> hashMap = new HashMap<>();
+        Map<Character, Character> hashMap = new HashMap<>();
         hashMap.put('[', ']');
         hashMap.put('{', '}');
         hashMap.put('(', ')');
-        Stack<Character> stack = new Stack<>();
+        Deque<Character> stack = new LinkedList<>();
         for (int i = 0; i < s.length(); i++) {
             char cha = s.charAt(i);
             if (cha == '[' || cha == '{' || cha =='(') stack.push(cha);
