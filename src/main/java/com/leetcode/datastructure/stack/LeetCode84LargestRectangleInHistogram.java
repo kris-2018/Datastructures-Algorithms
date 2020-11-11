@@ -2,6 +2,7 @@ package com.leetcode.datastructure.stack;
 
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.Stack;
 
 /**
  * 84. 柱状图中最大的矩形  Largest Rectangle in Histogram
@@ -13,13 +14,14 @@ import java.util.LinkedList;
  *
  * https://leetcode-cn.com/problems/largest-rectangle-in-histogram/
  * https://leetcode-cn.com/problems/largest-rectangle-in-histogram/solution/javade-5chong-jie-fa-xiao-lu-zui-gao-de-ji-bai-lia/
- *
+ * https://leetcode.com/problems/largest-rectangle-in-histogram/discuss/28900/Short-and-Clean-O(n)-stack-based-JAVA-solution
  */
 public class LeetCode84LargestRectangleInHistogram {
 
     public static void main(String[] args) {
         int[] res = {2,1,5,6,2,3};
-        System.out.println(largestRectangleArea(res));
+        int[] res2 = {1}; // 1
+        System.out.println(largestRectangleArea(res2));
     }
 
     /**
@@ -35,8 +37,8 @@ public class LeetCode84LargestRectangleInHistogram {
     public static int largestRectangleArea(int[] heights) {
         Deque<Integer> stack = new LinkedList<>();
         int maxArea = 0;
-        for (int i = 0; i < heights.length; i++) {
-            int h = (i == heights.length - 1 ? 0 : heights[i]);
+        for (int i = 0; i <= heights.length; i++) { // 考虑到边界问题(比如只为1个长方形) 这里要为 <=, 而不是 <
+            int h = (i == heights.length ? 0 : heights[i]);
             //如果栈是空的，或者当前柱子的高度大于等于栈顶元素所对应柱子的高度, 直接把当前元素即heights的下标 入栈
             if (stack.isEmpty() || h >= heights[stack.peek()]) {
                 stack.push(i);
