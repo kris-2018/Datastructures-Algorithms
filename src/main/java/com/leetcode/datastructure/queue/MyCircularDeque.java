@@ -10,14 +10,20 @@ public class MyCircularDeque {
 
     public static void main(String[] args) {
         MyCircularDeque myCircularDeque = new MyCircularDeque(3);
-        System.out.println(myCircularDeque.insertFront(1));
-        System.out.println(myCircularDeque.insertLast(2));
+        System.out.println("从头部插入数据: " + myCircularDeque.insertFront(1));
+        System.out.println("从头部插入数据: " + myCircularDeque.insertFront(2));
+
+        //System.out.println("从尾部插入数据: " + myCircularDeque.insertLast(3));
+        //System.out.println("从尾部插入数据: " + myCircularDeque.insertLast(2));
+        //System.out.println("从尾部插入数据: " + myCircularDeque.insertLast(1));// full arr {0,2,3}
 
         //System.out.println(myCircularDeque.isFull());
         //System.out.println(myCircularDeque.isEmpty());
 
-        // System.out.println(myCircularDeque.deleteLast());
         System.out.println(myCircularDeque.deleteFront());
+        System.out.println(myCircularDeque.deleteFront());
+
+        // System.out.println(myCircularDeque.deleteLast());
 
         for (int a : myCircularDeque.arr) {
             System.out.print(a + " ");
@@ -39,7 +45,7 @@ public class MyCircularDeque {
 
     /**
      * Adds an item at the front of Deque. Return true if the operation is successful.
-     * 从 front 头指针 添加数据  (front + 1) % n
+     * 从 front 头指针(从前后往插入) 添加数据  (front + 1) % n
      */
     public boolean insertFront(int value) {
         if (isFull()) return false;
@@ -50,7 +56,7 @@ public class MyCircularDeque {
 
     /**
      * Adds an item at the rear of Deque. Return true if the operation is successful.
-     * 从 rear 尾指针 添加数据   尾部指针: (rear - 1 + n) % n
+     * 从 rear 尾指针(从后往前) 添加数据   尾部指针: (rear - 1 + n) % n
      */
     public boolean insertLast(int value) {
         if (isFull()) return false;
@@ -104,6 +110,7 @@ public class MyCircularDeque {
     /**
      * Checks whether the circular deque is full or not.
      * arr 的 capacity > 1 不空 , rear 占一位
+     * 循环队列满的条件是 (front+1) % n == rear, rear占一位, 容量是(capacity - 1) 比正常数组arr容量少一位
      */
     public boolean isFull() {
         return (front + 1) % n == rear;

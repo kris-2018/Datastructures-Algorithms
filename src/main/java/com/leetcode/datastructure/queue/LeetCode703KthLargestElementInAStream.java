@@ -1,6 +1,8 @@
 package com.leetcode.datastructure.queue;
 
+import java.util.Arrays;
 import java.util.PriorityQueue;
+import java.util.Queue;
 
 /**
  * 703. 数据流中的第K大元素
@@ -37,32 +39,72 @@ public class LeetCode703KthLargestElementInAStream {
         int k = 3;
         int[] nums = {4, 5, 8, 2};
         LeetCode703KthLargestElementInAStream kth = new LeetCode703KthLargestElementInAStream(k, nums);
-        System.out.println(kth.add(3));  //4
-        System.out.println(kth.add(5));  //5
-        System.out.println(kth.add(10)); //5
-        System.out.println(kth.add(9));  //8
-        System.out.println(kth.add(4));  //8
-        //System.out.println(kth.priorityQueue.peek());
+        System.out.println(kth.add(3));  //4  priorityQueue {4,5,8}
+        System.out.println(kth.add(5));  //5  priorityQueue {5,8,5} 4与5做比较,4 < 5 将4移除,5添加到队尾
+        System.out.println(kth.add(10)); //5  priorityQueue {5,8,10} 5与10做比较,5 < 10将5移除,10添加到队尾
+        System.out.println(kth.add(9));  //8  priorityQueue {8,10,9} 5与9做比较,5 < 9 将5移除,9添加到队尾
+        System.out.println(kth.add(4));  //8  priorityQueue {8,10,9} 8与4做比较,8 > 4 直接返回队首元素8
     }
 
-    PriorityQueue<Integer> priorityQueue;
-    int k;
+    /* 方法一: Java 的 PriorityQueue 优先级队列
+    * 1 是线程不安全的队列
+      2 存储使用数组实现
+      3 利用比较器做优先级比较
 
+        1 最小堆的特性就是最小的值在最上面，每次取O(1)，插入O(log n)
+        2 初始化的时候，注意如何添加元素，并给队列一个合适大小的初值
+        3 每次添加元素，能添加到队列的有两种情况，一种未到k个，另一种比堆顶大
+    * */
+    Queue<Integer> priorityQueue;
+    int k;
     public LeetCode703KthLargestElementInAStream(int k, int[] nums) {
         this.k = k;
         priorityQueue = new PriorityQueue<>(k);
-        for (int num : nums)
-            add(num);
+        for (int val : nums)
+            add(val);
     }
-
     private int add(int val) {
         if (priorityQueue.size() < k)
-            priorityQueue.add(val);
+            priorityQueue.add(val); //添加到队列
         else if (priorityQueue.peek() < val) {
-            priorityQueue.poll();
+            priorityQueue.poll(); // 移除
             priorityQueue.add(val);
         }
-        return priorityQueue.peek();
+        Integer peek = priorityQueue.peek();
+        return peek;
     }
+    //方法二 小顶堆  https://leetcode.com/problems/kth-largest-element-in-a-stream/discuss/152588/Explanation-of-MinHeap-solution-(NO-CODE)
+/*    int kArr[];
+    public LeetCode703KthLargestElementInAStream(int k, int[] nums) {
+        kArr = new int[k];
+        Arrays.fill(kArr, Integer.MIN_VALUE);
+        for (int num : nums) {
+            add(num);
+        }
+    }
+    private int add(int val) {
+        if (val > kArr[0]) {
+            kArr[0] = val;
+            heapify();
+        }
+        return kArr[0];
+    }
+    //构建小顶堆 MinHeap that contains only k largest elements.
+    private void heapify() {
+        int currRoot;
+        int nextRoot = 0;
+        do {
+            currRoot = nextRoot;
+            if (2 * currRoot + 1 < kArr.length && kArr[2 * currRoot + 1] < kArr[nextRoot])
+                nextRoot = 2 * currRoot + 1;
+            if (2 * currRoot + 2 < kArr.length && kArr[2 * currRoot + 2] < kArr[nextRoot])
+                nextRoot = 2 * currRoot + 2;
 
+            int temp = kArr[nextRoot];
+            kArr[nextRoot] = kArr[currRoot];
+            kArr[currRoot] = temp;
+
+        } while (currRoot != nextRoot);
+    }
+    */
 }
