@@ -2,7 +2,7 @@ package com.leetcode.algorithm.sort;
 
 /**
  * 选择排序（Selection Sort）
- *
+ * 原地的不稳定的排序算法
  */
 public class SelectionSort {
 
@@ -18,6 +18,7 @@ public class SelectionSort {
 
     /**
      * 选择排序（Selection Sort）
+     * 最好、最坏和平均情况时间复杂度都为 O(n^2)。
      * @param nums
      * @param n
      */

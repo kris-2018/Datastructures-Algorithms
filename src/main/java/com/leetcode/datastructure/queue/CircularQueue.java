@@ -1,13 +1,18 @@
 package com.leetcode.datastructure.queue;
 
 /**
+ *
  * 数组实现   循环队列(单)
+ * 该问题使用的数据结构应该是首尾相连的 环。
+ * 任何数据结构中都不存在环形结构，但是可以使用一维 数组 模拟，通过操作数组的索引构建一个 虚拟 的环。很多复杂数据结构都可以通过数组实现。
+ *
  * 避免了数据搬移操作
  * 确定好队空和队满的判定条件
  * 数组实现 非循环队列，队满的判断条件是 tail == n，队空的判断条件是 head == tail
  *        循环队列 队列为空的判断条件仍然是 head == tail , 队满时的条件为 (tail+1)%n=head
  *               循环队列存的元素个数总是比他占用的存储空间少,队尾指针也需要占用一个位置
- *从 tail 进, head 出  先进先出
+ * 从 tail 进, head 出  先进先出
+ * https://leetcode-cn.com/problems/design-circular-queue/
  *
  */
 public class CircularQueue {
@@ -15,14 +20,14 @@ public class CircularQueue {
     public static void main(String[] args) {
         CircularQueue circularQueue = new CircularQueue(3);
         //入队测试
-        System.out.println(circularQueue.enqueue("a"));
-        System.out.println(circularQueue.enqueue("b"));
-        System.out.println(circularQueue.enqueue("c"));
+        System.out.println("入队:" + circularQueue.enqueue("a"));
+        System.out.println("入队:" + circularQueue.enqueue("b"));
+        System.out.println("入队:" + circularQueue.enqueue("c"));
 
         //遍历循环队列
         circularQueue.printAll();
         //出队测试
-        System.out.println("\n" + circularQueue.dequeue() );
+        System.out.println("\n出队:" + circularQueue.dequeue() );
 
     }
 

@@ -10,16 +10,30 @@ public class MyCircularDeque {
 
     public static void main(String[] args) {
         MyCircularDeque myCircularDeque = new MyCircularDeque(3);
-        System.out.println("从头部插入数据: " + myCircularDeque.insertFront(1));
-        System.out.println("从头部插入数据: " + myCircularDeque.insertFront(2));
-        System.out.println("从头部插入数据: " + myCircularDeque.insertFront(3));
 
-//        System.out.println("从尾部插入数据: " + myCircularDeque.insertLast(1));
-//        System.out.println("从尾部插入数据: " + myCircularDeque.insertLast(2));
+        System.out.println("从尾部插入数据: " + myCircularDeque.insertLast(1));
+        System.out.println("从尾部插入数据: " + myCircularDeque.insertLast(2));
+
+        System.out.println("从头部插入数据: " + myCircularDeque.insertFront(3));
+        System.out.println("从头部插入数据: " + myCircularDeque.insertFront(4));
+
+        System.out.println("获取头指针的元素:" + myCircularDeque.getFront());
+        System.out.println("循环队列是否已满:" + myCircularDeque.isFull());
+        System.out.println("从尾部删除数据: " + myCircularDeque.deleteLast());
+        System.out.println("从头部插入数据: " + myCircularDeque.insertFront(4));
+
+        System.out.println("获取头指针的元素:" + myCircularDeque.getFront());
+
+        for (int a : myCircularDeque.arr) {
+            System.out.print(a + " ");
+        }
+//        System.out.println("从头部插入数据: " + myCircularDeque.insertFront(3));
+
+
 //        System.out.println("从尾部插入数据: " + myCircularDeque.insertLast(3));
 //        System.out.println("从尾部插入数据: " + myCircularDeque.insertLast(0));
 
-        //System.out.println(myCircularDeque.isFull());
+
         //System.out.println(myCircularDeque.isEmpty());
 
 /*        System.out.println("从尾部删除数据: " + myCircularDeque.deleteFront());
@@ -27,14 +41,10 @@ public class MyCircularDeque {
 
 //         System.out.println("从尾部删除数据: " + myCircularDeque.deleteLast());
 //         System.out.println("从尾部删除数据: " + myCircularDeque.deleteLast());
-//         System.out.println("从尾部删除数据: " + myCircularDeque.deleteLast());
 
-        for (int a : myCircularDeque.arr) {
-            System.out.print(a + " ");
-        }
 
-        System.out.println("\n获取头指针的元素:" + myCircularDeque.getFront());
-        System.out.println("获取尾指针的元素:" + myCircularDeque.getRear());
+
+
     }
 
     private int[] arr;
@@ -43,8 +53,8 @@ public class MyCircularDeque {
     private int rear = 0; //队尾下标
 
     public MyCircularDeque(int k) {
-        arr = new int[capacity];
         capacity = k + 1;
+        arr = new int[capacity];
     }
 
     /**

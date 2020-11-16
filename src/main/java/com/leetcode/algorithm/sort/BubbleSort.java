@@ -2,12 +2,13 @@ package com.leetcode.algorithm.sort;
 
 /**
  * 冒泡排序
+ * 是一种原地的稳定的排序算法;
  */
 public class BubbleSort {
     public static void main(String[] args) {
-        //int[] nums = {4, 5, 6, 3, 2, 1};
-        int[] nums = {4, 5, 6};
-        int n = 3;
+        int[] nums = {4, 5, 6, 3, 2, 1};
+        //int[] nums = {4, 5, 6};
+        int n = 6;
         bubbleSort(nums, n);
         for (int num : nums) {
             System.out.print(num + "\t");
