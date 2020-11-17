@@ -15,7 +15,7 @@ import java.util.*;
  * https://leetcode-cn.com/problems/n-ary-tree-postorder-traversal/
  *
  */
-public class leetcode590 {
+public class LeetCode590NAryTreePostorderTraversal {
 
     /**
      * 迭代法

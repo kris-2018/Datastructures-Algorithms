@@ -29,7 +29,7 @@ package com.leetcode.algorithm.dynamicprogram;
  */
 public class LeetCode70ClimbingStairs {
     public static void main(String[] args) {
-        System.out.println(climbStairs3(5));
+        System.out.println(climbStairs(5));
     }
 
     /**

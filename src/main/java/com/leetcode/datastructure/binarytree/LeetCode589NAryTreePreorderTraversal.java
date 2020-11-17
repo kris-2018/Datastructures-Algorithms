@@ -17,7 +17,7 @@ import java.util.Stack;
  *  https://leetcode-cn.com/problems/n-ary-tree-preorder-traversal/
  *
  */
-public class leetcode589 {
+public class LeetCode589NAryTreePreorderTraversal {
 
     public static void main(String[] args) {
 

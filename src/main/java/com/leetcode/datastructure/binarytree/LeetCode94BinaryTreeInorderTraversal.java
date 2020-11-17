@@ -21,7 +21,7 @@ import java.util.Stack;
  *
  * https://leetcode-cn.com/problems/binary-tree-inorder-traversal/
  */
-public class leetcode94 {
+public class LeetCode94BinaryTreeInorderTraversal {
 
     public static void main(String[] args) {
         TreeNode treeNode1 = new TreeNode(27);

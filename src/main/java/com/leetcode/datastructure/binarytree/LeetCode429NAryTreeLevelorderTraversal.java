@@ -28,7 +28,7 @@ import java.util.Queue;
  *  https://leetcode-cn.com/problems/n-ary-tree-level-order-traversal/
  *
  */
-public class leetcode429 {
+public class LeetCode429NAryTreeLevelorderTraversal {
 
     /**
      * 利用队列实现广度优先搜索

@@ -25,7 +25,7 @@ import java.util.Stack;
  * 进阶: 递归算法很简单，你可以通过迭代算法完成吗？
  * https://leetcode-cn.com/problems/binary-tree-preorder-traversal/
  */
-public class leetcode144 {
+public class LeetCode144BinaryTreePreorderTraversal {
 
     public static void main(String[] args) {
         TreeNode treeNode1 = new TreeNode(27);
