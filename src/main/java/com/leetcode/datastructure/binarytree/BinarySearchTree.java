@@ -5,6 +5,12 @@ package com.leetcode.datastructure.binarytree;
  * 查找
  * 插入
  * 删除
+ *      27
+ *    /    \
+ *   14     35
+ *  /  \    /  \
+ * 10  19  31  42
+ *
  */
 public class BinarySearchTree {
     public static void main(String[] args) {
@@ -16,7 +22,13 @@ public class BinarySearchTree {
         searchTree.insert(19);
         searchTree.insert(31);
         searchTree.insert(42);
-        System.out.println(searchTree.find(27));
+        System.out.println("查找元素: " + searchTree.find(27));
+        System.out.println("删除元素10");
+        searchTree.delete(10);
+        System.out.println("查找元素: " + searchTree.find(27));
+        System.out.println("查找最小元素: " + searchTree.findMin());
+        System.out.println("查找最大元素: " + searchTree.findMax());
+
     }
     private TreeNode tree;
 
@@ -97,5 +109,27 @@ public class BinarySearchTree {
         if (pp == null) tree = child; //删除根结点
         else if (pp.left == p) pp.left = child;
         else pp.right = child;
+    }
+
+    /**
+     * 查找最小值
+     * @return
+     */
+    public TreeNode findMin() {
+        if (tree == null) return null;
+        TreeNode p = tree;
+        while (p.left != null) p = p.left;
+        return p;
+    }
+
+    /**
+     * 查找最大值
+     * @return
+     */
+    public TreeNode findMax() {
+        if (tree == null) return null;
+        TreeNode p = tree;
+        while (p.right != null) p = p.right;
+        return p;
     }
 }
