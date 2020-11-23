@@ -1,9 +1,9 @@
 package com.leetcode.algorithm.binarysearch;
 
-public class binarysearch {
+public class Binarysearch {
 
     public static void main(String[] args) {
-        final binarysearch binarysearch = new binarysearch();
+        final Binarysearch binarysearch = new Binarysearch();
         int[] nums = {8,11,19,23,27,33,45,55,67,98};
         //查找元素的下标为
         System.out.println("查找元素19的下标为: " + binarysearch.bsearch(nums, 10, 19));
