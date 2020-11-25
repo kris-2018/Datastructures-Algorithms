@@ -1,19 +1,24 @@
 package com.leetcode.datastructure.binarytree;
 
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
+
 /**
  *
- * 二叉树的前中后中序遍历
+ * 二叉树的前中后 层序遍历
  * 递归方法
  * 迭代方法
+ * 每个节点最多会被访问两次，所以遍历 操作的时间复杂度，跟节点的个数 n 成正比，也就是说
+ * 二叉树遍历的时间复杂度是 O(n)。
  *    2
  *  /  \
  * 1    3
  *      \
  *      5
+ *
+ * 前序遍历(根左右): 2 1 3 5
+ * 中序遍历(左根右): 1 2 3 5
+ * 后序遍历(左右根): 1 5 3 2
+ * 层序遍历: 2 1 3 5
  * https://leetcode.com/problems/binary-tree-postorder-traversal/discuss/45551/Preorder-Inorder-and-Postorder-Iteratively-Summarization
  *
  */
@@ -30,22 +35,33 @@ public class BinaryTreeTraversal {
         treeNode1.setRight(treeNode3);
         treeNode3.setRight(treeNode4);
 
+        //System.out.println("前序遍历:");
         //preOrderRecursive(treeNode1);
         //preOrderIterate(treeNode1);
 
+        //System.out.println("中序遍历: ");
         //inOrderRecursive(treeNode1);
         //inOrderIterate(treeNode1);
 
+        //System.out.println("后序遍历: ");
         //postOrderRecursive(treeNode1);
-        for (Object o : postOrderIterate(treeNode1).toArray()) {
-            System.out.println(o);
-        }
+/*        for (Object o : postOrderIterate(treeNode1).toArray()) {
+            System.out.print(o + "\t");
+        }*/
+
+
+/*        System.out.println("层次遍历：");
+        levelOrderRecursive(treeNode1, 0);
+        System.out.println("");
+        for (Object o : levelOrderRecursive2(treeNode1).toArray()) {
+            System.out.print(o + "\t");
+        }*/
 
         //levelOrder(treeNode1);
     }
 
     /**
-     * 前序遍历 递归实现
+     * 1.1 前序遍历 递归实现
      * 根结点 ---> 左子树 ---> 右子树
      * @param root
      */
@@ -56,7 +72,7 @@ public class BinaryTreeTraversal {
         preOrderRecursive(root.right);
     }
     /**
-     * 前序遍历  迭代方法
+     * 1.2 前序遍历  迭代方法
      * 栈, 先入后出(函数调用)
      * Deque<TreeNode> deque = new LinkedList<>(); 在Java中使用Deque来模拟使用栈
      *
@@ -75,11 +91,10 @@ public class BinaryTreeTraversal {
                 root = node.right;
             }
         }
-
     }
 
     /**
-     * 中序遍历 递归实现
+     * 2.1 中序遍历 递归实现
      * @param root
      */
     public static void inOrderRecursive(TreeNode root) {
@@ -89,7 +104,7 @@ public class BinaryTreeTraversal {
         inOrderRecursive(root.right);
     }
     /**
-     * 中序遍历  迭代方法
+     * 2.2 中序遍历  迭代方法
      * @param root
      */
     public static void inOrderIterate(TreeNode root) {
@@ -107,7 +122,7 @@ public class BinaryTreeTraversal {
     }
 
     /**
-     * 后序遍历 递归
+     * 3.1 后序遍历 递归
      * @param root
      */
     public static void postOrderRecursive(TreeNode root) {
@@ -117,7 +132,7 @@ public class BinaryTreeTraversal {
         System.out.println(root);
     }
     /**
-     * 后序遍历 迭代
+     * 3.2 后序遍历 迭代
      * 左子树 --> 右子数 -->  根结点
      * 此题解法是: 根 -> 先遍历右子树, 再遍历左子树, 最后再倒序输出
      * @param root
@@ -129,7 +144,7 @@ public class BinaryTreeTraversal {
             if (root != null) {
                 stack.push(root);
                 result.addFirst(root.data); //进来一个元素就添加到首位, 会进行倒序排列
-                System.out.println(root);//2 3 5 1
+                //System.out.println(root);//2 3 5 1
                 root = root.right;
             } else {
                 TreeNode node = stack.pop();
@@ -140,11 +155,12 @@ public class BinaryTreeTraversal {
     }
 
     /**
-     * 层次遍历 迭代 队列
+     * 4.1 层次遍历
+     *      迭代 队列
      * 先入先出 : 从根节点开始遍历  -->  依次将根 左孩子  右孩子 添加到 队列中
      * @param root
      */
-    public static void levelOrder(TreeNode root) {
+    public static void levelOrderIterate(TreeNode root) {
         Queue<TreeNode> queue = new LinkedList<>();// 创建一个队列  Deque --> Queue
         queue.offer(root); //将元素添加到队尾
         while (!queue.isEmpty()) {
@@ -159,4 +175,32 @@ public class BinaryTreeTraversal {
         }
     }
 
+    /**
+     * 4.2 层次遍历
+     *      递归实现
+     *
+     * @param root
+     * @param height
+     */
+    public static void levelOrderRecursive(TreeNode root, int height) {
+        if (root == null) return;
+        System.out.print(root.data + "\t");
+        levelOrderRecursive(root.left, height + 1);
+        levelOrderRecursive(root.right, height + 1);
+
+    }
+
+    public static List<List<Integer>> levelOrderRecursive2(TreeNode root) {
+        List<List<Integer>> res = new ArrayList<>();
+        levelOrderHelper(res, root, 0);
+        return res;
+    }
+
+    private static void levelOrderHelper(List<List<Integer>> res, TreeNode root, int height) {
+        if (root == null) return;
+        if (height >= res.size()) res.add(new LinkedList<Integer>());
+        res.get(height).add(root.data);
+        levelOrderHelper(res, root.left, height + 1);
+        levelOrderHelper(res, root.right, height + 1);
+    }
 }

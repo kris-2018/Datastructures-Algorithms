@@ -7,7 +7,7 @@ package com.leetcode.datastructure.btree;
  * 5 个区间分别对应：children[0]...children[4]
  *
  * m 值是事先计算得到的，计算的依据是让所有信息的大小正好等于页的大小：
- * PAGE_SIZE = (m-1)*4[keywordss 大小]+m*8[children 大小]
+ * PAGE_SIZE = (m-1)*4[keywordss 大小]+m*8[children 大小] ,8指的是引用(指针)占的内存大小, 引用的大小和机器的多少位有关系, 就是用多少位表示一个存储地址。
  */
 public class BPlusTreeNode {
     public static int m = 5; //5 叉树
