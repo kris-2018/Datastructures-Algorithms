@@ -30,7 +30,7 @@ public class LeetCode189RotateArray {
     public static void main(String[] args) {
         LeetCode189RotateArray leetcode189 = new LeetCode189RotateArray();
         int[] res = {1,2,3,4,5};
-        leetcode189.rotate3(res, 3);
+        leetcode189.rotate(res, 3);
         for (int i : res) {
             System.out.print(i + "\t");
         }
@@ -43,10 +43,10 @@ public class LeetCode189RotateArray {
      * @param k
      */
     public void rotate(int[] nums, int k) {
-        k %= nums.length; //k = k % nums.length 取余数  这步主要是为了防止 k 超过数组的长度
-        reverse(nums, 0, nums.length - 1); //先将所有的数都反转,  首尾交换, 往中间夹
-        reverse(nums, 0, k - 1); //再将数组从0位到 k-1位交换;
-        reverse(nums, k, nums.length - 1); //最后将k位 到 末位交换, 两次交换相当于位置没变化.
+        k %= nums.length; //k = k % nums.length 取余数  这步主要是为了防止 k 超过数组的长度      {1, 2, 3, 4, 5}
+        reverse(nums, 0, nums.length - 1); //先将所有的数都反转,  首尾交换, 往中间夹   {5, 4, 3, 2, 1}
+        reverse(nums, 0, k - 1); //再将数组从0位到 k-1位交换;                       {3, 4, 5, 2, 1}
+        reverse(nums, k, nums.length - 1); //最后将k位 到 末位交换, 两次交换相当于位置没变化. {3, 4, 5, 1, 2}
     }
     //数组中 两两 交换
     public void reverse(int[] nums, int start, int end) {
